@@ -1,68 +1,60 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Model {
-    private ArrayList<Bem> bens = new ArrayList<>();
-    private ArrayList<Patrimonio> patrimonios = new ArrayList<>();
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
-    private ArrayList<RequisicaoDeManutencao> manutencoes = new ArrayList<>();
+    private HashMap<String, Bem> bensMap = new HashMap<>();
+    private HashMap<String, Patrimonio> patrimoniosMap = new HashMap<>();
+    private HashMap<String, Usuario> usuariosMap = new HashMap<>();
+    private HashMap<String, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
 
-    // Métodos para adicionar, atualizar e acessar os dados
+    // Métodos para adicionar dados
     public void adicionarBem(Bem bem) {
-        bens.add(bem);
+        bensMap.put(bem.getId(), bem);
     }
 
-    public void atualizarBem(Bem bem) {
-        // Lógica para atualizar um bem
+    public void adicionarPatrimonio(Patrimonio patrimonio) {
+        patrimoniosMap.put(patrimonio.getId(), patrimonio);
     }
 
+    public void adicionarUsuario(Usuario usuario) {
+        usuariosMap.put(usuario.getId(), usuario);
+    }
+
+    public void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
+        manutencoesMap.put(requisicao.getId(), requisicao);
+    }
+
+    // Métodos para buscar dados
     public Bem buscarBem(String id) {
-        for (Bem bem : bens) {
-            if (bem.getId().equals(id)) {
-                return bem;
-            }
-        }
-        return null;
+        return bensMap.get(id);
     }
 
-    public void reservarPatrimonio(Patrimonio patrimonio) {
-        patrimonios.add(patrimonio);
+    public Patrimonio buscarPatrimonio(String id) {
+        return patrimoniosMap.get(id);
     }
 
-    public void requisitarManutencao(RequisicaoDeManutencao requisicao) {
-        manutencoes.add(requisicao);
+    public Usuario buscarUsuario(String id) {
+        return usuariosMap.get(id);
     }
 
-    public void registrarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
+    public RequisicaoDeManutencao buscarRequisicao(String id) {
+        return manutencoesMap.get(id);
     }
 
-    public Usuario autenticarUsuario(String id) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getId().equals(id)) {
-                return usuario;
-            }
-        }
-        return null;
+    // Métodos para listar todos os dados
+    public ArrayList<Bem> listarBens() {
+        return new ArrayList<>(bensMap.values());
     }
 
-    public void controleAcesso(Usuario usuario) {
-        // Lógica para controlar acesso baseado no nível
+    public ArrayList<Patrimonio> listarPatrimonios() {
+        return new ArrayList<>(patrimoniosMap.values());
     }
 
-    // Métodos de acesso aos dados
-    public ArrayList<Bem> getBens() {
-        return bens;
+    public ArrayList<Usuario> listarUsuarios() {
+        return new ArrayList<>(usuariosMap.values());
     }
 
-    public ArrayList<Patrimonio> getPatrimonios() {
-        return patrimonios;
-    }
-
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public ArrayList<RequisicaoDeManutencao> getManutencoes() {
-        return manutencoes;
+    public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
+        return new ArrayList<>(manutencoesMap.values());
     }
 }
