@@ -13,8 +13,8 @@ public class Bem {
     // Construtor
     public Bem(int id, String nome, String localAlocado, TipoBem tipo) {
         this.id = id;
-        this.nome = nome;
-        this.localAlocado = localAlocado;
+        setNome(nome);
+        setLocalAlocado(localAlocado);
         this.tipo = tipo;
     }
 
@@ -23,15 +23,14 @@ public class Bem {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio.");
+        }
         this.nome = nome;
     }
 
@@ -40,6 +39,9 @@ public class Bem {
     }
 
     public void setLocalAlocado(String localAlocado) {
+        if (localAlocado == null || localAlocado.trim().isEmpty()) {
+            throw new IllegalArgumentException("Local Alocado não pode ser vazio.");
+        }
         this.localAlocado = localAlocado;
     }
 
@@ -51,3 +53,4 @@ public class Bem {
         this.tipo = tipo;
     }
 }
+
