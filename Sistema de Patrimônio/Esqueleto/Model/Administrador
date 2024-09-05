@@ -1,46 +1,72 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+package Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-package Model;
 public class Administrador {
     private HashMap<String, Bem> bensMap = new HashMap<>();
     private HashMap<String, Patrimonio> patrimoniosMap = new HashMap<>();
     private HashMap<String, Usuario> usuariosMap = new HashMap<>();
     private HashMap<String, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
+    private ArrayList<String> historicoDeAcoes = new ArrayList<>(); // Histórico de ações
+
+    // Método para registrar ações no histórico
+    public void registrarAcao(String acao) {
+        historicoDeAcoes.add(acao);
+    }
+
+    // Método para obter o histórico de ações
+    public ArrayList<String> getHistoricoDeAcoes() {
+        return historicoDeAcoes;
+    }
 
     // Métodos para adicionar dados
     public void adicionarBem(Bem bem) {
         bensMap.put(bem.getId(), bem);
+        registrarAcao("Adicionou o bem: " + bem.getId());
     }
 
     public void adicionarPatrimonio(Patrimonio patrimonio) {
         patrimoniosMap.put(patrimonio.getId(), patrimonio);
+        registrarAcao("Adicionou o patrimônio: " + patrimonio.getId());
     }
 
     public void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
         manutencoesMap.put(requisicao.getId(), requisicao);
+        registrarAcao("Adicionou a requisição de manutenção: " + requisicao.getId());
     }
 
     // Métodos para buscar dados
-    public Bem buscarBem(String id) {
-        return bensMap.get(id);
+    public Bem buscarBem(String id) throws DadoNaoEncontradoException {
+        Bem bem = bensMap.get(id);
+        if (bem == null) {
+            throw new DadoNaoEncontradoException("Bem não encontrado.");
+        }
+        return bem;
     }
 
-    public Patrimonio buscarPatrimonio(String id) {
-        return patrimoniosMap.get(id);
+    public Patrimonio buscarPatrimonio(String id) throws DadoNaoEncontradoException {
+        Patrimonio patrimonio = patrimoniosMap.get(id);
+        if (patrimonio == null) {
+            throw new DadoNaoEncontradoException("Patrimônio não encontrado.");
+        }
+        return patrimonio;
     }
 
-    public Usuario buscarUsuario(String id) {
-        return usuariosMap.get(id);
+    public Usuario buscarUsuario(String id) throws DadoNaoEncontradoException {
+        Usuario usuario = usuariosMap.get(id);
+        if (usuario == null) {
+            throw new DadoNaoEncontradoException("Usuário não encontrado.");
+        }
+        return usuario;
     }
 
-    public RequisicaoDeManutencao buscarRequisicao(String id) {
-        return manutencoesMap.get(id);
+    public RequisicaoDeManutencao buscarRequisicao(String id) throws DadoNaoEncontradoException {
+        RequisicaoDeManutencao requisicao = manutencoesMap.get(id);
+        if (requisicao == null) {
+            throw new DadoNaoEncontradoException("Requisição de Manutenção não encontrada.");
+        }
+        return requisicao;
     }
 
     // Métodos para listar todos os dados
@@ -59,37 +85,73 @@ public class Administrador {
     public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
         return new ArrayList<>(manutencoesMap.values());
     }
-    // Métodos para excluir dados
 
-    public void excluirBem(String id) {
+    // Métodos para excluir dados
+    public void excluirBem(String id) throws DadoNaoEncontradoException {
         if (bensMap.containsKey(id)) {
             bensMap.remove(id);
+            registrarAcao("Excluiu o bem: " + id);
         } else {
-            System.out.println("Bem não encontrado.");
+            throw new DadoNaoEncontradoException("Bem não encontrado.");
         }
     }
 
-    public void excluirPatrimonio(String id) {
+    public void excluirPatrimonio(String id) throws DadoNaoEncontradoException {
         if (patrimoniosMap.containsKey(id)) {
             patrimoniosMap.remove(id);
+            registrarAcao("Excluiu o patrimônio: " + id);
         } else {
-            System.out.println("Patrimônio não encontrado.");
+            throw new DadoNaoEncontradoException("Patrimônio não encontrado.");
         }
     }
 
-    public void excluirUsuario(String id) {
+    public void excluirUsuario(String id) throws DadoNaoEncontradoException {
         if (usuariosMap.containsKey(id)) {
             usuariosMap.remove(id);
+            registrarAcao("Excluiu o usuário: " + id);
         } else {
-            System.out.println("Usuário  não encontrado.");
+            throw new DadoNaoEncontradoException("Usuário não encontrado.");
         }
     }
 
-    public void excluirRequisicaoDeManutencao(String id) {
+    public void excluirRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
         if (manutencoesMap.containsKey(id)) {
             manutencoesMap.remove(id);
+            registrarAcao("Excluiu a requisição de manutenção: " + id);
         } else {
-            System.out.println("Requisição de Manutenção não encontrada.");
+            throw new DadoNaoEncontradoException("Requisição de Manutenção não encontrada.");
+        }
+    }
+
+    // Métodos para aprovar/rejeitar requisições de manutenção
+    public void aprovarRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
+        RequisicaoDeManutencao requisicao = buscarRequisicao(id);
+        requisicao.setStatus("Aprovada");
+        registrarAcao("Aprovou a requisição de manutenção: " + id);
+    }
+
+    public void rejeitarRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
+        RequisicaoDeManutencao requisicao = buscarRequisicao(id);
+        requisicao.setStatus("Rejeitada");
+        registrarAcao("Rejeitou a requisição de manutenção: " + id);
+    }
+
+    // Métodos para atualizar dados
+    public void atualizarBem(Bem bem) throws DadoNaoEncontradoException {
+        if (bensMap.containsKey(bem.getId())) {
+            bensMap.put(bem.getId(), bem);
+            registrarAcao("Atualizou o bem: " + bem.getId());
+        } else {
+            throw new DadoNaoEncontradoException("Bem não encontrado.");
+        }
+    }
+
+    public void atualizarPatrimonio(Patrimonio patrimonio) throws DadoNaoEncontradoException {
+        if (patrimoniosMap.containsKey(patrimonio.getId())) {
+            patrimoniosMap.put(patrimonio.getId(), patrimonio);
+            registrarAcao("Atualizou o patrimônio: " + patrimonio.getId());
+        } else {
+            throw new DadoNaoEncontradoException("Patrimônio não encontrado.");
         }
     }
 }
