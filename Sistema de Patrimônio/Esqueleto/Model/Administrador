@@ -59,4 +59,37 @@ public class Administrador {
     public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
         return new ArrayList<>(manutencoesMap.values());
     }
+    // Métodos para excluir dados
+
+    public void excluirBem(String id) {
+        if (bensMap.containsKey(id)) {
+            bensMap.remove(id);
+        } else {
+            System.out.println("Bem não encontrado.");
+        }
+    }
+
+    public void excluirPatrimonio(String id) {
+        if (patrimoniosMap.containsKey(id)) {
+            patrimoniosMap.remove(id);
+        } else {
+            System.out.println("Patrimônio não encontrado.");
+        }
+    }
+
+    public void excluirUsuario(String id) {
+        if (usuariosMap.containsKey(id)) {
+            usuariosMap.remove(id);
+        } else {
+            System.out.println("Usuário  não encontrado.");
+        }
+    }
+
+    public void excluirRequisicaoDeManutencao(String id) {
+        if (manutencoesMap.containsKey(id)) {
+            manutencoesMap.remove(id);
+        } else {
+            System.out.println("Requisição de Manutenção não encontrada.");
+        }
+    }
 }
