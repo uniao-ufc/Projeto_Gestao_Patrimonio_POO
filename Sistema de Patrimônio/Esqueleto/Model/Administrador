@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Administrador {
-    private HashMap<String, Bem> bensMap = new HashMap<>();
-    private HashMap<String, Patrimonio> patrimoniosMap = new HashMap<>();
-    private HashMap<String, Usuario> usuariosMap = new HashMap<>();
-    private HashMap<String, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
+    private HashMap<Integer, Bem> bensMap = new HashMap<>();
+    private HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
+    private HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
+    private HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
     private ArrayList<String> historicoDeAcoes = new ArrayList<>(); // Histórico de ações
 
     // Método para registrar ações no histórico
@@ -37,7 +37,7 @@ public class Administrador {
     }
 
     // Métodos para buscar dados
-    public Bem buscarBem(String id) throws DadoNaoEncontradoException {
+    public Bem buscarBem(int id) throws DadoNaoEncontradoException {
         Bem bem = bensMap.get(id);
         if (bem == null) {
             throw new DadoNaoEncontradoException("Bem não encontrado.");
@@ -45,7 +45,7 @@ public class Administrador {
         return bem;
     }
 
-    public Patrimonio buscarPatrimonio(String id) throws DadoNaoEncontradoException {
+    public Patrimonio buscarPatrimonio(int id) throws DadoNaoEncontradoException {
         Patrimonio patrimonio = patrimoniosMap.get(id);
         if (patrimonio == null) {
             throw new DadoNaoEncontradoException("Patrimônio não encontrado.");
@@ -53,7 +53,7 @@ public class Administrador {
         return patrimonio;
     }
 
-    public Usuario buscarUsuario(String id) throws DadoNaoEncontradoException {
+    public Usuario buscarUsuario(int id) throws DadoNaoEncontradoException {
         Usuario usuario = usuariosMap.get(id);
         if (usuario == null) {
             throw new DadoNaoEncontradoException("Usuário não encontrado.");
@@ -61,7 +61,7 @@ public class Administrador {
         return usuario;
     }
 
-    public RequisicaoDeManutencao buscarRequisicao(String id) throws DadoNaoEncontradoException {
+    public RequisicaoDeManutencao buscarRequisicao(int id) throws DadoNaoEncontradoException {
         RequisicaoDeManutencao requisicao = manutencoesMap.get(id);
         if (requisicao == null) {
             throw new DadoNaoEncontradoException("Requisição de Manutenção não encontrada.");
@@ -87,7 +87,7 @@ public class Administrador {
     }
 
     // Métodos para excluir dados
-    public void excluirBem(String id) throws DadoNaoEncontradoException {
+    public void excluirBem(int id) throws DadoNaoEncontradoException {
         if (bensMap.containsKey(id)) {
             bensMap.remove(id);
             registrarAcao("Excluiu o bem: " + id);
@@ -96,7 +96,7 @@ public class Administrador {
         }
     }
 
-    public void excluirPatrimonio(String id) throws DadoNaoEncontradoException {
+    public void excluirPatrimonio(int id) throws DadoNaoEncontradoException {
         if (patrimoniosMap.containsKey(id)) {
             patrimoniosMap.remove(id);
             registrarAcao("Excluiu o patrimônio: " + id);
@@ -105,7 +105,7 @@ public class Administrador {
         }
     }
 
-    public void excluirUsuario(String id) throws DadoNaoEncontradoException {
+    public void excluirUsuario(int id) throws DadoNaoEncontradoException {
         if (usuariosMap.containsKey(id)) {
             usuariosMap.remove(id);
             registrarAcao("Excluiu o usuário: " + id);
@@ -114,7 +114,7 @@ public class Administrador {
         }
     }
 
-    public void excluirRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
+    public void excluirRequisicaoDeManutencao(int id) throws DadoNaoEncontradoException {
         if (manutencoesMap.containsKey(id)) {
             manutencoesMap.remove(id);
             registrarAcao("Excluiu a requisição de manutenção: " + id);
@@ -124,13 +124,13 @@ public class Administrador {
     }
 
     // Métodos para aprovar/rejeitar requisições de manutenção
-    public void aprovarRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
+    public void aprovarRequisicaoDeManutencao(int id) throws DadoNaoEncontradoException {
         RequisicaoDeManutencao requisicao = buscarRequisicao(id);
         requisicao.setStatus("Aprovada");
         registrarAcao("Aprovou a requisição de manutenção: " + id);
     }
 
-    public void rejeitarRequisicaoDeManutencao(String id) throws DadoNaoEncontradoException {
+    public void rejeitarRequisicaoDeManutencao(int id) throws DadoNaoEncontradoException {
         RequisicaoDeManutencao requisicao = buscarRequisicao(id);
         requisicao.setStatus("Rejeitada");
         registrarAcao("Rejeitou a requisição de manutenção: " + id);
