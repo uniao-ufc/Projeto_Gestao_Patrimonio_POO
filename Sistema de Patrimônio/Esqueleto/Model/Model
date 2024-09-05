@@ -1,0 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Model;
+//tem que importar tudo da view
+public class Model {
+    //lista de usuarios(alunos e admins)
+    //lista de observers
+    private Aluno alunoAutenticado;
+    private Administrador administradorAutenticado;
+    public void notifica(){}
+    public Administrador getAdministrador(){
+        //precisa de retorno
+    }
+    public void setAdministrador(Administrador admin){}
+    public Aluno getAluno(){
+        //precisa de retorno
+    }
+    public void setAluno(Aluno aluno){}
+    public void autenticarUsuario(){}
+    public void deslogarUsuario(){}
+    public void attachObserver(Observer observer){}
+    public void detachObserver(Observer observer){}
+}
