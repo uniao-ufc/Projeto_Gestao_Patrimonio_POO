@@ -10,8 +10,8 @@ import java.util.HashMap;
 public class Requisitante {
     private String username;
     private String password;
-    private HashMap<String, Bem> meusBens = new HashMap<>();
-    private HashMap<String, RequisicaoDeManutencao> minhasManutencoes = new HashMap<>();
+    private HashMap<Integer, Bem> meusBens = new HashMap<>();
+    private HashMap<Integer, RequisicaoDeManutencao> minhasManutencoes = new HashMap<>();
 
     public Requisitante(String username, String password) {
         this.username = username;
@@ -57,7 +57,7 @@ public class Requisitante {
     }
 
     // Método para remover um bem do requisitante
-    public void removerBem(String id) throws Exception {
+    public void removerBem(int id) throws Exception {
         if (meusBens.containsKey(id)) {
             meusBens.remove(id);
         } else {
