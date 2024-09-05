@@ -2,21 +2,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 package Model;
 public class Administrador {
-    private String login;
-    private String senha;
-    
-    public String getLogin(){
-        return this.login;
+    private HashMap<String, Bem> bensMap = new HashMap<>();
+    private HashMap<String, Patrimonio> patrimoniosMap = new HashMap<>();
+    private HashMap<String, Usuario> usuariosMap = new HashMap<>();
+    private HashMap<String, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
+
+    // Métodos para adicionar dados
+    public void adicionarBem(Bem bem) {
+        bensMap.put(bem.getId(), bem);
     }
-    public void setLogin(String login){
-        this.login = login;
+
+    public void adicionarPatrimonio(Patrimonio patrimonio) {
+        patrimoniosMap.put(patrimonio.getId(), patrimonio);
     }
-    public String getSenha(){
-        return this.senha;
+
+    public void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
+        manutencoesMap.put(requisicao.getId(), requisicao);
     }
-    public void setSenha(String senha){
-        this.senha = senha;
+
+    // Métodos para buscar dados
+    public Bem buscarBem(String id) {
+        return bensMap.get(id);
+    }
+
+    public Patrimonio buscarPatrimonio(String id) {
+        return patrimoniosMap.get(id);
+    }
+
+    public Usuario buscarUsuario(String id) {
+        return usuariosMap.get(id);
+    }
+
+    public RequisicaoDeManutencao buscarRequisicao(String id) {
+        return manutencoesMap.get(id);
+    }
+
+    // Métodos para listar todos os dados
+    public ArrayList<Bem> listarBens() {
+        return new ArrayList<>(bensMap.values());
+    }
+
+    public ArrayList<Patrimonio> listarPatrimonios() {
+        return new ArrayList<>(patrimoniosMap.values());
+    }
+
+    public ArrayList<Usuario> listarUsuarios() {
+        return new ArrayList<>(usuariosMap.values());
+    }
+
+    public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
+        return new ArrayList<>(manutencoesMap.values());
     }
 }
