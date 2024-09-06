@@ -5,4 +5,6 @@ module br.ufc.sistemapatrimonio {
 
     opens br.ufc.sistemapatrimonio to javafx.fxml;
     exports br.ufc.sistemapatrimonio;
+    exports br.ufc.sistemapatrimonio.model;
+    exports br.ufc.sistemapatrimonio.exceptions;
 }

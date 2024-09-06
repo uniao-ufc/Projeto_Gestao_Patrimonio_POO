@@ -1,5 +1,7 @@
 package br.ufc.sistemapatrimonio.model;
 
+import br.ufc.sistemapatrimonio.exceptions.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +11,10 @@ public class Administrador extends Usuario {
     private final HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
     private final HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
     private final ArrayList<String> historicoDeAcoes = new ArrayList<>(); // Histórico de ações
+
+    public Administrador(String login, String senha) {
+        super();
+    }
 
     // Método para registrar ações no histórico
     public void registrarAcao(String acao) {
@@ -126,13 +132,13 @@ public class Administrador extends Usuario {
     // Métodos para aprovar/rejeitar requisições de manutenção
     public void aprovarRequisicaoDeManutencao(int id) throws DadoNaoEncontradoException {
         RequisicaoDeManutencao requisicao = buscarRequisicao(id);
-        requisicao.setStatus("Aprovada");
+        requisicao.setStatus(Boolean.TRUE);
         registrarAcao("Aprovou a requisição de manutenção: " + id);
     }
 
     public void rejeitarRequisicaoDeManutencao(int id) throws DadoNaoEncontradoException {
         RequisicaoDeManutencao requisicao = buscarRequisicao(id);
-        requisicao.setStatus("Rejeitada");
+        requisicao.setStatus(Boolean.FALSE);
         registrarAcao("Rejeitou a requisição de manutenção: " + id);
     }
 

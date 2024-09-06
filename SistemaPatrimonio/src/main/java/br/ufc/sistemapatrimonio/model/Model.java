@@ -15,9 +15,9 @@ public class Model {
 
     // Método para notificar todos os observadores
     public void notifica() {
-        for (Observer observer : observers) {
-            observer.update();  // Assumindo que Observer tem um método update()
-        }
+       // for (Observer observer : observers) {
+        //    observer.update();  // Assumindo que Observer tem um método update()
+       // }
     }
 
     // Métodos para acessar e definir administrador

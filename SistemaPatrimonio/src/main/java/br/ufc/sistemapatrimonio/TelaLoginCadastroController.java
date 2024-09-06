@@ -1,9 +1,5 @@
 package br.ufc.sistemapatrimonio;
-
-
-import br.ufc.sistemapatrimonio.model.Administrador;
-import br.ufc.sistemapatrimonio.model.Requisitante;
-import br.ufc.sistemapatrimonio.model.TelaLoginCadastroModel;
+import br.ufc.sistemapatrimonio.model.*;
 
 public class TelaLoginCadastroController {
     private final TelaLoginCadastroModel telaLoginCadastroModel;

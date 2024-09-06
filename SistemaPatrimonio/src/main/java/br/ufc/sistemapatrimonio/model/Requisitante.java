@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Requisitante {
     private String username;
     private String password;
-    private HashMap<Integer, Bem> meusBens = new HashMap<>();
+    private final HashMap<Integer, Bem> meusBens = new HashMap<>();
     private final HashMap<Integer, RequisicaoDeManutencao> minhasManutencoes = new HashMap<>();
 
     public Requisitante(String username, String password) {
