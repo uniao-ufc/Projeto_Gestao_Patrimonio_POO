@@ -2,15 +2,13 @@ package br.ufc.sistemapatrimonio.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Requisitante {
-    private String username;
-    private String password;
+public class Requisitante extends Usuario{
     private final HashMap<Integer, Bem> meusBens = new HashMap<>();
     private final HashMap<Integer, RequisicaoDeManutencao> minhasManutencoes = new HashMap<>();
 
     public Requisitante(String username, String password) {
-        this.username = username;
-        this.password = password;
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
     // Métodos para acessar os dados pessoais
