@@ -4,6 +4,9 @@
  */
 package br.ufc.sistemapatrimonio.model;
 
+import br.ufc.sistemapatrimonio.entities.Administrador;
+import br.ufc.sistemapatrimonio.entities.Requisitante;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;

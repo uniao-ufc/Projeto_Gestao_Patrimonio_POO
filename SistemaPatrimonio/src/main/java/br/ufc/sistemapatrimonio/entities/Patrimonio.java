@@ -1,4 +1,4 @@
-package br.ufc.sistemapatrimonio.model;
+package br.ufc.sistemapatrimonio.entities;
 
 public class Patrimonio {
     private int id;

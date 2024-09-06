@@ -1,5 +1,10 @@
 package br.ufc.sistemapatrimonio.model;
 
+import br.ufc.sistemapatrimonio.entities.Administrador;
+import br.ufc.sistemapatrimonio.entities.Bem;
+import br.ufc.sistemapatrimonio.entities.Patrimonio;
+import br.ufc.sistemapatrimonio.entities.Requisitante;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +13,8 @@ public class DataPersistence {
 
     private final HashMap<Integer, Bem> bensMap = new HashMap<>();
     private final HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
-    private final HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
+    private final HashMap<String, Requisitante> requisitantesMap = new HashMap<>();
+    private final HashMap<String, Administrador> administradoresMap = new HashMap<>();
     private final HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
 
     // Salvando dados em arquivos
@@ -16,7 +22,8 @@ public class DataPersistence {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(new ArrayList<>(bensMap.values()));
             oos.writeObject(new ArrayList<>(patrimoniosMap.values()));
-            oos.writeObject(new ArrayList<>(usuariosMap.values()));
+            oos.writeObject(new ArrayList<>(requisitantesMap.values()));
+            oos.writeObject(new ArrayList<>(administradoresMap.values()));
             oos.writeObject(new ArrayList<>(manutencoesMap.values()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,13 +35,15 @@ public class DataPersistence {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
             ArrayList<Bem> bens = (ArrayList<Bem>) ois.readObject();
             ArrayList<Patrimonio> patrimonios = (ArrayList<Patrimonio>) ois.readObject();
-            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
+            ArrayList<Requisitante> requisitantes = (ArrayList<Requisitante>) ois.readObject();
+            ArrayList<Administrador> administradores = (ArrayList<Administrador>) ois.readObject();
             ArrayList<RequisicaoDeManutencao> manutencoes = (ArrayList<RequisicaoDeManutencao>) ois.readObject();
 
             // Limpar dados atuais
             bensMap.clear();
             patrimoniosMap.clear();
-            usuariosMap.clear();
+            requisitantesMap.clear();
+            administradoresMap.clear();
             manutencoesMap.clear();
 
             // Adicionar os dados carregados
@@ -44,8 +53,11 @@ public class DataPersistence {
             for (Patrimonio patrimonio : patrimonios) {
                 adicionarPatrimonio(patrimonio);
             }
-            for (Usuario usuario : usuarios) {
-                adicionarUsuario(usuario);
+            for (Requisitante requisitante : requisitantes) {
+                adicionarRequisitante(requisitante);
+            }
+            for (Administrador administrador : administradores) {
+                adicionarAdministrador(administrador);
             }
             for (RequisicaoDeManutencao requisicao : manutencoes) {
                 adicionarRequisicaoDeManutencao(requisicao);
@@ -65,8 +77,12 @@ public class DataPersistence {
         patrimoniosMap.put(patrimonio.getId(), patrimonio);
     }
 
-    public void adicionarUsuario(Usuario usuario) {
-        usuariosMap.put(usuario.getId(), usuario);
+    public void adicionarRequisitante(Requisitante requisitante) {
+        requisitantesMap.put(requisitante.getUsername(), requisitante);
+    }
+
+    public void adicionarAdministrador(Administrador administrador) {
+        administradoresMap.put(administrador.getUsername(), administrador);
     }
 
     public void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
@@ -82,11 +98,32 @@ public class DataPersistence {
         return new ArrayList<>(patrimoniosMap.values());
     }
 
-    public ArrayList<Usuario> listarUsuarios() {
-        return new ArrayList<>(usuariosMap.values());
+    public ArrayList<Requisitante> listarRequisitantes() {
+        return new ArrayList<>(requisitantesMap.values());
+    }
+
+    public ArrayList<Administrador> listarAdministradores() {
+        return new ArrayList<>(administradoresMap.values());
     }
 
     public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
         return new ArrayList<>(manutencoesMap.values());
+    }
+
+    // Novos métodos para salvar requisitantes e administradores
+    public void salvarRequisitantes(HashMap<String, Requisitante> requisitantesMap) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("requisitantes.dat"))) {
+            oos.writeObject(new ArrayList<>(requisitantesMap.values()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void salvarAdministradores(HashMap<String, Administrador> administradoresMap) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("administradores.dat"))) {
+            oos.writeObject(new ArrayList<>(administradoresMap.values()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

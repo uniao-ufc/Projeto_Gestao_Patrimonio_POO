@@ -4,7 +4,6 @@ public class RequisicaoDeManutencao {
     private String request;
     private int id;
     private Boolean status;
-
     public RequisicaoDeManutencao(String descricao) {
     }
 

@@ -1,4 +1,5 @@
-package br.ufc.sistemapatrimonio;
+package br.ufc.sistemapatrimonio.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,7 +40,7 @@ public class TelaLoginCadastroController {
 
     @FXML
     void logarUsuario(ActionEvent event) {
-
     }
+
 
 }

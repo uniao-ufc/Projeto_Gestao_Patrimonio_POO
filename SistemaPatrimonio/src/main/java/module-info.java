@@ -8,4 +8,7 @@ module br.ufc.sistemapatrimonio {
     exports br.ufc.sistemapatrimonio.model;
     exports br.ufc.sistemapatrimonio.exceptions;
     exports br.ufc.sistemapatrimonio.enums;
+    exports br.ufc.sistemapatrimonio.entities;
+    exports br.ufc.sistemapatrimonio.controller;
+    opens br.ufc.sistemapatrimonio.controller to javafx.fxml;
 }

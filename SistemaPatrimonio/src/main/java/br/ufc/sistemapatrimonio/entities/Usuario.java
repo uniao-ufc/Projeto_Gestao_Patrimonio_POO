@@ -1,4 +1,4 @@
-package br.ufc.sistemapatrimonio.model;
+package br.ufc.sistemapatrimonio.entities;
 import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 
 public class Usuario {

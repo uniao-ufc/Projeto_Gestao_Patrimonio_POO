@@ -1,5 +1,8 @@
 package br.ufc.sistemapatrimonio.model;
 
+import br.ufc.sistemapatrimonio.entities.Administrador;
+import br.ufc.sistemapatrimonio.entities.Requisitante;
+
 public class TelaLoginCadastroController {
     private final TelaLoginCadastroModel telaLoginCadastroModel;
     private final DataPersistence dataPersistence;

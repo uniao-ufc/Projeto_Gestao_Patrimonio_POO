@@ -1,4 +1,4 @@
-package br.ufc.sistemapatrimonio.model;
+package br.ufc.sistemapatrimonio.entities;
 
 public class TipoBem {
     private int id;

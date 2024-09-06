@@ -1,4 +1,4 @@
-package br.ufc.sistemapatrimonio.model;
+package br.ufc.sistemapatrimonio.entities;
 public class Local {
     private String name;
     private String endereco;

@@ -1,4 +1,4 @@
-package br.ufc.sistemapatrimonio;
+package br.ufc.sistemapatrimonio.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,16 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class telaRequisitanteController {
+public class TelaRequisitanteController {
 
     @FXML
     private Button btnAdicionar;
 
     @FXML
     private Button btnRemover;
-
-    @FXML
-    private TextField txtIdRemover;
 
     @FXML
     private TextArea txtListaBens;
@@ -30,15 +27,18 @@ public class telaRequisitanteController {
     private TextField txtNomeAdd;
 
     @FXML
+    private TextField txtRemover;
+
+    @FXML
     private TextField txtTipoAdd;
 
     @FXML
-    void adicionarItem(ActionEvent event) {
+    void adicionarBem(ActionEvent event) {
 
     }
 
     @FXML
-    void removerItem(ActionEvent event) {
+    void removerBem(ActionEvent event) {
 
     }
 
