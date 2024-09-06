@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 public class DataPersistence {
 
-    private HashMap<Integer, Bem> bensMap = new HashMap<>();
-    private HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
-    private HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
-    private HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
+    private final HashMap<Integer, Bem> bensMap = new HashMap<>();
+    private final HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
+    private final HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
+    private final HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
 
     // Salvando dados em arquivos
     public void saveData(String fileName) {

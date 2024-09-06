@@ -1,7 +1,4 @@
-package br.ufc.sistemapatrimonio.controller;
-
-import br.ufc.sistemapatrimonio.model.*;
-import br.ufc.sistemapatrimonio.datapersistence.DataPersistence;
+package br.ufc.sistemapatrimonio.model;
 
 public class TelaLoginCadastroController {
     private final TelaLoginCadastroModel telaLoginCadastroModel;
