@@ -1,8 +1,10 @@
 package br.ufc.sistemapatrimonio.model;
+import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 
 public class Usuario {
     private String username;
     private String password;
+    private TipoUsuario tipoUsuario;
 
     // Getter para username
     public String getUsername() {
@@ -22,5 +24,13 @@ public class Usuario {
     // Setter para password
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

@@ -1,5 +1,6 @@
 package br.ufc.sistemapatrimonio.model;
-public class RequisicaoDeManutencao{
+
+public class RequisicaoDeManutencao {
     private String request;
     private int id;
     private Boolean status;

@@ -1,47 +1,45 @@
 package br.ufc.sistemapatrimonio;
-import br.ufc.sistemapatrimonio.model.*;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 public class TelaLoginCadastroController {
-    private final TelaLoginCadastroModel telaLoginCadastroModel;
 
-    public TelaLoginCadastroController(TelaLoginCadastroModel model) {
-        this.telaLoginCadastroModel = model;
+    @FXML
+    private Button btnCadastro;
+
+    @FXML
+    private Button btnLogin;
+
+    @FXML
+    private TextField cadastroLogin;
+
+    @FXML
+    private PasswordField cadastroSenha;
+
+    @FXML
+    private TextField loginLogin;
+
+    @FXML
+    private PasswordField loginSenha;
+
+    @FXML
+    private RadioButton radioAdmin;
+
+    @FXML
+    private RadioButton radioRequi;
+
+    @FXML
+    void cadastrar(ActionEvent event) {
+
     }
 
-    // Método para fazer login de requisitante
-    public Requisitante requisitanteLogin(String login, String senha) {
-        Requisitante requisitante = telaLoginCadastroModel.autenticarRequisitante(login, senha);
-        if (requisitante == null) {
-            throw new RuntimeException("Login ou senha inválidos para requisitante.");
-        }
-        return requisitante;
+    @FXML
+    void logarUsuario(ActionEvent event) {
+
     }
 
-    // Método para fazer login de administrador
-    public Administrador administradorLogin(String login, String senha) {
-        Administrador administrador = telaLoginCadastroModel.autenticarAdministrador(login, senha);
-        if (administrador == null) {
-            throw new RuntimeException("Login ou senha inválidos para administrador.");
-        }
-        return administrador;
-    }
-
-    // Método para cadastrar um novo requisitante
-    public void cadastrarNovoRequisitante(String login, String senha) {
-        try {
-            telaLoginCadastroModel.cadastrarRequisitante(login, senha);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Erro ao cadastrar requisitante: " + e.getMessage());
-        }
-    }
-
-    // Método para cadastrar um novo administrador
-    public void cadastrarNovoAdministrador(String login, String senha) {
-        try {
-            telaLoginCadastroModel.cadastrarAdministrador(login, senha);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Erro ao cadastrar administrador: " + e.getMessage());
-        }
-    }
 }
-

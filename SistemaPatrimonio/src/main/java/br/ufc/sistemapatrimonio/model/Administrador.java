@@ -1,6 +1,6 @@
 package br.ufc.sistemapatrimonio.model;
 
-import br.ufc.sistemapatrimonio.exceptions.*;
+import br.ufc.sistemapatrimonio.exceptions.DadoNaoEncontradoException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

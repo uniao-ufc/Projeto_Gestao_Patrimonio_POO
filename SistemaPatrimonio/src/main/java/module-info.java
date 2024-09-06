@@ -7,4 +7,5 @@ module br.ufc.sistemapatrimonio {
     exports br.ufc.sistemapatrimonio;
     exports br.ufc.sistemapatrimonio.model;
     exports br.ufc.sistemapatrimonio.exceptions;
+    exports br.ufc.sistemapatrimonio.enums;
 }
