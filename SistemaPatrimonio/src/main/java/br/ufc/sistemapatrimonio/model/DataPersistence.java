@@ -2,50 +2,42 @@ package br.ufc.sistemapatrimonio.model;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 
 public class DataPersistence {
-    public static void saveData(Model model, String fileName) {
+
+    private HashMap<Integer, Bem> bensMap = new HashMap<>();
+    private HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
+    private HashMap<Integer, Usuario> usuariosMap = new HashMap<>();
+    private HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
+
+    // Salvando dados em arquivos
+    public void saveData(String fileName) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oos.writeObject(listarBens());
-            oos.writeObject(listarPatrimonios());
-            oos.writeObject(listarUsuarios());
-            oos.writeObject(listarManutencoes());
+            oos.writeObject(new ArrayList<>(bensMap.values()));
+            oos.writeObject(new ArrayList<>(patrimoniosMap.values()));
+            oos.writeObject(new ArrayList<>(usuariosMap.values()));
+            oos.writeObject(new ArrayList<>(manutencoesMap.values()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static Object listarManutencoes() {
-        return null;
-    };
-
-    private static Object listarUsuarios() {
-        return null;
-    };
-
-    private static Object listarPatrimonios() {
-        return null;
-    };
-
-    private static Object listarBens() {
-        return null;
-    };
-
-    public static void loadData(Model model, String fileName) {
+    // Carregando dados dos arquivos
+    public void loadData(String fileName) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
             ArrayList<Bem> bens = (ArrayList<Bem>) ois.readObject();
             ArrayList<Patrimonio> patrimonios = (ArrayList<Patrimonio>) ois.readObject();
             ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
             ArrayList<RequisicaoDeManutencao> manutencoes = (ArrayList<RequisicaoDeManutencao>) ois.readObject();
 
-            // Limpa os dados atuais
-            getBensMap().clear();
-            getPatrimoniosMap().clear();
-            getUsuariosMap().clear();
-            getManutencoesMap().clear();
+            // Limpar dados atuais
+            bensMap.clear();
+            patrimoniosMap.clear();
+            usuariosMap.clear();
+            manutencoesMap.clear();
 
-            // Adiciona os dados carregados
+            // Adicionar os dados carregados
             for (Bem bem : bens) {
                 adicionarBem(bem);
             }
@@ -58,36 +50,43 @@ public class DataPersistence {
             for (RequisicaoDeManutencao requisicao : manutencoes) {
                 adicionarRequisicaoDeManutencao(requisicao);
             }
+
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
+    // Métodos de adição
+    public void adicionarBem(Bem bem) {
+        bensMap.put(bem.getId(), bem);
     }
 
-    private static void adicionarUsuario(Usuario usuario) {
+    public void adicionarPatrimonio(Patrimonio patrimonio) {
+        patrimoniosMap.put(patrimonio.getId(), patrimonio);
     }
 
-    private static void adicionarPatrimonio(Patrimonio patrimonio) {
+    public void adicionarUsuario(Usuario usuario) {
+        usuariosMap.put(usuario.getId(), usuario);
     }
 
-    private static void adicionarBem(Bem bem) {
+    public void adicionarRequisicaoDeManutencao(RequisicaoDeManutencao requisicao) {
+        manutencoesMap.put(requisicao.getId(), requisicao);
     }
 
-    private static Collection<Object> getManutencoesMap() {
-        return null;
+    // Métodos de obtenção de listas
+    public ArrayList<Bem> listarBens() {
+        return new ArrayList<>(bensMap.values());
     }
 
-    private static Collection<Object> getUsuariosMap() {
-        return null;
+    public ArrayList<Patrimonio> listarPatrimonios() {
+        return new ArrayList<>(patrimoniosMap.values());
     }
 
-    private static Collection<Object> getPatrimoniosMap() {
-        return null;
+    public ArrayList<Usuario> listarUsuarios() {
+        return new ArrayList<>(usuariosMap.values());
     }
 
-    private static Collection<Object> getBensMap() {
-        return null;
+    public ArrayList<RequisicaoDeManutencao> listarManutencoes() {
+        return new ArrayList<>(manutencoesMap.values());
     }
 }
