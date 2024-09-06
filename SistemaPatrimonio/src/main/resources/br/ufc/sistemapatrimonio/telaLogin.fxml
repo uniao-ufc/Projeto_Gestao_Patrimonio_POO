@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.TelaLoginCadastroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.LoginViewController">
    <children>
       <Line endX="106.5" endY="168.5" layoutX="247.0" layoutY="249.0" startX="106.5" startY="-221.5" />
       <Label layoutX="131.0" layoutY="62.0" prefHeight="27.0" prefWidth="65.0" text="Login">

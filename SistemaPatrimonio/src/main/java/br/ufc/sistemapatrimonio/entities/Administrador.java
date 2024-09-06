@@ -1,8 +1,6 @@
 package br.ufc.sistemapatrimonio.entities;
-
 import br.ufc.sistemapatrimonio.exceptions.*;
 import br.ufc.sistemapatrimonio.model.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

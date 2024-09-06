@@ -7,7 +7,6 @@ public class Usuario {
     private String password;
     private TipoUsuario tipoUsuario;
 
-
     public Usuario(String login, String senha) {
         id++;
     }

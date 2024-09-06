@@ -3,22 +3,19 @@ package br.ufc.sistemapatrimonio.entities;
 
 
 public class Bem {
-    private final int id;
+    private int id;
     private String nome;
-    private String localAlocado;
-    private TipoBem tipo;  // Composição com TipoBem
-    
-    // Construtor
-    public Bem(int id, String nome, String localAlocado, TipoBem tipo) {
-        this.id = id;
-        setNome(nome);
-        setLocalAlocado(localAlocado);
-        this.tipo = tipo;
-    }
+    private Local localAlocado;
+    private String tipo;
+    private String descricao;
+    private int depreciacaoAnualTipo;
 
-    // Métodos de acesso
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -26,29 +23,39 @@ public class Bem {
     }
 
     public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome não pode ser vazio.");
-        }
         this.nome = nome;
     }
 
-    public String getLocalAlocado() {
+    public Local getLocalAlocado() {
         return localAlocado;
     }
 
-    public void setLocalAlocado(String localAlocado) {
-        if (localAlocado == null || localAlocado.trim().isEmpty()) {
-            throw new IllegalArgumentException("Local Alocado não pode ser vazio.");
-        }
+    public void setLocalAlocado(Local localAlocado) {
         this.localAlocado = localAlocado;
     }
 
-    public TipoBem getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoBem tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getDepreciacaoAnualTipo() {
+        return depreciacaoAnualTipo;
+    }
+
+    public void setDepreciacaoAnualTipo(int depreciacaoAnualTipo) {
+        this.depreciacaoAnualTipo = depreciacaoAnualTipo;
     }
 }
 

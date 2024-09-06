@@ -2,36 +2,66 @@ package br.ufc.sistemapatrimonio.entities;
 
 public class Patrimonio {
     private int id;
-    private TipoPatrimonio tipo;
+    private String tipo;
+    private String nome;
+    private String descricao;
+    private int depreciacaoMax;
+    private int depreciacaoMin;
     private int numeroTombamento;
 
-    // Getter para id
     public int getId() {
         return id;
     }
 
-    // Setter para id
     public void setId(int id) {
         this.id = id;
     }
 
-    // Getter para tipo
-    public TipoPatrimonio getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    // Setter para tipo
-    public void setTipo(TipoPatrimonio tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    // Getter para numeroTombamento
-    public int getTombamento() {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getDepreciacaoMax() {
+        return depreciacaoMax;
+    }
+
+    public void setDepreciacaoMax(int depreciacaoMax) {
+        this.depreciacaoMax = depreciacaoMax;
+    }
+
+    public int getDepreciacaoMin() {
+        return depreciacaoMin;
+    }
+
+    public void setDepreciacaoMin(int depreciacaoMin) {
+        this.depreciacaoMin = depreciacaoMin;
+    }
+
+    public int getNumeroTombamento() {
         return numeroTombamento;
     }
 
-    // Setter para numeroTombamento
-    public void setTombamento(int numeroTombamento) {
+    public void setNumeroTombamento(int numeroTombamento) {
         this.numeroTombamento = numeroTombamento;
     }
 }

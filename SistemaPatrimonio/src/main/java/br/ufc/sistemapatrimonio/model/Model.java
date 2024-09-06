@@ -3,66 +3,60 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.ufc.sistemapatrimonio.model;
-
-import br.ufc.sistemapatrimonio.entities.Administrador;
-import br.ufc.sistemapatrimonio.entities.Requisitante;
-
+import br.ufc.sistemapatrimonio.controller.LoginViewController;
+import br.ufc.sistemapatrimonio.entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 public class Model {
-    private final List<Observer> observers = new ArrayList<>();
-    private Requisitante requisitanteAutenticado;
-    private Administrador administradorAutenticado;
+    private final ArrayList<Observer> observers = new ArrayList<Observer>();
+    private static final List<Object> users = new ArrayList<>();
+    private static final List<Object> patrimonios = new ArrayList<>();
+    private static final List<Object> bens = new ArrayList<>();
+    private Usuario usuarioAutenticado;
 
-    // Método para notificar todos os observadores
-    public void notifica() {
-       // for (Observer observer : observers) {
-        //    observer.update();  // Assumindo que Observer tem um método update()
-       // }
+    public String ret(){
+       return "aaaa";
     }
 
-    // Métodos para acessar e definir administrador
-    public Administrador getAdministrador() {
-        return administradorAutenticado;
+    public Usuario getUser(String login) {
+        if (login != null) {
+            return usuarioAutenticado;
+        }
+        return null;
     }
 
-    public void setAdministrador(Administrador admin) {
-        this.administradorAutenticado = admin;
-        notifica(); // Notifica os observadores sobre a mudança
+    public void setUser(Usuario user) {
+        this.usuarioAutenticado = user;
+        notifica();
     }
 
-    // Métodos para acessar e definir requisitante
-    public Requisitante getRequisitante() {
-        return requisitanteAutenticado;
-    }
-
-    public void setRequisitante(Requisitante requisitante) {
-        this.requisitanteAutenticado = requisitante;
-        notifica(); // Notifica os observadores sobre a mudança
-    }
-
-    // Método para autenticar um usuário
-    public void autenticarUsuario(String username, String password) {
+    public void autenticarUser(String username, String password) {
         // Implementar lógica de autenticação
         // Exemplo: definir requisitanteAutenticado ou administradorAutenticado
     }
 
-    // Método para deslogar um usuário
-    public void deslogarUsuario() {
-        requisitanteAutenticado = null;
-        administradorAutenticado = null;
-        notifica(); // Notifica os observadores sobre a mudança
+    public void deslogarUser() {
+        usuarioAutenticado = null;
+        notifica();
     }
 
-    // Métodos para gerenciar observadores
+    public void notifica() {
+        for (Observer o : observers) {
+            o.update();
+        }
+    }
+
     public void attachObserver(Observer observer) {
-        observers.add(observer);
+        if (observer != null) {
+            observers.add(observer);
+        }
     }
 
     public void detachObserver(Observer observer) {
-        observers.remove(observer);
+        if (observer != null) {
+            observers.remove(observer);
+        }
     }
 }
 
