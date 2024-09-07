@@ -3,6 +3,7 @@ package br.ufc.sistemapatrimonio.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -12,10 +13,25 @@ public class RequisitanteViewController {
     private Button btnAdicionar;
 
     @FXML
-    private Button btnIrParaRequisicoes;
+    private Button btnIrParaManutencoes;
 
     @FXML
     private Button btnRemover;
+
+    @FXML
+    private Button btnSair;
+
+    @FXML
+    private RadioButton radioBem;
+
+    @FXML
+    private RadioButton radioPatrimonio;
+
+    @FXML
+    private TextField txtDescricaoAdd;
+
+    @FXML
+    private TextField txtIDAdd;
 
     @FXML
     private TextArea txtListaBens;
@@ -30,20 +46,22 @@ public class RequisitanteViewController {
     private TextField txtRemover;
 
     @FXML
-    private TextField txtTipoAdd;
-
-    @FXML
-    void adicionarBem(ActionEvent event) {
+    void adicionarRequisicao(ActionEvent event) {
 
     }
 
     @FXML
-    void irParaRequisicoes(ActionEvent event) {
+    void irParaManutencoes(ActionEvent event) {
 
     }
 
     @FXML
-    void removerBem(ActionEvent event) {
+    void removerRequisicao(ActionEvent event) {
+
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
 
     }
 
