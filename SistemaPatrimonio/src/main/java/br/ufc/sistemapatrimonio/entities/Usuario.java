@@ -1,6 +1,5 @@
 package br.ufc.sistemapatrimonio.entities;
-import br.ufc.sistemapatrimonio.enums.TipoUsuario;
-import br.ufc.sistemapatrimonio.model.RequisicaoDeManutencao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     private final List<Patrimonio> meusPatrimonios = new ArrayList<>();
     private final List<Bem> meusBens = new ArrayList<>();
-    private final List<RequisicaoDeManutencao> minhasmanutencoes = new ArrayList<>();
+    private final List<RequisicaoDeManutencao> minhasManutencoes = new ArrayList<>();
 
     public Usuario(String username, String password, TipoUsuario tipoUsuario) {
         this.username = username;
@@ -62,7 +61,50 @@ public class Usuario {
         return meusBens;
     }
 
-    public List<RequisicaoDeManutencao> getMinhasmanutencoes() {
-        return minhasmanutencoes;
+    public List<RequisicaoDeManutencao> getMinhasManutencoes() {
+        return minhasManutencoes;
+    }
+
+    public boolean adicionarBem(Bem bem) {
+        // Verifica se o bem existe e se está disponível
+        if (bem != null && !bem.isAlocstatus()) {
+            // Faz uma cópia do bem
+            Bem bemCopia = new Bem();
+            bemCopia.setId(bem.getId());
+            bemCopia.setNome(bem.getNome());
+            bemCopia.setTipo(bem.getTipo());
+            bemCopia.setAlocstatus(true);
+
+            // Adiciona à lista do usuário
+            meusBens.add(bemCopia);
+
+            // Atualiza o status do bem original para alocado
+            bem.setAlocstatus(true);
+
+            return true; // Sucesso
+        }
+        return false; // Falha
+    }
+
+    public boolean adicionarPatrimonio(Patrimonio patrimonio) {
+        // Verifica se o patrimônio existe e se está disponível
+        if (patrimonio != null && !patrimonio.isAlocstatus()) {
+            // Faz uma cópia do patrimônio
+            Patrimonio patrimonioCopia = new Patrimonio();
+            patrimonioCopia.setId(patrimonio.getId());
+            patrimonioCopia.setNome(patrimonio.getNome());
+            patrimonioCopia.setTipo(patrimonio.getTipo());
+            patrimonioCopia.setNumeroTombamento(patrimonio.getNumeroTombamento());
+            patrimonioCopia.setAlocstatus(true);
+
+            // Adiciona à lista do usuário
+            meusPatrimonios.add(patrimonioCopia);
+
+            // Atualiza o status do patrimônio original para alocado
+            patrimonio.setAlocstatus(true);
+
+            return true; // Sucesso
+        }
+        return false; // Falha
     }
 }
