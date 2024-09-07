@@ -10,9 +10,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ToggleGroup?>
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.LoginViewController">
+   <fx:define>
+      <ToggleGroup fx:id="group" />
+   </fx:define>
    <children>
       <Line endX="106.5" endY="168.5" layoutX="247.0" layoutY="249.0" startX="106.5" startY="-221.5" />
       <Label layoutX="131.0" layoutY="62.0" prefHeight="27.0" prefWidth="65.0" text="Login">
@@ -45,8 +49,8 @@
       <PasswordField fx:id="cadastroSenha" layoutX="440.0" layoutY="193.0" prefHeight="25.0" prefWidth="181.0" promptText="Digite sua senha" style="-fx-border-color: white;" />
       <Button fx:id="btnCadastro" layoutX="438.0" layoutY="308.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #dbdbdb; -fx-border-color: #858585;" text="Cadastre-se" textFill="#000000c9" />
       <Text fill="#00000054" layoutX="439.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Criar uma conta" textAlignment="CENTER" wrappingWidth="181.0" />
-      <RadioButton fx:id="radioRequi" layoutX="440.0" layoutY="268.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="102.0" text="Requisitante" />
-      <RadioButton fx:id="radioAdmin" layoutX="557.0" layoutY="268.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="78.0" text="Admin" />
+      <RadioButton fx:id="radioRequi" layoutX="440.0" layoutY="268.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="102.0" text="Requisitante" toggleGroup="$group"/>
+      <RadioButton fx:id="radioAdmin" layoutX="557.0" layoutY="268.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="78.0" text="Admin" toggleGroup="$group"/>
       <Text fill="#00000054" layoutX="440.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="De quem será a conta?" />
    </children>
 </Pane>

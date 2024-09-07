@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataPersistence {
-
+/*
     private final HashMap<Integer, Bem> bensMap = new HashMap<>();
     private final HashMap<Integer, Patrimonio> patrimoniosMap = new HashMap<>();
     private final HashMap<String, Requisitante> requisitantesMap = new HashMap<>();
@@ -125,5 +125,5 @@ public class DataPersistence {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
