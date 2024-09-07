@@ -18,5 +18,8 @@ public class InitScenesController {
         //
         FXMLLoader telaAdminPatrimoniosLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminPatrimonios.fxml"));
         ScreenController.addScreen("telaAdminPatrimonios", telaAdminPatrimoniosLoader);
+        //
+        FXMLLoader telaAdminManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminManutencoes.fxml"));
+        ScreenController.addScreen("telaAdminManutecoes", telaAdminManutencoesLoader);
     }
 }
