@@ -1,0 +1,46 @@
+package br.ufc.sistemapatrimonio.model;
+
+import br.ufc.sistemapatrimonio.entities.Bem;
+import br.ufc.sistemapatrimonio.entities.TipoBem;
+
+public class AdminBensModel {
+
+    public void adicionarBem(int id, String nome, String descricao, int depreciacao, String tipo) {
+        TipoBem tipoBem = new TipoBem();
+        tipoBem.setNome(tipo);
+        tipoBem.setDescricao(descricao);
+        tipoBem.setDepreciacaoAnual(depreciacao);
+
+        Bem novoBem = new Bem();
+        novoBem.setId(id);
+        novoBem.setNome(nome);
+        novoBem.setTipo(tipoBem);
+        novoBem.setAlocstatus(false);
+
+        Model.bens.add(novoBem);
+    }
+
+    public void editarBem(int id, String nome, String descricao, int depreciacao, String tipo) {
+        for (Bem bem : Model.bens) {
+            if (bem.getId() == id) {
+                bem.setNome(nome);
+                bem.getTipo().setNome(tipo);
+                bem.getTipo().setDescricao(descricao);
+                bem.getTipo().setDepreciacaoAnual(depreciacao);
+                return;
+            }
+        }
+    }
+
+    public void removerBem(int id) {
+        Model.bens.removeIf(bem -> bem.getId() == id);
+    }
+
+    public String listarBens() {
+        StringBuilder lista = new StringBuilder();
+        for (Bem bem : Model.bens) {
+            lista.append("ID: ").append(bem.getId()).append(", Nome: ").append(bem.getNome()).append(", Tipo: ").append(bem.getTipo().getNome()).append("\n");
+        }
+        return lista.toString();
+    }
+}
