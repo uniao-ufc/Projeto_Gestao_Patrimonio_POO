@@ -1,14 +1,9 @@
-
 package br.ufc.sistemapatrimonio.entities;
-
 
 public class Bem {
     private int id;
     private String nome;
-    private Local localAlocado;
-    private String tipo;
-    private String descricao;
-    private int depreciacaoAnualTipo;
+    private TipoBem tipo;
 
     public int getId() {
         return id;
@@ -26,36 +21,11 @@ public class Bem {
         this.nome = nome;
     }
 
-    public Local getLocalAlocado() {
-        return localAlocado;
-    }
-
-    public void setLocalAlocado(Local localAlocado) {
-        this.localAlocado = localAlocado;
-    }
-
-    public String getTipo() {
+    public TipoBem getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoBem tipo) {
         this.tipo = tipo;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getDepreciacaoAnualTipo() {
-        return depreciacaoAnualTipo;
-    }
-
-    public void setDepreciacaoAnualTipo(int depreciacaoAnualTipo) {
-        this.depreciacaoAnualTipo = depreciacaoAnualTipo;
-    }
 }
-
