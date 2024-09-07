@@ -7,17 +7,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class RequisitanteViewController {
+
     @FXML
     private Button btnAdicionar;
+
+    @FXML
+    private Button btnIrParaRequisicoes;
 
     @FXML
     private Button btnRemover;
 
     @FXML
     private TextArea txtListaBens;
-
-    @FXML
-    private TextArea txtListaRequisitos;
 
     @FXML
     private TextField txtLocalAdd;
@@ -33,6 +34,11 @@ public class RequisitanteViewController {
 
     @FXML
     void adicionarBem(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irParaRequisicoes(ActionEvent event) {
 
     }
 

@@ -10,7 +10,7 @@ public class HelloApplication extends Application {
     public void initScenes(){
         // Carregar telas
         // Login
-        FXMLLoader telaLoginLoader = new FXMLLoader(HelloApplication.class.getResource("telaLogin.fxml"));
+        FXMLLoader telaLoginLoader = new FXMLLoader(HelloApplication.class.getResource("telaLoginCadastro.fxml"));
         ScreenController.addScreen("telaLogin", telaLoginLoader);
         // Tela do requisitante
         FXMLLoader telaRequisitanteLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitante.fxml"));

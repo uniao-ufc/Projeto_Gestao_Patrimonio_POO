@@ -8,31 +8,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteViewController">
    <children>
-      <TextArea fx:id="txtListaRequisitos" layoutX="14.0" layoutY="38.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostradas suas futuras requisições de manutenção para um bem." />
-      <TextArea fx:id="txtListaBens" layoutX="265.0" layoutY="38.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados os bens que você possui." />
-      <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suas requisições de manutenção" wrappingWidth="209.13671875" />
-      <Text layoutX="265.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bens alocados por você" wrappingWidth="154.13671875" />
-      <TextField fx:id="txtRemover" layoutX="551.0" layoutY="82.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do bem a ser removido" style="-fx-border-color: white;" />
-      <Button fx:id="btnRemover" layoutX="550.0" layoutY="117.0" mnemonicParsing="false" onAction="#removerBem" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #dbdbdb; -fx-border-color: #858585;" text="Remover" />
-      <Line endX="129.0" layoutX="651.0" layoutY="109.0" startX="-100.0" />
-      <Text layoutX="583.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover um bem" wrappingWidth="160.13671875">
+      <TextArea fx:id="txtListaBens" layoutX="22.0" layoutY="38.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados os bens que você possui." />
+      <Text layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bens alocados por você" wrappingWidth="154.13671875" />
+      <TextField fx:id="txtRemover" layoutX="307.0" layoutY="59.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do bem a ser removido" style="-fx-border-color: white;" />
+      <Button fx:id="btnRemover" layoutX="306.0" layoutY="94.0" mnemonicParsing="false" onAction="#removerBem" prefHeight="27.0" prefWidth="230.0" text="Remover" />
+      <Line endX="129.0" layoutX="407.0" layoutY="86.0" startX="-100.0" />
+      <Text layoutX="339.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover um bem" wrappingWidth="160.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="580.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar um bem" wrappingWidth="169.13671875">
+      <Text layoutX="337.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar um bem" wrappingWidth="169.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtNomeAdd" layoutX="547.0" layoutY="255.0" prefHeight="25.0" prefWidth="230.0" promptText="Nome do item a ser adicionado" style="-fx-border-color: white;" />
-      <Line endX="129.0" layoutX="646.0" layoutY="282.0" startX="-99.0" />
-      <TextField fx:id="txtTipoAdd" layoutX="548.0" layoutY="298.0" prefHeight="25.0" prefWidth="230.0" promptText="Tipo do bem a ser adicionado" style="-fx-border-color: white;" />
-      <Line endX="129.0" layoutX="646.0" layoutY="325.0" startX="-100.0" />
-      <TextField fx:id="txtLocalAdd" layoutX="548.0" layoutY="340.0" prefHeight="25.0" prefWidth="230.0" promptText="Local onde o bem será alocado" style="-fx-border-color: white;" />
-      <Line endX="129.0" layoutX="646.0" layoutY="367.0" startX="-100.0" />
-      <Button fx:id="btnAdicionar" layoutX="548.0" layoutY="388.0" mnemonicParsing="false" onAction="#adicionarBem" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #dbdbdb; -fx-border-color: #858585;" text="Adicionar" />
+      <TextField fx:id="txtNomeAdd" layoutX="304.0" layoutY="199.0" prefHeight="25.0" prefWidth="230.0" promptText="Nome do item a ser adicionado" style="-fx-border-color: white;" />
+      <Line endX="129.0" layoutX="403.0" layoutY="226.0" startX="-99.0" />
+      <TextField fx:id="txtTipoAdd" layoutX="305.0" layoutY="242.0" prefHeight="25.0" prefWidth="230.0" promptText="Tipo do bem a ser adicionado" style="-fx-border-color: white;" />
+      <Line endX="129.0" layoutX="403.0" layoutY="269.0" startX="-100.0" />
+      <TextField fx:id="txtLocalAdd" layoutX="305.0" layoutY="284.0" prefHeight="25.0" prefWidth="230.0" promptText="Local onde o bem será alocado" style="-fx-border-color: white;" />
+      <Line endX="129.0" layoutX="403.0" layoutY="311.0" startX="-100.0" />
+      <Button fx:id="btnAdicionar" layoutX="305.0" layoutY="332.0" mnemonicParsing="false" onAction="#adicionarBem" prefHeight="27.0" prefWidth="230.0" text="Adicionar" />
+      <Button fx:id="btnIrParaRequisicoes" layoutX="303.0" layoutY="400.0" mnemonicParsing="false" onAction="#irParaRequisicoes" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: white; -fx-border-color: white;" text="Ir para requisições de manutenção" textFill="#000000cc" />
    </children>
 </Pane>

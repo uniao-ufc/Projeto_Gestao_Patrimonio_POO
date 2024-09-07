@@ -10,7 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LoginViewController{
+public class LoginCadastroViewController {
     private final Model model = new Model();
 
     @FXML
