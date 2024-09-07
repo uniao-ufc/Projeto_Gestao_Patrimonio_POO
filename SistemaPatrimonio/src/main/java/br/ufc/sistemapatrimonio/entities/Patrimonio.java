@@ -7,6 +7,14 @@ public class Patrimonio {
     private int numeroTombamento;
     private boolean Alocstatus;
 
+    public Patrimonio(int id, String nome, TipoPatrimonio tipo, int numeroTombamento, boolean alocstatus) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.numeroTombamento = numeroTombamento;
+        Alocstatus = alocstatus;
+    }
+
     public String getNome() {
         return nome;
     }

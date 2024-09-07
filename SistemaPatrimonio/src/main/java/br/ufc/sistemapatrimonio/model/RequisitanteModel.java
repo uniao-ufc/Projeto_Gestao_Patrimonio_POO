@@ -24,8 +24,8 @@ public class RequisitanteModel {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeManutencao requisicao : requisicoes) {
             lista.append("ID: ").append(requisicao.getId())
-                .append(", Descrição: ").append(requisicao.getDescricao())
-                .append(", Status: ").append(requisicao.getStatus())
+                .append(", Descrição: ").append(requisicao)
+                .append(", Status: ").append(requisicao)
                 .append("\n");
         }
         return lista.toString();

@@ -6,8 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
+import java.io.IOException;
+
 public class RequisitanteViewController {
 
+    private final Model model = new Model();
     @FXML
     private Button btnIrParaBens;
 
@@ -36,6 +39,17 @@ public class RequisitanteViewController {
     }
 
     private void atualizarListaRequisicoes() {
-        txtListaRequisicoes.setText(Model.getInstance().getRequisitanteModel().listarRequisicoes());
+        txtListaRequisicoes.setText(model.getRequisitanteModel().listarRequisicoes());
+    }
+
+    public void removerRequisicao(ActionEvent actionEvent) {
+    }
+
+    public void adicionarRequisicao(ActionEvent actionEvent) {
+
+    }
+
+    public void irParaManutencoes(ActionEvent actionEvent) throws IOException {
+        ScreenController.activate("telaAdminManutecoes");
     }
 }

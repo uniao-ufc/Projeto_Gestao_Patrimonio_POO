@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 public class AdminPatrimoniosViewController {
 
+    private final Model model = new Model();
+
     @FXML
     private Button btnAdicionar;
 
@@ -77,12 +79,12 @@ public class AdminPatrimoniosViewController {
             String tipo = txtTipoAdd.getText();
             int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoAdd.getText());
 
-            Model.getInstance().getAdminPatrimoniosModel().adicionarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
+            model.getAdminPatrimoniosModel().adicionarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio adicionado com sucesso!", Alert.AlertType.INFORMATION);
+            model.mostrarPopup("Sucesso", "Patrimônio adicionado com sucesso!", Alert.AlertType.INFORMATION);
             atualizarListaPatrimonios();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
         }
     }
 
@@ -96,12 +98,12 @@ public class AdminPatrimoniosViewController {
             String tipo = txtTipoEditar.getText();
             int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoEditar.getText());
 
-            Model.getInstance().getAdminPatrimoniosModel().editarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
+            model.getAdminPatrimoniosModel().editarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio editado com sucesso!", Alert.AlertType.INFORMATION);
+            model.mostrarPopup("Sucesso", "Patrimônio editado com sucesso!", Alert.AlertType.INFORMATION);
             atualizarListaPatrimonios();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
         }
     }
 
@@ -120,12 +122,12 @@ public class AdminPatrimoniosViewController {
         try {
             int id = Integer.parseInt(txtIDAdd.getText());
 
-            Model.getInstance().getAdminPatrimoniosModel().removerPatrimonio(id);
+            model.getAdminPatrimoniosModel().removerPatrimonio(id);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio removido com sucesso!", Alert.AlertType.INFORMATION);
+            model.mostrarPopup("Sucesso", "Patrimônio removido com sucesso!", Alert.AlertType.INFORMATION);
             atualizarListaPatrimonios();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
         }
     }
 
@@ -135,6 +137,6 @@ public class AdminPatrimoniosViewController {
     }
 
     private void atualizarListaPatrimonios() {
-        txtListaPatrimonios.setText(Model.getInstance().getAdminPatrimoniosModel().listarPatrimonios());
+        txtListaPatrimonios.setText(model.getAdminPatrimoniosModel().listarPatrimonios());
     }
 }

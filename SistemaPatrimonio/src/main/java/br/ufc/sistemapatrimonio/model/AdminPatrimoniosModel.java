@@ -7,17 +7,9 @@ import java.util.Optional;
 public class AdminPatrimoniosModel {
 
     public void adicionarPatrimonio(int id, String nome, String descricao, int depreciacao, String tipo, int numeroTombamento) {
-        TipoPatrimonio tipoPatrimonio = new TipoPatrimonio();
-        tipoPatrimonio.setNome(tipo);
-        tipoPatrimonio.setDescricao(descricao);
-        tipoPatrimonio.setDepreciacaoAnual(depreciacao);
+        TipoPatrimonio tipoPatrimonio = new TipoPatrimonio(tipo, descricao, depreciacao);
 
-        Patrimonio novoPatrimonio = new Patrimonio();
-        novoPatrimonio.setId(id);
-        novoPatrimonio.setNome(nome);
-        novoPatrimonio.setTipo(tipoPatrimonio);
-        novoPatrimonio.setNumeroTombamento(numeroTombamento);
-        novoPatrimonio.setAlocstatus(false);
+        Patrimonio novoPatrimonio = new Patrimonio(id, nome, tipoPatrimonio, numeroTombamento, false);
 
         Model.patrimonios.add(novoPatrimonio);
     }

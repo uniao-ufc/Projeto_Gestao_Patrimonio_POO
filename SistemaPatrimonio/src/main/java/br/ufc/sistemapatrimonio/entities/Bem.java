@@ -6,6 +6,13 @@ public class Bem {
     private TipoBem tipo;
     private boolean Alocstatus;
 
+    public Bem(int id, String nome, TipoBem tipo, boolean alocstatus) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        Alocstatus = alocstatus;
+    }
+
     public int getId() {
         return id;
     }

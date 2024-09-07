@@ -17,11 +17,23 @@ public class Model {
     public static List<RequisicaoDeManutencao> manutencaoBem = new ArrayList<>();
 
     private static Usuario usuarioAutenticado;
-    private AdminBensModel adminBensModel = new AdminBensModel();
-    private AdminPatrimoniosModel adminPatrimoniosModel = new AdminPatrimoniosModel();
-    private RequisitanteModel requisitanteModel = new RequisitanteModel();
-    public TelaLoginCadastroModel cadastroModel = new TelaLoginCadastroModel();
-    public UsuarioModel usuarioModel = new UsuarioModel();
+    private final AdminBensModel adminBensModel = new AdminBensModel();
+    private final AdminPatrimoniosModel adminPatrimoniosModel = new AdminPatrimoniosModel();
+    private final RequisitanteModel requisitanteModel = new RequisitanteModel();
+    private final TelaLoginCadastroModel cadastroModel = new TelaLoginCadastroModel();
+    private final UsuarioModel usuarioModel = new UsuarioModel(getUsuarioAutenticado());
+
+    public static List<Usuario> getUsers() {
+        return users;
+    }
+
+    public TelaLoginCadastroModel getCadastroModel() {
+        return cadastroModel;
+    }
+
+    public UsuarioModel getUsuarioModel() {
+        return usuarioModel;
+    }
 
     public static Usuario getUsuarioAutenticado() {
         return usuarioAutenticado;
@@ -43,17 +55,17 @@ public class Model {
         alerta.showAndWait();
     }
 
-    // Métodos para AdminBensModel
+    // Métodos para AdminBensModel.java
     public AdminBensModel getAdminBensModel() {
         return adminBensModel;
     }
 
-    // Métodos para AdminPatrimoniosModel
+    // Métodos para AdminPatrimoniosModel.java
     public AdminPatrimoniosModel getAdminPatrimoniosModel() {
         return adminPatrimoniosModel;
     }
 
-    // Métodos para RequisitanteModel
+    // Métodos para RequisitanteModel.java
     public RequisitanteModel getRequisitanteModel() {
         return requisitanteModel;
     }

@@ -1,5 +1,7 @@
 package br.ufc.sistemapatrimonio.entities;
 
+import br.ufc.sistemapatrimonio.enums.TipoUsuario;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,11 +71,7 @@ public class Usuario {
         // Verifica se o bem existe e se está disponível
         if (bem != null && !bem.isAlocstatus()) {
             // Faz uma cópia do bem
-            Bem bemCopia = new Bem();
-            bemCopia.setId(bem.getId());
-            bemCopia.setNome(bem.getNome());
-            bemCopia.setTipo(bem.getTipo());
-            bemCopia.setAlocstatus(true);
+            Bem bemCopia = new Bem(bem.getId(), bem.getNome(), bem.getTipo(), true);
 
             // Adiciona à lista do usuário
             meusBens.add(bemCopia);
@@ -90,12 +88,7 @@ public class Usuario {
         // Verifica se o patrimônio existe e se está disponível
         if (patrimonio != null && !patrimonio.isAlocstatus()) {
             // Faz uma cópia do patrimônio
-            Patrimonio patrimonioCopia = new Patrimonio();
-            patrimonioCopia.setId(patrimonio.getId());
-            patrimonioCopia.setNome(patrimonio.getNome());
-            patrimonioCopia.setTipo(patrimonio.getTipo());
-            patrimonioCopia.setNumeroTombamento(patrimonio.getNumeroTombamento());
-            patrimonioCopia.setAlocstatus(true);
+            Patrimonio patrimonioCopia = new Patrimonio(patrimonio.getId(), patrimonio.getNome(), patrimonio.getTipo(), patrimonio.getNumeroTombamento(), true);
 
             // Adiciona à lista do usuário
             meusPatrimonios.add(patrimonioCopia);

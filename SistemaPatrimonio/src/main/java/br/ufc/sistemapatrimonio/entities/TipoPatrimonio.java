@@ -5,6 +5,12 @@ public class TipoPatrimonio {
     private String descricao;
     private int depreciacaoAnual;
 
+    public TipoPatrimonio(String nome, String descricao, int depreciacaoAnual) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.depreciacaoAnual = depreciacaoAnual;
+    }
+
     public String getNome() {
         return nome;
     }

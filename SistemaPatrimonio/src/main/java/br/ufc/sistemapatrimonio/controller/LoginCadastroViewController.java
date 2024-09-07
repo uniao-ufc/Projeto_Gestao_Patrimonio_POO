@@ -58,7 +58,7 @@ public class LoginCadastroViewController {
                 tipo = TipoUsuario.REQUISITANTE;
             }
             // Verificando o resultado do metodo
-            int resultado = model.cadastroModel.cadastrarUsuario(cadLogin, cadSenha, tipo);
+            int resultado = model.getCadastroModel().cadastrarUsuario(cadLogin, cadSenha, tipo);
 
             switch (resultado) {
                 case 1 -> model.mostrarPopup("Erro", "A conta já existe!", AlertType.WARNING);
@@ -82,7 +82,7 @@ public class LoginCadastroViewController {
             login = loginLogin.getText().trim();
             senha = loginSenha.getText().trim();
 
-            HashMap<Integer, Usuario> resultado = model.cadastroModel.autenticarUsuario(login, senha, tipo);
+            HashMap<Integer, Usuario> resultado = model.getCadastroModel().autenticarUsuario(login, senha, tipo);
 
             if (resultado.containsKey(1)) {
                 // Usuário autenticado com sucesso

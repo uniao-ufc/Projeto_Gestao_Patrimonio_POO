@@ -1,20 +1,16 @@
 package br.ufc.sistemapatrimonio.model;
 
 public class RequisicaoDeManutencao {
-    private String request;
     private int id;
+    private String Nome;
+    private String descricao;
     private Boolean status;
-    public RequisicaoDeManutencao(String descricao) {
-    }
 
-    // Getter para request
-    public String getRequest() {
-        return request;
-    }
-
-    // Setter para request
-    public void setRequest(String request) {
-        this.request = request;
+    public RequisicaoDeManutencao(int id, String nome, String descricao, Boolean status) {
+        this.id = id;
+        Nome = nome;
+        this.descricao = descricao;
+        this.status = status;
     }
 
     public int getId() {
@@ -23,6 +19,22 @@ public class RequisicaoDeManutencao {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Boolean getStatus() {

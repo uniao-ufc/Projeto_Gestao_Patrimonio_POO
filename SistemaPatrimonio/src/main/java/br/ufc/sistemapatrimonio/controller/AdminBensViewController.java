@@ -1,5 +1,6 @@
 package br.ufc.sistemapatrimonio.controller;
 
+import br.ufc.sistemapatrimonio.exceptions.BemException;
 import br.ufc.sistemapatrimonio.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AdminBensViewController {
+
+    private final Model model = new Model();
+    @FXML
+    private TextField txtRemover;
 
     @FXML
     private Button btnAdicionar;
@@ -70,12 +75,16 @@ public class AdminBensViewController {
             int depreciacao = Integer.parseInt(txtDepressiacaoAdd.getText());
             String tipo = txtTipoAdd.getText();
 
-            Model.getInstance().getAdminBensModel().adicionarBem(id, nome, descricao, depreciacao, tipo);
+            model.getAdminBensModel().adicionarBem(id, nome, descricao, depreciacao, tipo);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Bem adicionado com sucesso!", Alert.AlertType.INFORMATION);
-            atualizarListaBens();
+            model.mostrarPopup("Sucesso", "Bem adicionado com sucesso!", Alert.AlertType.INFORMATION);
+
+            //atualizarListaBens();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+        } catch (BemException e) {
+            model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
+            throw new RuntimeException(e);
         }
     }
 
@@ -88,17 +97,25 @@ public class AdminBensViewController {
             int depreciacao = Integer.parseInt(txtDepressiacaoEditar.getText());
             String tipo = txtTipoEditar.getText();
 
-            Model.getInstance().getAdminBensModel().editarBem(id, nome, descricao, depreciacao, tipo);
+            model.getAdminBensModel().editarBem(id, nome, descricao, depreciacao, tipo);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Bem editado com sucesso!", Alert.AlertType.INFORMATION);
-            atualizarListaBens();
+            model.mostrarPopup("Sucesso", "Bem editado com sucesso!", Alert.AlertType.INFORMATION);
+            //atualizarListaBens();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+        } catch (BemException e) {
+            switch (e.getErroCode()) {
+                case BemException.NAO_ENCONTRADO, BemException.ERRO -> model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     void irParaPatrimonios(ActionEvent event) {
+        System.out.println(model.getAdminBensModel().listarBens());
+
         // Implementar navegação para a tela de Patrimonios
     }
 
@@ -110,14 +127,20 @@ public class AdminBensViewController {
     @FXML
     void removerBem(ActionEvent event) {
         try {
-            int id = Integer.parseInt(txtIDAdd.getText());
+            int id = Integer.parseInt(txtRemover.getText());
 
-            Model.getInstance().getAdminBensModel().removerBem(id);
+            model.getAdminBensModel().removerBem(id);
 
-            Model.getInstance().mostrarPopup("Sucesso", "Bem removido com sucesso!", Alert.AlertType.INFORMATION);
-            atualizarListaBens();
+            model.mostrarPopup("Sucesso", "Bem removido com sucesso!", Alert.AlertType.INFORMATION);
+            //atualizarListaBens();
         } catch (NumberFormatException e) {
-            Model.getInstance().mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
+            model.mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
+        } catch (BemException e) {
+            switch (e.getErroCode()) {
+                case BemException.NAO_ENCONTRADO, BemException.ERRO -> model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -127,6 +150,6 @@ public class AdminBensViewController {
     }
 
     private void atualizarListaBens() {
-        txtListaBens.setText(Model.getInstance().getAdminBensModel().listarBens());
+        txtListaBens.setText(model.getAdminBensModel().listarBens());
     }
 }

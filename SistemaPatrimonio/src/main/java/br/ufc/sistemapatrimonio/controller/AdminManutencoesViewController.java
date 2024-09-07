@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.IOException;
+
 public class AdminManutencoesViewController {
 
     @FXML
@@ -86,8 +88,8 @@ public class AdminManutencoesViewController {
     }
 
     @FXML
-    void irParaRequisicoes(ActionEvent event) {
-
+    void irParaRequisicoes(ActionEvent event) throws IOException {
+        ScreenController.activate("telaRequisitante");
     }
 
     @FXML
