@@ -1,7 +1,9 @@
 package br.ufc.sistemapatrimonio.controller;
 
+import br.ufc.sistemapatrimonio.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -60,9 +62,6 @@ public class AdminPatrimoniosViewController {
     private TextField txtNumeroDeTombamentoEditar;
 
     @FXML
-    private TextField txtRemover;
-
-    @FXML
     private TextField txtTipoAdd;
 
     @FXML
@@ -70,32 +69,72 @@ public class AdminPatrimoniosViewController {
 
     @FXML
     void adicionarPatrimonio(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtIDAdd.getText());
+            String nome = txtNomeAdd.getText();
+            String descricao = txtDescricaoAdd.getText();
+            int depreciacao = Integer.parseInt(txtDepressiacaoAdd.getText());
+            String tipo = txtTipoAdd.getText();
+            int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoAdd.getText());
 
+            Model.getInstance().getAdminPatrimoniosModel().adicionarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
+
+            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio adicionado com sucesso!", Alert.AlertType.INFORMATION);
+            atualizarListaPatrimonios();
+        } catch (NumberFormatException e) {
+            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     void editarPatrimonio(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtIDEditar.getText());
+            String nome = txtNomeEditar.getText();
+            String descricao = txtDescricaoEditar.getText();
+            int depreciacao = Integer.parseInt(txtDepressiacaoEditar.getText());
+            String tipo = txtTipoEditar.getText();
+            int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoEditar.getText());
 
+            Model.getInstance().getAdminPatrimoniosModel().editarPatrimonio(id, nome, descricao, depreciacao, tipo, numeroTombamento);
+
+            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio editado com sucesso!", Alert.AlertType.INFORMATION);
+            atualizarListaPatrimonios();
+        } catch (NumberFormatException e) {
+            Model.getInstance().mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     void irParaBens(ActionEvent event) {
-
+        // Implementar navegação para a tela de Bens
     }
 
     @FXML
     void irParaRequisicoes(ActionEvent event) {
-
+        // Implementar navegação para a tela de Requisições
     }
 
     @FXML
     void removerPatrimonio(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtIDAdd.getText());
 
+            Model.getInstance().getAdminPatrimoniosModel().removerPatrimonio(id);
+
+            Model.getInstance().mostrarPopup("Sucesso", "Patrimônio removido com sucesso!", Alert.AlertType.INFORMATION);
+            atualizarListaPatrimonios();
+        } catch (NumberFormatException e) {
+            Model.getInstance().mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     void sair(ActionEvent event) {
-
+        // Implementar a lógica para sair da tela
     }
 
+    private void atualizarListaPatrimonios() {
+        txtListaPatrimonios.setText(Model.getInstance().getAdminPatrimoniosModel().listarPatrimonios());
+    }
 }
