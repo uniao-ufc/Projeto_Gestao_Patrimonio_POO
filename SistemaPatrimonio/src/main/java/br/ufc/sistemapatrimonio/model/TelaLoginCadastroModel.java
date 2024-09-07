@@ -2,52 +2,37 @@ package br.ufc.sistemapatrimonio.model;
 
 import br.ufc.sistemapatrimonio.entities.Administrador;
 import br.ufc.sistemapatrimonio.entities.Requisitante;
+import br.ufc.sistemapatrimonio.entities.Usuario;
+import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class TelaLoginCadastroModel {
-    private final HashMap<String, Requisitante> requisitantesMap = new HashMap<>();
-    private final HashMap<String, Administrador> administradoresMap = new HashMap<>();
-
-    public Requisitante autenticarRequisitante(String login, String senha) {
-        Requisitante requisitante = requisitantesMap.get(login);
-        if (requisitante != null && requisitante.getPassword().equals(senha)) {
-            return requisitante;
+    public Usuario autenticarUsuario(String login, String senha, TipoUsuario tipoUsuario) {
+        for (Usuario usuario : Model.users) {
+            if (usuario.getUsername().equals(login) && usuario.getPassword().equals(senha) && usuario.getTipoUsuario() == tipoUsuario) {
+                return usuario;
+            }
         }
         return null;
     }
 
-    public Administrador autenticarAdministrador(String login, String senha) {
-        Administrador administrador = administradoresMap.get(login);
-        if (administrador != null && administrador.getPassword().equals(senha)) {
-            return administrador;
+    public void cadastrarUsuario(String login, String senha, TipoUsuario tipoUsuario) {
+        for (Usuario usuario : Model.users) {
+            if (usuario.getUsername().equals(login)) {
+                throw new RuntimeException("Usuário já cadastrado.");
+            }
         }
-        return null;
-    }
-
-    public void cadastrarRequisitante(String login, String senha) {
-        if (!requisitantesMap.containsKey(login)) {
-            Requisitante novoRequisitante = new Requisitante(login, senha);
-            requisitantesMap.put(login, novoRequisitante);
+        Usuario novoUsuario;
+        if (tipoUsuario == TipoUsuario.REQUISITANTE) {
+            novoUsuario = new Requisitante(login, senha, TipoUsuario.REQUISITANTE);
+        } else if (tipoUsuario == TipoUsuario.ADMINISTRADOR) {
+            novoUsuario = new Administrador(login, senha, TipoUsuario.ADMINISTRADOR);
         } else {
-            throw new RuntimeException("Requisitante já cadastrado.");
+            throw new RuntimeException("Tipo de usuário inválido.");
         }
-    }
 
-    public void cadastrarAdministrador(String login, String senha) {
-        if (!administradoresMap.containsKey(login)) {
-            Administrador novoAdministrador = new Administrador(login, senha);
-            administradoresMap.put(login, novoAdministrador);
-        } else {
-            throw new RuntimeException("Administrador já cadastrado.");
-        }
-    }
-
-    public HashMap<String, Requisitante> getRequisitantesMap() {
-        return requisitantesMap;
-    }
-
-    public HashMap<String, Administrador> getAdministradoresMap() {
-        return administradoresMap;
+        novoUsuario.setTipoUsuario(tipoUsuario);
+        Model.users.add(novoUsuario);
     }
 }

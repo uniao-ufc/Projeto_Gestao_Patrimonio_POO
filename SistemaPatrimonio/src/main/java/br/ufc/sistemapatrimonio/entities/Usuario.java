@@ -3,11 +3,14 @@ import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 
 public class Usuario {
     private static int id = 0;
-    private String username;
-    private String password;
+    private String username = "";
+    private String password = "";
     private TipoUsuario tipoUsuario;
 
-    public Usuario(String login, String senha) {
+    public Usuario(String username, String password, TipoUsuario tipoUsuario) {
+        this.username = username;
+        this.password = password;
+        this.tipoUsuario = tipoUsuario;
         id++;
     }
 

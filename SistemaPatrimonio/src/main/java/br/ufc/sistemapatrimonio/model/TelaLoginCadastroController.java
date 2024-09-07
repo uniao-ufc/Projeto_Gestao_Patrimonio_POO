@@ -2,9 +2,11 @@ package br.ufc.sistemapatrimonio.model;
 
 import br.ufc.sistemapatrimonio.entities.Administrador;
 import br.ufc.sistemapatrimonio.entities.Requisitante;
+import br.ufc.sistemapatrimonio.model.DataPersistence;
+import br.ufc.sistemapatrimonio.model.TelaLoginCadastroModel;
 
 public class TelaLoginCadastroController {
-    private final TelaLoginCadastroModel telaLoginCadastroModel;
+  /*  private final TelaLoginCadastroModel telaLoginCadastroModel;
     private final DataPersistence dataPersistence;
 
     public TelaLoginCadastroController(TelaLoginCadastroModel model, DataPersistence dataPersistence) {
@@ -48,5 +50,5 @@ public class TelaLoginCadastroController {
         } catch (RuntimeException e) {
             throw new RuntimeException("Erro ao cadastrar administrador: " + e.getMessage());
         }
-    }
+    }*/
 }

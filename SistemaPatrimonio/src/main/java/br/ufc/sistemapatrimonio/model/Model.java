@@ -1,42 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufc.sistemapatrimonio.model;
-import br.ufc.sistemapatrimonio.controller.LoginViewController;
+
 import br.ufc.sistemapatrimonio.entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    private final ArrayList<Observer> observers = new ArrayList<Observer>();
-    private static final List<Object> users = new ArrayList<>();
-    private static final List<Object> patrimonios = new ArrayList<>();
-    private static final List<Object> bens = new ArrayList<>();
+    private final ArrayList<Observer> observers = new ArrayList<>();
+    public static List<Usuario> users = new ArrayList<>();
+    public static List<Object> patrimonios = new ArrayList<>();
+    public static List<Object> bens = new ArrayList<>();
     private Usuario usuarioAutenticado;
+    public TelaLoginCadastroModel cadastroModel = new TelaLoginCadastroModel();
 
-    public String ret(){
-       return "aaaa";
+    public Usuario getUsuarioAutenticado() {
+        return usuarioAutenticado;
     }
 
-    public Usuario getUser(String login) {
-        if (login != null) {
-            return usuarioAutenticado;
-        }
-        return null;
-    }
-
-    public void setUser(Usuario user) {
-        this.usuarioAutenticado = user;
+    public void setUsuarioAutenticado(Usuario usuarioAutenticado) {
+        this.usuarioAutenticado = usuarioAutenticado;
         notifica();
     }
 
-    public void autenticarUser(String username, String password) {
-        // Implementar lógica de autenticação
-        // Exemplo: definir requisitanteAutenticado ou administradorAutenticado
+    public void autenticarUsuario(String username, String password) {
+        for (Usuario user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                setUsuarioAutenticado(user);
+                return;
+            }
+        }
+        throw new RuntimeException("Usuário não encontrado ou senha incorreta.");
     }
 
-    public void deslogarUser() {
+    public void deslogarUsuario() {
         usuarioAutenticado = null;
         notifica();
     }
@@ -59,4 +54,3 @@ public class Model {
         }
     }
 }
-

@@ -1,4 +1,7 @@
 package br.ufc.sistemapatrimonio.controller;
+import br.ufc.sistemapatrimonio.entities.Administrador;
+import br.ufc.sistemapatrimonio.entities.Requisitante;
+import br.ufc.sistemapatrimonio.entities.Usuario;
 import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 import br.ufc.sistemapatrimonio.model.Model;
 import br.ufc.sistemapatrimonio.model.Observer;
@@ -9,19 +12,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-public class LoginViewController implements Observer {
+public class LoginViewController{
     private final Model model = new Model();
-    private String login;
-    private String senha;
-    private TipoUsuario tipo;
 
-    public void initLoginView(){
-        model.attachObserver(this);
-    }
-    @Override
-    public void update() {
-
-    }
 
     @FXML
     private Button btnCadastro;
@@ -54,13 +47,23 @@ public class LoginViewController implements Observer {
         return cadastroLogin.getText();
     }
 
+    private String login;
+    private String senha;
+    private String cadlogin;
+    private String cadsenha;
+    private final TipoUsuario tipo = TipoUsuario.ADMINISTRADOR;
+
+    private int userCount = 1;
 
     @FXML
     void cadastrar(ActionEvent event) {
-        btnCadastro.setText(model.ret());
+
     }
 
     @FXML
     void logarUsuario(ActionEvent event) {
+        login = loginLogin.getText().trim();
+        senha = loginSenha.getText().trim();
+        System.out.println(model.cadastroModel.autenticarUsuario(login, senha, tipo));
     }
 }

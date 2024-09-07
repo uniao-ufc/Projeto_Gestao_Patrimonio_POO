@@ -1,4 +1,5 @@
 package br.ufc.sistemapatrimonio.entities;
+import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 import br.ufc.sistemapatrimonio.exceptions.*;
 import br.ufc.sistemapatrimonio.model.*;
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ public class Administrador extends Usuario {
     private final HashMap<Integer, RequisicaoDeManutencao> manutencoesMap = new HashMap<>();
     private final ArrayList<String> historicoDeAcoes = new ArrayList<>();
 
-    public Administrador(String login, String senha) {
-        super(login, senha);
+    public Administrador(String login, String senha, TipoUsuario tipo) {
+        super(login, senha, tipo);
     }
 
     public void registrarAcao(String acao) {
