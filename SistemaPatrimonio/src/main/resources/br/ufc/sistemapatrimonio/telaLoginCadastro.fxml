@@ -10,10 +10,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <?import javafx.scene.control.ToggleGroup?>
-
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.LoginCadastroViewController">
+<Pane maxHeight="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.LoginCadastroViewController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <fx:define>
       <ToggleGroup fx:id="group" />
    </fx:define>
@@ -29,28 +28,29 @@
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="loginLogin" layoutX="74.0" layoutY="144.0" prefHeight="25.0" prefWidth="180.0" promptText="Digite seu Login" style="-fx-border-color: white;">
+      <TextField fx:id="logLogin" layoutX="74.0" layoutY="144.0" prefHeight="25.0" prefWidth="180.0" promptText="Digite seu Login" style="-fx-border-color: white;">
          <effect>
             <Glow />
          </effect>
       </TextField>
       <Line endX="90.0" layoutX="164.0" layoutY="171.0" startX="-90.0" />
       <Line endX="94.0" endY="25.0" layoutX="160.0" layoutY="198.0" startX="-87.0" startY="25.0" />
-      <PasswordField fx:id="loginSenha" layoutX="73.0" layoutY="195.0" prefHeight="25.0" prefWidth="181.0" promptText="Digite sua senha" style="-fx-border-color: white;" />
+      <PasswordField fx:id="logSenha" layoutX="73.0" layoutY="195.0" prefHeight="25.0" prefWidth="181.0" promptText="Digite sua senha" style="-fx-border-color: white;" />
       <Button fx:id="btnLogin" layoutX="73.0" layoutY="250.0" mnemonicParsing="false" onAction="#logarUsuario" prefHeight="25.0" prefWidth="182.0" text="Login" textFill="#000000c9" />
       <Text fill="#00000054" layoutX="74.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entrar no sistema com uma conta existente" textAlignment="CENTER" wrappingWidth="181.0" />
-      <TextField fx:id="cadastroLogin" layoutX="439.0" layoutY="144.0" prefHeight="25.0" prefWidth="180.0" promptText="Digite seu Login" style="-fx-border-color: white;">
+      <TextField fx:id="cadLogin" layoutX="439.0" layoutY="144.0" prefHeight="25.0" prefWidth="180.0" promptText="Digite seu Login" style="-fx-border-color: white;">
          <effect>
             <Glow />
          </effect>
       </TextField>
       <Line endX="90.0" layoutX="529.0" layoutY="170.0" startX="-90.0" />
       <Line endX="94.0" endY="25.0" layoutX="526.0" layoutY="197.0" startX="-87.0" startY="25.0" />
-      <PasswordField fx:id="cadastroSenha" layoutX="440.0" layoutY="193.0" prefHeight="25.0" prefWidth="181.0" promptText="Digite sua senha" style="-fx-border-color: white;" />
+      <PasswordField fx:id="cadSenha" layoutX="440.0" layoutY="193.0" prefHeight="25.0" prefWidth="181.0" promptText="Digite sua senha" style="-fx-border-color: white;" />
       <Button fx:id="btnCadastro" layoutX="438.0" layoutY="308.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="182.0" text="Cadastre-se" textFill="#000000c9" />
       <Text fill="#00000054" layoutX="439.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Criar uma conta" textAlignment="CENTER" wrappingWidth="181.0" />
-      <RadioButton fx:id="radioRequi" layoutX="440.0" layoutY="268.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="102.0" text="Requisitante" toggleGroup="$group"/>
-      <RadioButton fx:id="radioAdmin" layoutX="557.0" layoutY="268.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="78.0" text="Admin" toggleGroup="$group"/>
+      <RadioButton fx:id="radioRequi" toggleGroup="$group" layoutX="440.0" layoutY="268.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="102.0" text="Requisitante" />
+      <RadioButton fx:id="radioAdmin" toggleGroup="$group" layoutX="557.0" layoutY="268.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="78.0" text="Admin" />
       <Text fill="#00000054" layoutX="440.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="De quem será a conta?" />
+
    </children>
 </Pane>

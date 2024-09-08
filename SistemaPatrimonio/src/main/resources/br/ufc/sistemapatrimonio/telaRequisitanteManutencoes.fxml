@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteManutencoesViewController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="txtListaPatrimonios" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="21.0" layoutY="52.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostradas os manutenções." wrapText="true" />
+      <Text layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manutenções" wrappingWidth="154.13671875" />
+      <TextField fx:id="txtRemover" layoutX="305.0" layoutY="363.0" prefHeight="27.0" prefWidth="208.0" promptText="ID da manutenção a ser excluída" style="-fx-border-color: white;" />
+      <Button fx:id="btnRemover" layoutX="304.0" layoutY="398.0" mnemonicParsing="false" onAction="#removerManutencao" prefHeight="27.0" prefWidth="209.0" text="Remover" />
+      <Line endX="108.0" layoutX="405.0" layoutY="390.0" startX="-100.0" />
+      <Text layoutX="285.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover manutenção" textAlignment="CENTER" wrappingWidth="248.9999999999999">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="306.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar manutenção de um:" textAlignment="CENTER" wrappingWidth="203.9999999999999">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtNomeAdd" layoutX="308.0" layoutY="186.0" prefHeight="27.0" prefWidth="204.0" promptText="Nome do bem/patrimônio" style="-fx-border-color: white;" />
+      <Line endX="105.0" layoutX="407.0" layoutY="213.0" startX="-99.0" />
+      <TextField fx:id="txtDefeitoAdd" layoutX="307.0" layoutY="223.0" prefHeight="27.0" prefWidth="204.0" promptText="Defeito apresentado" style="-fx-border-color: white;" />
+      <Line endX="106.0" layoutX="405.0" layoutY="250.0" startX="-100.0" />
+      <Button fx:id="btnAdicionar" layoutX="304.0" layoutY="264.0" mnemonicParsing="false" onAction="#adicionarManutencao" prefHeight="27.0" prefWidth="207.0" text="Adicionar" />
+      <Button fx:id="btnIrParaRequisicoes" layoutX="563.0" layoutY="398.0" mnemonicParsing="false" onAction="#irParaRequisicoes" prefHeight="27.0" prefWidth="204.0" text="Requisições" />
+      <Text layoutX="618.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voltar" textAlignment="CENTER" wrappingWidth="91.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnSair" layoutX="776.0" layoutY="12.0" mnemonicParsing="false" onAction="#sair" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
+      <Text fill="#00000057" layoutX="563.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voltar para a tela de requisições" textAlignment="CENTER" wrappingWidth="203.9999999999999" />
+      <TextField fx:id="txtIDAdd" layoutX="305.0" layoutY="148.0" prefHeight="27.0" prefWidth="204.0" promptText="ID da manutenção" style="-fx-border-color: white;" />
+      <Line endX="105.0" layoutX="404.0" layoutY="175.0" startX="-99.0" />
+      <RadioButton fx:id="radioBemAdd" toggleGroup="$radioOpcoesAdd" layoutX="325.0" layoutY="114.0" mnemonicParsing="false" text="Bem">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoesAdd" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioPatrimonioAdd" toggleGroup="$radioOpcoesAdd" layoutX="398.0" layoutY="114.0" mnemonicParsing="false" text="Patrimônio">
+
+      </RadioButton>
+      <Text layoutX="573.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar manutenção de um:" textAlignment="CENTER" wrappingWidth="203.9999999999999">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtNomeEditar" layoutX="575.0" layoutY="186.0" prefHeight="27.0" prefWidth="204.0" promptText="Nome do bem/patrimônio" style="-fx-border-color: white;" />
+      <Line endX="105.0" layoutX="674.0" layoutY="213.0" startX="-99.0" />
+      <TextField fx:id="txtTipoEditar" layoutX="574.0" layoutY="223.0" prefHeight="27.0" prefWidth="204.0" promptText="Defeito apresentado" style="-fx-border-color: white;" />
+      <Line endX="106.0" layoutX="672.0" layoutY="250.0" startX="-100.0" />
+      <Button fx:id="btnEditar" layoutX="571.0" layoutY="264.0" mnemonicParsing="false" onAction="#editarManutencao" prefHeight="27.0" prefWidth="207.0" text="Adicionar" />
+      <TextField fx:id="txtIDEditar" layoutX="572.0" layoutY="148.0" prefHeight="27.0" prefWidth="204.0" promptText="ID da manutenção" style="-fx-border-color: white;" />
+      <Line endX="105.0" layoutX="671.0" layoutY="175.0" startX="-99.0" />
+      <RadioButton fx:id="radioBemEditar" toggleGroup="$radioOpcoesEditar" layoutX="592.0" layoutY="114.0" mnemonicParsing="false" text="Bem">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoesEditar" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioPatrimonioEditar" toggleGroup="$radioOpcoesEditar" layoutX="665.0" layoutY="114.0" mnemonicParsing="false" text="Patrimônio">
+
+      </RadioButton>
+   </children>
+</Pane>

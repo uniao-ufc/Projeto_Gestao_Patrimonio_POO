@@ -11,7 +11,7 @@ public class InitScenesController {
         FXMLLoader telaLoginLoader = new FXMLLoader(HelloApplication.class.getResource("telaLoginCadastro.fxml"));
         ScreenController.addScreen("telaLogin", telaLoginLoader);
         // Tela do requisitante
-        FXMLLoader telaRequisitanteRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitante.fxml"));
+        FXMLLoader telaRequisitanteRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteRequisicoes.fxml"));
         ScreenController.addScreen("telaRequisitanteRequisicoes", telaRequisitanteRequisicoesLoader);
         //
         FXMLLoader telaAdminBensLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminBens.fxml"));
@@ -28,5 +28,8 @@ public class InitScenesController {
         //
         FXMLLoader telaAdminHistoricoLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminHistorico.fxml"));
         ScreenController.addScreen("telaAdminHistorico", telaAdminHistoricoLoader);
+        //
+        FXMLLoader telaRequisitanteManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteManutencoes.fxml"));
+        ScreenController.addScreen("telaRequisitanteManutencoes", telaRequisitanteManutencoesLoader);
     }
 }

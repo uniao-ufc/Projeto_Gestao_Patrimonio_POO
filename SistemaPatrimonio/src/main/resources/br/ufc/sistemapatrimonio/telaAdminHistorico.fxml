@@ -10,10 +10,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.AdminHistoricoViewController">
+<Pane maxHeight="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.AdminHistoricoViewController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea fx:id="txtHistoricoRequisicoes" editable="false" wrapText="true" maxWidth="230.0" layoutX="25.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as requisições de bens ou patrimônios pendentes." />
       <Text layoutX="24.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de requisições" wrappingWidth="154.13671875" />
       <TextField fx:id="txtRemover" layoutX="521.0" layoutY="118.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do que será excluído" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="521.0" layoutY="159.0" mnemonicParsing="false" onAction="#removerDoHistorico" prefHeight="27.0" prefWidth="230.0" text="Remover" />
@@ -39,7 +37,8 @@
          </font>
       </Text>
       <Button fx:id="btnIrParaManutencoes" layoutX="582.0" layoutY="296.0" mnemonicParsing="false" onAction="#irParaManutencoes" prefHeight="27.0" prefWidth="108.0" text="Manutenções" />
-      <TextArea fx:id="txtHistoricoManutencoes" editable="false" wrapText="true" maxWidth="230.0" layoutX="265.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as manutenções feitas." />
       <Text layoutX="265.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de manutenções" wrappingWidth="154.13671875" />
+      <TextArea fx:id="txtHistoricoRequisicoes" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="24.0" layoutY="45.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostradas todas as requisições feitas." wrapText="true" />
+      <TextArea fx:id="txtHistoricoManutencoes" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="265.0" layoutY="45.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostradas todas as manutenções feitas." wrapText="true" />
    </children>
 </Pane>

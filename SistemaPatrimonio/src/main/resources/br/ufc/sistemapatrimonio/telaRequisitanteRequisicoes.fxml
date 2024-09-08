@@ -4,18 +4,15 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.ToggleGroup?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteRequisicoesViewController">
-   <fx:define>
-      <ToggleGroup fx:id="group" />
-   </fx:define>
+<Pane maxHeight="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteRequisicoesViewController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea fx:id="txtListaRequisicoes" scaleShape="false" cacheShape="false" snapToPixel="false" layoutX="15.0" layoutY="36.0" editable="false" wrapText="true" maxWidth="230.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." />
+      <TextArea fx:id="txtListaRequisicoes" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="15.0" layoutY="36.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." wrapText="true" />
       <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisições" wrappingWidth="154.13671875" />
       <TextField fx:id="txtRemover" layoutX="275.0" layoutY="64.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do requerimento a ser removido" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="274.0" layoutY="99.0" mnemonicParsing="false" onAction="#removerRequisicao" prefHeight="27.0" prefWidth="230.0" text="Remover" />
@@ -39,8 +36,12 @@
       <Button fx:id="btnAdicionar" layoutX="270.0" layoutY="362.0" mnemonicParsing="false" onAction="#adicionarRequisicao" prefHeight="27.0" prefWidth="231.0" text="Enviar Requisição" />
       <Button fx:id="btnIrParaManutencoes" layoutX="268.0" layoutY="414.0" mnemonicParsing="false" onAction="#irParaManutencoes" prefHeight="27.0" prefWidth="230.0" text="Ir para a tela de manutenções" />
       <Button fx:id="btnSair" layoutX="508.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
-      <RadioButton fx:id="radioBem"  layoutX="311.0" layoutY="185.0" mnemonicParsing="false" text="Bem" toggleGroup="$group"/>
-      <RadioButton fx:id="radioPatrimonio" layoutX="384.0" layoutY="185.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$group"/>
+      <RadioButton fx:id="radioBem" toggleGroup="$radioOpcoes" layoutX="311.0" layoutY="185.0" mnemonicParsing="false" text="Bem">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoes" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioPatrimonio" layoutX="384.0" layoutY="185.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$radioOpcoes" />
       <TextField fx:id="txtDescricaoAdd" layoutX="271.0" layoutY="326.0" prefHeight="25.0" prefWidth="230.0" promptText="descreva para qual fim será usado" style="-fx-border-color: white;" />
       <Line endX="132.0" layoutX="369.0" layoutY="353.0" startX="-98.0" />
    </children>

@@ -14,22 +14,25 @@ public class LoginCadastroViewController {
     private final Model model = new Model();
 
     @FXML
+    private TextField logLogin;
+
+    @FXML
+    private PasswordField logSenha;
+
+    @FXML
+    private TextField cadLogin;
+
+    @FXML
+    private PasswordField cadSenha;
+
+    @FXML
+    private Button btnSair;
+
+    @FXML
     private Button btnCadastro;
 
     @FXML
     private Button btnLogin;
-
-    @FXML
-    private TextField cadastroLogin;
-
-    @FXML
-    private PasswordField cadastroSenha;
-
-    @FXML
-    private TextField loginLogin;
-
-    @FXML
-    private PasswordField loginSenha;
 
     @FXML
     private RadioButton radioAdmin;
@@ -38,19 +41,23 @@ public class LoginCadastroViewController {
     private RadioButton radioRequi;
 
     private String login;
+
     private String senha;
-    private String cadLogin;
-    private String cadSenha;
+
+    private String cadastroLogin;
+
+    private String cadastroSenha;
+
     private TipoUsuario tipo;
 
     @FXML // Cadastra o usuario
     void cadastrar(ActionEvent event) {
-        if(cadastroLogin.getText().trim().isEmpty() || cadastroSenha.getText().trim().isEmpty() || !radioAdmin.isSelected() && !radioRequi.isSelected()){
+        if(cadLogin.getText().trim().isEmpty() || cadSenha.getText().trim().isEmpty() || !radioAdmin.isSelected() && !radioRequi.isSelected()){
             model.mostrarPopup("Erro", "Informações não inseridas", AlertType.WARNING);
         }else{
             // Tratamento de dados e verificacao de cadastro
-            cadLogin = cadastroLogin.getText().trim();
-            cadSenha = cadastroSenha.getText().trim();
+            cadastroLogin = cadLogin.getText().trim();
+            cadastroSenha = cadSenha.getText().trim();
 
             if(radioAdmin.isSelected()){
                 tipo = TipoUsuario.ADMINISTRADOR;
@@ -58,7 +65,7 @@ public class LoginCadastroViewController {
                 tipo = TipoUsuario.REQUISITANTE;
             }
             // Verificando o resultado do metodo
-            int resultado = model.getCadastroModel().cadastrarUsuario(cadLogin, cadSenha, tipo);
+            int resultado = model.getCadastroModel().cadastrarUsuario(cadastroLogin, cadastroSenha, tipo);
 
             switch (resultado) {
                 case 1 -> model.mostrarPopup("Erro", "A conta já existe!", AlertType.WARNING);
@@ -75,13 +82,13 @@ public class LoginCadastroViewController {
     @FXML // Loga o usuario
     //BUG NO CADASTRO, SE VC TENTAR MUDAR O CARGO DE UM USUARIO EXISTENTE E TENTAR LGOO ELE PARA DE EXISTIR E VC PRECISA CRIAR ELE DNV
     void logarUsuario(ActionEvent event) throws IOException {
-        if(loginLogin.getText().trim().isEmpty() || loginSenha.getText().trim().isEmpty()){
+        if(logLogin.getText().trim().isEmpty() || logLogin.getText().trim().isEmpty()){
             model.mostrarPopup("Erro", "Informações não inseridas", AlertType.WARNING);
             // Erro se informacaoes nao forem inseridas
         }else {
             // Tratamento de dados e verificacao de login
-            login = loginLogin.getText().trim();
-            senha = loginSenha.getText().trim();
+            login = logLogin.getText().trim();
+            senha = logSenha.getText().trim();
 
             HashMap<Integer, Usuario> resultado = model.getCadastroModel().autenticarUsuario(login, senha, tipo);
 
@@ -99,5 +106,9 @@ public class LoginCadastroViewController {
                 model.mostrarPopup("Erro", "Usuário ou senha incorretos!", AlertType.ERROR);
             }
         }
+    }
+
+    public void sair(ActionEvent actionEvent) {
+
     }
 }
