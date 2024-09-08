@@ -67,7 +67,14 @@ public class AdminBensModel {
     public String listarBens() {
         StringBuilder lista = new StringBuilder();
         for (Bem bem : Model.bens) {
-            lista.append("ID: ").append(bem.getId()).append(", Nome: ").append(bem.getNome()).append(", Tipo: ").append(bem.getTipo().getNome()).append("\n");
+            // Adiciona todas as informações relevantes do bem
+            lista.append("ID: ").append(bem.getId())
+                    .append(", Nome: ").append(bem.getNome())
+                    .append(", Tipo: ").append(bem.getTipo().getNome())
+                    .append(", Descrição do Tipo: ").append(bem.getTipo().getDescricao())
+                    .append(", Depreciação Anual: ").append(bem.getTipo().getDepreciacaoAnual())
+                    .append(", Status: ").append(bem.isAlocstatus() ? "Ativo" : "Inativo")
+                    .append("\n");
         }
         return lista.toString();
     }

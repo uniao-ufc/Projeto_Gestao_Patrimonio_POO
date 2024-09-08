@@ -1,5 +1,6 @@
 package br.ufc.sistemapatrimonio.controller;
 
+import br.ufc.sistemapatrimonio.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,7 +59,7 @@ public class AdminManutencoesViewController {
     private TextField txtIDEditar;
 
     @FXML
-    private TextArea txtListaPatrimonios;
+    private TextArea txtListaManutencao;
 
     @FXML
     private TextField txtNomeAdd;
@@ -83,23 +84,25 @@ public class AdminManutencoesViewController {
     }
 
     @FXML
-    void irParaBens(ActionEvent event) {
-
-    }
-
-    @FXML
-    void irParaRequisicoes(ActionEvent event) throws IOException {
-        ScreenController.activate("telaRequisitante");
-    }
-
-    @FXML
     void removerManutencao(ActionEvent event) {
 
     }
 
     @FXML
-    void sair(ActionEvent event) {
+    void irParaBens(ActionEvent event) throws IOException {
+        ScreenController.activate("telaAdminBens");
+    }
 
+    @FXML
+    void irParaRequisicoes(ActionEvent event) throws IOException {
+        ScreenController.activate("telaAdminRequisicoes");
+    }
+
+    @FXML
+    void sair(ActionEvent event) throws IOException {
+        // Implementar a lógica para sair da tela
+        ScreenController.activate("telaLogin");
+        Model.deslogarUsuario();
     }
 
 }

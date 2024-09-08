@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.AdminPatrimoniosViewController">
    <children>
-      <TextArea fx:id="txtListaPatrimonios" layoutX="14.0" layoutY="38.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostrados os Patrimônios" />
+      <TextArea fx:id="txtListaPatrimonios" editable="false" wrapText="true" maxWidth="270.0" minWidth="100" layoutX="14.0" layoutY="38.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostrados os Patrimônios" />
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patrimônios" wrappingWidth="154.13671875" />
       <TextField fx:id="txtRemover" layoutX="298.0" layoutY="381.0" prefHeight="27.0" prefWidth="208.0" promptText="ID do patrimônio a ser removido" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="297.0" layoutY="416.0" mnemonicParsing="false" onAction="#removerPatrimonio" prefHeight="27.0" prefWidth="209.0" text="Remover" />

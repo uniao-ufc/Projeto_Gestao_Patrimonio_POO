@@ -73,6 +73,7 @@ public class LoginCadastroViewController {
     }
 
     @FXML // Loga o usuario
+    //BUG NO CADASTRO, SE VC TENTAR MUDAR O CARGO DE UM USUARIO EXISTENTE E TENTAR LGOO ELE PARA DE EXISTIR E VC PRECISA CRIAR ELE DNV
     void logarUsuario(ActionEvent event) throws IOException {
         if(loginLogin.getText().trim().isEmpty() || loginSenha.getText().trim().isEmpty()){
             model.mostrarPopup("Erro", "Informações não inseridas", AlertType.WARNING);
@@ -89,7 +90,11 @@ public class LoginCadastroViewController {
                 model.mostrarPopup("Sucesso", "Logado", AlertType.INFORMATION);
                 model.setUsuarioAutenticado(resultado.get(1));
                 // Ativa a tela de requisitante
-                ScreenController.activate("telaRequisitante");
+                if(Model.getUsuarioAutenticado().getTipoUsuario() == TipoUsuario.REQUISITANTE){
+                    ScreenController.activate("telaRequisitanteRequisicoes");
+                }else{
+                    ScreenController.activate("telaAdminRequisicoes");
+                }
             } else {
                 model.mostrarPopup("Erro", "Usuário ou senha incorretos!", AlertType.ERROR);
             }

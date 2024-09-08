@@ -7,7 +7,7 @@ import java.util.List;
 public class RequisitanteModel {
 
     // Lista para armazenar as requisições de manutenção
-    private List<RequisicaoDeManutencao> requisicoes;
+    private final List<RequisicaoDeManutencao> requisicoes;
 
     // Construtor
     public RequisitanteModel() {

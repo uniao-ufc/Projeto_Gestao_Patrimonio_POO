@@ -43,7 +43,7 @@ public class Model {
         this.usuarioAutenticado = usuarioAutenticado;
     }
 
-    public void deslogarUsuario() {
+    public static void deslogarUsuario() {
         usuarioAutenticado = null;
     }
 

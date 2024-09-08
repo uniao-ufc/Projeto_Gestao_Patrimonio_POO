@@ -10,13 +10,13 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ToggleGroup?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.RequisitanteRequisicoesViewController">
    <fx:define>
       <ToggleGroup fx:id="group" />
    </fx:define>
    <children>
 
-      <TextArea fx:id="txtListaBens" layoutX="15.0" layoutY="36.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." />
+      <TextArea fx:id="txtListaRequisicoes" layoutX="15.0" layoutY="36.0" editable="false" wrapText="true" maxWidth="230.0" prefHeight="405.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." />
       <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisições" wrappingWidth="154.13671875" />
       <TextField fx:id="txtRemover" layoutX="275.0" layoutY="64.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do requerimento a ser removido" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="274.0" layoutY="99.0" mnemonicParsing="false" onAction="#removerRequisicao" prefHeight="27.0" prefWidth="230.0" text="Remover" />

@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.AdminBensViewController">
    <children>
-      <TextArea fx:id="txtListaPatrimonios" layoutX="24.0" layoutY="48.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostrados os Bens." />
+      <TextArea fx:id="txtListaBens" layoutX="24.0" layoutY="48.0" editable="false" wrapText="true" maxWidth="270.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostrados os Bens." />
       <Text layoutX="24.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bens" wrappingWidth="154.13671875" />
       <TextField fx:id="txtRemover" layoutX="308.0" layoutY="391.0" prefHeight="27.0" prefWidth="208.0" promptText="ID do bem a ser removido" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="307.0" layoutY="426.0" mnemonicParsing="false" onAction="#removerBem" prefHeight="27.0" prefWidth="209.0" text="Remover" />

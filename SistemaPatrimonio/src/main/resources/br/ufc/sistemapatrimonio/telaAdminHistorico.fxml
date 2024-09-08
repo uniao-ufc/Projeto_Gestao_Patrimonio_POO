@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufc.sistemapatrimonio.controller.AdminHistoricoViewController">
+   <children>
+      <TextArea fx:id="txtHistoricoRequisicoes" editable="false" wrapText="true" maxWidth="230.0" layoutX="25.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as requisições de bens ou patrimônios pendentes." />
+      <Text layoutX="24.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de requisições" wrappingWidth="154.13671875" />
+      <TextField fx:id="txtRemover" layoutX="521.0" layoutY="118.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do que será excluído" style="-fx-border-color: white;" />
+      <Button fx:id="btnRemover" layoutX="521.0" layoutY="159.0" mnemonicParsing="false" onAction="#removerDoHistorico" prefHeight="27.0" prefWidth="230.0" text="Remover" />
+      <Line endX="129.0" layoutX="621.0" layoutY="145.0" startX="-100.0" />
+      <Text layoutX="514.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Excluir uma:" textAlignment="CENTER" wrappingWidth="229.9999999999999">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnSair" layoutX="725.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
+      <RadioButton fx:id="radioRequisicao" toggleGroup="$radioOpcoes" layoutX="543.0" layoutY="87.0" mnemonicParsing="false" text="Requisição">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoes" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioManutencao" toggleGroup="$radioOpcoes" layoutX="638.0" layoutY="87.0" mnemonicParsing="false" text="Manutenção">
+      </RadioButton>
+      <Button fx:id="btnIrParaBens" layoutX="522.0" layoutY="257.0" mnemonicParsing="false" onAction="#irParaBens" prefHeight="27.0" prefWidth="108.0" text="Bens" />
+      <Button fx:id="btnIrParaPatrimonios" layoutX="642.0" layoutY="257.0" mnemonicParsing="false" onAction="#irParaPatrimonios" prefHeight="27.0" prefWidth="108.0" text="Patrimônios" />
+      <Text layoutX="558.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voltar para:" textAlignment="CENTER" wrappingWidth="146.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnIrParaManutencoes" layoutX="582.0" layoutY="296.0" mnemonicParsing="false" onAction="#irParaManutencoes" prefHeight="27.0" prefWidth="108.0" text="Manutenções" />
+      <TextArea fx:id="txtHistoricoManutencoes" editable="false" wrapText="true" maxWidth="230.0" layoutX="265.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as manutenções feitas." />
+      <Text layoutX="265.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de manutenções" wrappingWidth="154.13671875" />
+   </children>
+</Pane>

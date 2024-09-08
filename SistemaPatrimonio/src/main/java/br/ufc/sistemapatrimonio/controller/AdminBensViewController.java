@@ -9,9 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class AdminBensViewController {
 
     private final Model model = new Model();
+
     @FXML
     private TextField txtRemover;
 
@@ -79,7 +82,7 @@ public class AdminBensViewController {
 
             model.mostrarPopup("Sucesso", "Bem adicionado com sucesso!", Alert.AlertType.INFORMATION);
 
-            //atualizarListaBens();
+            atualizarListaBens();
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
         } catch (BemException e) {
@@ -100,7 +103,7 @@ public class AdminBensViewController {
             model.getAdminBensModel().editarBem(id, nome, descricao, depreciacao, tipo);
 
             model.mostrarPopup("Sucesso", "Bem editado com sucesso!", Alert.AlertType.INFORMATION);
-            //atualizarListaBens();
+            atualizarListaBens();
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
         } catch (BemException e) {
@@ -113,18 +116,6 @@ public class AdminBensViewController {
     }
 
     @FXML
-    void irParaPatrimonios(ActionEvent event) {
-        System.out.println(model.getAdminBensModel().listarBens());
-
-        // Implementar navegação para a tela de Patrimonios
-    }
-
-    @FXML
-    void irParaRequisicoes(ActionEvent event) {
-        // Implementar navegação para a tela de Requisições
-    }
-
-    @FXML
     void removerBem(ActionEvent event) {
         try {
             int id = Integer.parseInt(txtRemover.getText());
@@ -132,7 +123,7 @@ public class AdminBensViewController {
             model.getAdminBensModel().removerBem(id);
 
             model.mostrarPopup("Sucesso", "Bem removido com sucesso!", Alert.AlertType.INFORMATION);
-            //atualizarListaBens();
+            atualizarListaBens();
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
         } catch (BemException e) {
@@ -145,8 +136,22 @@ public class AdminBensViewController {
     }
 
     @FXML
-    void sair(ActionEvent event) {
+    void irParaPatrimonios(ActionEvent event) throws IOException {
+        // Implementar navegação para a tela de Patrimonios
+        ScreenController.activate("telaAdminPatrimonios");
+    }
+
+    @FXML
+    void irParaRequisicoes(ActionEvent event) throws IOException {
+        // Implementar navegação para a tela de Requisições
+        ScreenController.activate("telaAdminRequisicoes");
+    }
+
+    @FXML
+    void sair(ActionEvent event) throws IOException {
         // Implementar a lógica para sair da tela
+        ScreenController.activate("telaLogin");
+        Model.deslogarUsuario();
     }
 
     private void atualizarListaBens() {

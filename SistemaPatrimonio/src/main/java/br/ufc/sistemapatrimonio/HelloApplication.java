@@ -3,14 +3,12 @@ package br.ufc.sistemapatrimonio;
 import br.ufc.sistemapatrimonio.controller.InitScenesController;
 import br.ufc.sistemapatrimonio.controller.ScreenController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class HelloApplication extends Application {
-
     @Override
     public void start(Stage stage){
+        // Falta programar AdmHistorico, AdmManuten, AdminReq, RequisReq, RequisManuten
         try {
             InitScenesController.initScenes();
             // Ativando tela principal
