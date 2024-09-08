@@ -14,22 +14,22 @@ public class InitScenesController {
         FXMLLoader telaRequisitanteRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteRequisicoes.fxml"));
         ScreenController.addScreen("telaRequisitanteRequisicoes", telaRequisitanteRequisicoesLoader);
         //
+        FXMLLoader telaRequisitanteManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteManutencoes.fxml"));
+        ScreenController.addScreen("telaRequisitanteManutencoes", telaRequisitanteManutencoesLoader);
+        //
+        FXMLLoader telaAdminRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminRequisicoes.fxml"));
+        ScreenController.addScreen("telaAdminRequisicoes", telaAdminRequisicoesLoader);
+        //
+        FXMLLoader telaAdminManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminManutencoes.fxml"));
+        ScreenController.addScreen("telaAdminManutencoes", telaAdminManutencoesLoader);
+        //
         FXMLLoader telaAdminBensLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminBens.fxml"));
         ScreenController.addScreen("telaAdminBens", telaAdminBensLoader);
         //
         FXMLLoader telaAdminPatrimoniosLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminPatrimonios.fxml"));
         ScreenController.addScreen("telaAdminPatrimonios", telaAdminPatrimoniosLoader);
         //
-        FXMLLoader telaAdminManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminManutencoes.fxml"));
-        ScreenController.addScreen("telaAdminManutencoes", telaAdminManutencoesLoader);
-        //
-        FXMLLoader telaAdminRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminRequisicoes.fxml"));
-        ScreenController.addScreen("telaAdminRequisicoes", telaAdminRequisicoesLoader);
-        //
         FXMLLoader telaAdminHistoricoLoader = new FXMLLoader(HelloApplication.class.getResource("telaAdminHistorico.fxml"));
         ScreenController.addScreen("telaAdminHistorico", telaAdminHistoricoLoader);
-        //
-        FXMLLoader telaRequisitanteManutencoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteManutencoes.fxml"));
-        ScreenController.addScreen("telaRequisitanteManutencoes", telaRequisitanteManutencoesLoader);
     }
 }

@@ -10,7 +10,7 @@ public class AdminPatrimoniosModel {
 
     public void adicionarPatrimonio(int id, String nome, String descricao, int depreciacao, String tipo, int numeroTombamento) throws PatrimonioException {
         // Verificar se já existe um patrimônio com o mesmo id
-        for (Patrimonio patrimonio : Model.patrimonios) {
+        for (Patrimonio patrimonio : Model.getPatrimonios()) {
             if (patrimonio.getId() == id) {
                 throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimônio com o ID " + id + " já existe.");
             }
@@ -22,11 +22,11 @@ public class AdminPatrimoniosModel {
         Patrimonio novoPatrimonio = new Patrimonio(id, nome, tipoPatrimonio, numeroTombamento, false);
 
         // Adicionar o novo patrimônio à lista
-        Model.patrimonios.add(novoPatrimonio);
+        Model.getPatrimonios().add(novoPatrimonio);
     }
 
     public void editarPatrimonio(int id, String nome, String descricao, int depreciacao, String tipo, int numeroTombamento) throws PatrimonioException {
-        Optional<Patrimonio> patrimonioExistente = Model.patrimonios.stream().filter(patrimonio -> patrimonio.getId() == id).findFirst();
+        Optional<Patrimonio> patrimonioExistente = Model.getPatrimonios().stream().filter(patrimonio -> patrimonio.getId() == id).findFirst();
         if (patrimonioExistente.isPresent()) {
             Patrimonio patrimonio = patrimonioExistente.get();
             patrimonio.setNome(nome);
@@ -43,7 +43,7 @@ public class AdminPatrimoniosModel {
         boolean encontrado = false;
 
         // Usando um iterator para garantir que a remoção seja segura e eficiente
-        Iterator<Patrimonio> iterator = Model.patrimonios.iterator();
+        Iterator<Patrimonio> iterator = Model.getPatrimonios().iterator();
         while (iterator.hasNext()) {
             Patrimonio patrimonio = iterator.next();
             if (patrimonio.getId() == id) {
@@ -60,7 +60,7 @@ public class AdminPatrimoniosModel {
 
     public String listarPatrimonios() {
         StringBuilder lista = new StringBuilder();
-        for (Patrimonio patrimonio : Model.patrimonios) {
+        for (Patrimonio patrimonio : Model.getPatrimonios()) {
             // Adiciona todas as informações relevantes do patrimônio
             lista.append("ID: ").append(patrimonio.getId())
                     .append(", Nome: ").append(patrimonio.getNome())

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class TelaLoginCadastroModel {
     public HashMap<Integer, Usuario> autenticarUsuario(String login, String senha, TipoUsuario tipoUsuario) {
-        for (Usuario usuario : Model.users) {
+        for (Usuario usuario : Model.getUsers()) {
             if (usuario.getUsername().equals(login) && usuario.getPassword().equals(senha) && usuario.getTipoUsuario() == tipoUsuario) {
                 HashMap<Integer, Usuario> user = new HashMap<Integer, Usuario>();
                 user.put(1, usuario);
@@ -21,7 +21,7 @@ public class TelaLoginCadastroModel {
     }
 
     public int cadastrarUsuario(String login, String senha, TipoUsuario tipoUsuario) {
-        for (Usuario usuario : Model.users) {
+        for (Usuario usuario : Model.getUsers()) {
             if (usuario.getUsername().equals(login) || usuario.getUsername().equals("") || usuario.getPassword().equals("")) {
                 return 1;
             }
@@ -36,7 +36,7 @@ public class TelaLoginCadastroModel {
         }
 
         novoUsuario.setTipoUsuario(tipoUsuario);
-        Model.users.add(novoUsuario);
+        Model.getUsers().add(novoUsuario);
         return 3;
     }
 

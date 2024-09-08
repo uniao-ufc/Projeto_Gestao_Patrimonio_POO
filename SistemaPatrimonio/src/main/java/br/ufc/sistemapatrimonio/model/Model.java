@@ -10,18 +10,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    public static List<Usuario> users = new ArrayList<>();
-    public static List<Patrimonio> patrimonios = new ArrayList<>();
-    public static List<Bem> bens = new ArrayList<>();
-    public static List<RequisicaoDeManutencao> manutencaoPatrimonio = new ArrayList<>();
-    public static List<RequisicaoDeManutencao> manutencaoBem = new ArrayList<>();
-
+    private static final List<Usuario> users = new ArrayList<>();
+    private static final List<Patrimonio> patrimonios = new ArrayList<>();
+    private static final List<Bem> bens = new ArrayList<>();
+    private static final List<RequisicaoDeManutencao> manutencaoPatrimonio = new ArrayList<>();
+    private static final List<RequisicaoDeManutencao> manutencaoBem = new ArrayList<>();
     private static Usuario usuarioAutenticado;
     private final AdminBensModel adminBensModel = new AdminBensModel();
     private final AdminPatrimoniosModel adminPatrimoniosModel = new AdminPatrimoniosModel();
     private final RequisitanteModel requisitanteModel = new RequisitanteModel();
     private final TelaLoginCadastroModel cadastroModel = new TelaLoginCadastroModel();
     private final UsuarioModel usuarioModel = new UsuarioModel(getUsuarioAutenticado());
+
+    public static List<Patrimonio> getPatrimonios() {
+        return patrimonios;
+    }
+
+    public static List<Bem> getBens() {
+        return bens;
+    }
+
+    public static List<RequisicaoDeManutencao> getManutencaoPatrimonio() {
+        return manutencaoPatrimonio;
+    }
+
+    public static List<RequisicaoDeManutencao> getManutencaoBem() {
+        return manutencaoBem;
+    }
 
     public static List<Usuario> getUsers() {
         return users;
