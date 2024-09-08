@@ -4,8 +4,18 @@ public class Patrimonio {
     private int id;
     private String nome;
     private TipoPatrimonio tipo;
+    private Local local;
     private int numeroTombamento;
     private boolean Alocstatus;
+
+    public Patrimonio(int id, String nome, TipoPatrimonio tipo, Local local, int numeroTombamento, boolean alocstatus) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.numeroTombamento = numeroTombamento;
+        this.local = local;
+        Alocstatus = alocstatus;
+    }
 
     public Patrimonio(int id, String nome, TipoPatrimonio tipo, int numeroTombamento, boolean alocstatus) {
         this.id = id;
@@ -37,6 +47,14 @@ public class Patrimonio {
 
     public void setTipo(TipoPatrimonio tipo) {
         this.tipo = tipo;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public int getNumeroTombamento() {

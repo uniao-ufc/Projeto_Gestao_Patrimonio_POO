@@ -12,46 +12,51 @@
 
 <Pane maxHeight="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.AdminRequisicoesViewController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea fx:id="txtListaRequisicoes" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="25.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." wrapText="true" />
+      <TextArea fx:id="txtListaRequisicoes" editable="false" layoutX="25.0" layoutY="46.0" prefHeight="452.0" prefWidth="230.0" promptText="Aqui serão mostrados todas as suas requisições de bens ou patrimônios." wrapText="true" />
       <Text layoutX="24.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisições" wrappingWidth="154.13671875" />
-      <TextField fx:id="txtRemover" layoutX="285.0" layoutY="66.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do requerimento a ser removido" style="-fx-border-color: white;" />
-      <Button fx:id="btnRemover" layoutX="284.0" layoutY="101.0" mnemonicParsing="false" onAction="#removerRequisicao" prefHeight="27.0" prefWidth="230.0" text="Remover" />
-      <Line endX="129.0" layoutX="385.0" layoutY="93.0" startX="-100.0" />
-      <Text layoutX="259.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover uma requisição" textAlignment="CENTER" wrappingWidth="273.13671875">
+      <TextField fx:id="txtRemover" layoutX="285.0" layoutY="101.0" prefHeight="25.0" prefWidth="230.0" promptText="ID do requerimento a ser removido" style="-fx-border-color: white;" />
+      <Button fx:id="btnRemover" layoutX="284.0" layoutY="136.0" mnemonicParsing="false" onAction="#removerRequisicao" prefHeight="27.0" prefWidth="230.0" text="Remover" />
+      <Line endX="129.0" layoutX="385.0" layoutY="128.0" startX="-100.0" />
+      <Text layoutX="259.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover requisição de:" textAlignment="CENTER" wrappingWidth="273.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="271.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requerir um:" textAlignment="CENTER" wrappingWidth="249.13671875">
+      <Text layoutX="271.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requerir um:" textAlignment="CENTER" wrappingWidth="249.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtIDAdd" layoutX="281.0" layoutY="211.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o ID" style="-fx-border-color: white;" />
-      <Line endX="129.0" layoutX="380.0" layoutY="238.0" startX="-99.0" />
-      <TextField fx:id="txtNomeAdd" layoutX="281.0" layoutY="246.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o nome" style="-fx-border-color: white;" />
-      <Line endX="132.0" layoutX="379.0" layoutY="273.0" startX="-98.0" />
-      <TextField fx:id="txtLocalAdd" layoutX="280.0" layoutY="286.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o local para onde será alocado" style="-fx-border-color: white;" />
-      <Line endX="132.0" layoutX="378.0" layoutY="313.0" startX="-98.0" />
-      <Button fx:id="btnAdicionar" layoutX="280.0" layoutY="357.0" mnemonicParsing="false" onAction="#adicionarRequisicao" prefHeight="27.0" prefWidth="231.0" text="Enviar Requisição" />
+      <TextField fx:id="txtIDAdd" layoutX="281.0" layoutY="226.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o ID" style="-fx-border-color: white;" />
+      <Line endX="129.0" layoutX="380.0" layoutY="253.0" startX="-99.0" />
+      <TextField fx:id="txtNomeAdd" layoutX="281.0" layoutY="261.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o nome" style="-fx-border-color: white;" />
+      <Line endX="132.0" layoutX="379.0" layoutY="288.0" startX="-98.0" />
+      <TextField fx:id="txtLocalAdd" layoutX="280.0" layoutY="301.0" prefHeight="25.0" prefWidth="230.0" promptText="informe o local para onde será alocado" style="-fx-border-color: white;" />
+      <Line endX="132.0" layoutX="378.0" layoutY="328.0" startX="-98.0" />
+      <Button fx:id="btnAdicionar" layoutX="280.0" layoutY="372.0" mnemonicParsing="false" onAction="#adicionarRequisicao" prefHeight="27.0" prefWidth="231.0" text="Enviar Requisição" />
       <Button fx:id="btnSair" layoutX="514.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
-      <RadioButton fx:id="radioBem" toggleGroup="$radioOpcoes" layoutX="323.0" layoutY="187.0" mnemonicParsing="false" text="Bem">
+      <RadioButton fx:id="radioBem" layoutX="323.0" layoutY="203.0" mnemonicParsing="false" text="Bem">
          <toggleGroup>
-            <ToggleGroup fx:id="radioOpcoes" />
+            <ToggleGroup fx:id="radioOpcoesAdd" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioPatrimonio" toggleGroup="$radioOpcoes" layoutX="396.0" layoutY="187.0" mnemonicParsing="false" text="Patrimônio">
-      </RadioButton>
-      <TextField fx:id="txtDescricaoAdd" layoutX="278.0" layoutY="322.0" prefHeight="25.0" prefWidth="230.0" promptText="descreva para qual fim será usado" style="-fx-border-color: white;" />
-      <Line endX="132.0" layoutX="376.0" layoutY="349.0" startX="-98.0" />
-      <Button fx:id="btnIrParaBens" layoutX="281.0" layoutY="425.0" mnemonicParsing="false" onAction="#irParaBens" prefHeight="27.0" prefWidth="108.0" text="Bens" />
-      <Button fx:id="btnIrParaPatrimonios" layoutX="397.0" layoutY="458.0" mnemonicParsing="false" onAction="#irParaPatrimonios" prefHeight="27.0" prefWidth="108.0" text="Patrimônios" />
-      <Text layoutX="350.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciar:" textAlignment="CENTER" wrappingWidth="91.13671875">
+      <RadioButton fx:id="radioPatrimonio" layoutX="396.0" layoutY="203.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$radioOpcoesAdd" />
+      <TextField fx:id="txtDescricaoAdd" layoutX="278.0" layoutY="337.0" prefHeight="25.0" prefWidth="230.0" promptText="descreva para qual fim será usado" style="-fx-border-color: white;" />
+      <Line endX="132.0" layoutX="376.0" layoutY="364.0" startX="-98.0" />
+      <Button fx:id="btnIrParaBens" layoutX="281.0" layoutY="438.0" mnemonicParsing="false" onAction="#irParaBens" prefHeight="27.0" prefWidth="108.0" text="Bens" />
+      <Button fx:id="btnIrParaPatrimonios" layoutX="397.0" layoutY="471.0" mnemonicParsing="false" onAction="#irParaPatrimonios" prefHeight="27.0" prefWidth="108.0" text="Patrimônios" />
+      <Text layoutX="350.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciar:" textAlignment="CENTER" wrappingWidth="91.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnIrParaManutencoes" layoutX="281.0" layoutY="458.0" mnemonicParsing="false" onAction="#irParaManutencoes" prefHeight="27.0" prefWidth="108.0" text="Manutenções" />
-      <Button fx:id="btnIrParaHistoricos" layoutX="397.0" layoutY="425.0" mnemonicParsing="false" onAction="#irParaHistoricos" prefHeight="27.0" prefWidth="108.0" text="Históricos" />
+      <Button fx:id="btnIrParaManutencoes" layoutX="281.0" layoutY="471.0" mnemonicParsing="false" onAction="#irParaManutencoes" prefHeight="27.0" prefWidth="108.0" text="Manutenções" />
+      <Button fx:id="btnIrParaHistoricos" layoutX="397.0" layoutY="438.0" mnemonicParsing="false" onAction="#irParaHistoricos" prefHeight="27.0" prefWidth="108.0" text="Históricos" />
+      <RadioButton fx:id="radioBemRemover" toggleGroup="$radioOpcoesRemover" layoutX="323.0" layoutY="79.0" mnemonicParsing="false" text="Bem">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoesRemover" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioPatrimonioRemover" layoutX="396.0" layoutY="79.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$radioOpcoesRemover" />
    </children>
 </Pane>

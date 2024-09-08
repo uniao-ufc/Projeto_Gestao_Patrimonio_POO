@@ -2,6 +2,7 @@ package br.ufc.sistemapatrimonio.controller;
 
 import br.ufc.sistemapatrimonio.HelloApplication;
 import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 
 public class InitScenesController {

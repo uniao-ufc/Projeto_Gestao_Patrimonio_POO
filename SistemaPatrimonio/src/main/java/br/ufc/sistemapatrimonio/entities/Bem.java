@@ -4,7 +4,16 @@ public class Bem {
     private int id;
     private String nome;
     private TipoBem tipo;
+    private Local local;
     private boolean Alocstatus;
+
+    public Bem(int id, String nome, TipoBem tipo, Local local, boolean alocstatus) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.local = local;
+        Alocstatus = alocstatus;
+    }
 
     public Bem(int id, String nome, TipoBem tipo, boolean alocstatus) {
         this.id = id;
@@ -35,6 +44,14 @@ public class Bem {
 
     public void setTipo(TipoBem tipo) {
         this.tipo = tipo;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public boolean isAlocstatus() {

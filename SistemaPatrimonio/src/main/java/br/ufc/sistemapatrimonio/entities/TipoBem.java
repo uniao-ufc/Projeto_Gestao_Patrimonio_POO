@@ -11,6 +11,11 @@ public class TipoBem {
         this.depreciacaoAnual = depreciacaoAnual;
     }
 
+    public TipoBem(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public String getNome() {
         return nome;
     }

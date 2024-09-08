@@ -1,16 +1,10 @@
 package br.ufc.sistemapatrimonio.entities;
+
 public class Local {
-    private String name;
     private String endereco;
 
-    // Getter para name
-    public String getName() {
-        return name;
-    }
-
-    // Setter para name
-    public void setName(String name) {
-        this.name = name;
+    public Local(String endereco) {
+        this.endereco = endereco;
     }
 
     // Getter para endereco

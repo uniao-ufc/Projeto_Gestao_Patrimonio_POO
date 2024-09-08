@@ -78,7 +78,13 @@ public class AdminBensViewController {
             int depreciacao = Integer.parseInt(txtDepressiacaoAdd.getText());
             String tipo = txtTipoAdd.getText();
 
-            model.getAdminBensModel().adicionarBem(id, nome, descricao, depreciacao, tipo);
+            model.getAdminModel().adicionarBem(id, nome, descricao, depreciacao, tipo);
+
+            txtIDAdd.clear();
+            txtNomeAdd.clear();
+            txtDescricaoAdd.clear();
+            txtDepressiacaoAdd.clear();
+            txtTipoAdd.clear();
 
             model.mostrarPopup("Sucesso", "Bem adicionado com sucesso!", Alert.AlertType.INFORMATION);
 
@@ -100,15 +106,23 @@ public class AdminBensViewController {
             int depreciacao = Integer.parseInt(txtDepressiacaoEditar.getText());
             String tipo = txtTipoEditar.getText();
 
-            model.getAdminBensModel().editarBem(id, nome, descricao, depreciacao, tipo);
+            model.getAdminModel().editarBem(id, nome, descricao, depreciacao, tipo);
+
+            txtIDEditar.clear();
+            txtNomeEditar.clear();
+            txtDescricaoEditar.clear();
+            txtDepressiacaoEditar.clear();
+            txtTipoEditar.clear();
 
             model.mostrarPopup("Sucesso", "Bem editado com sucesso!", Alert.AlertType.INFORMATION);
+
             atualizarListaBens();
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
         } catch (BemException e) {
             switch (e.getErroCode()) {
-                case BemException.NAO_ENCONTRADO, BemException.ERRO -> model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
+                case BemException.NAO_ENCONTRADO, BemException.ERRO ->
+                        model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -120,7 +134,9 @@ public class AdminBensViewController {
         try {
             int id = Integer.parseInt(txtRemover.getText());
 
-            model.getAdminBensModel().removerBem(id);
+            model.getAdminModel().removerBem(id);
+
+            txtRemover.clear();
 
             model.mostrarPopup("Sucesso", "Bem removido com sucesso!", Alert.AlertType.INFORMATION);
             atualizarListaBens();
@@ -128,7 +144,8 @@ public class AdminBensViewController {
             model.mostrarPopup("Erro", "Por favor, insira um ID válido.", Alert.AlertType.ERROR);
         } catch (BemException e) {
             switch (e.getErroCode()) {
-                case BemException.NAO_ENCONTRADO, BemException.ERRO -> model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
+                case BemException.NAO_ENCONTRADO, BemException.ERRO ->
+                        model.mostrarPopup("Erro", e.getMessage(), Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -154,7 +171,7 @@ public class AdminBensViewController {
         Model.deslogarUsuario();
     }
 
-    private void atualizarListaBens() {
-        txtListaBens.setText(model.getAdminBensModel().listarBens());
+    public void atualizarListaBens() {
+        txtListaBens.setText(model.getAdminModel().listarBens());
     }
 }

@@ -1,16 +1,27 @@
 package br.ufc.sistemapatrimonio.entities;
 
-public class RequisicaoDeManutencao {
-    private int id;
-    private String Nome;
-    private String descricao;
-    private Boolean status;
+import br.ufc.sistemapatrimonio.enums.TipoReserva;
 
-    public RequisicaoDeManutencao(int id, String nome, String descricao, Boolean status) {
+public class RequisicaoDeManutencao {
+    TipoReserva tipo;
+    private int id;
+    private String nome;
+    private String descricao;
+    private Boolean status = false;
+
+    public RequisicaoDeManutencao(int id, String nome, String descricao, TipoReserva tipo, boolean status) {
         this.id = id;
-        Nome = nome;
+        this.nome = nome;
         this.descricao = descricao;
         this.status = status;
+        this.tipo = tipo;
+    }
+
+    public RequisicaoDeManutencao(int id, String nome, String descricao, TipoReserva tipo) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -22,11 +33,11 @@ public class RequisicaoDeManutencao {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -35,6 +46,14 @@ public class RequisicaoDeManutencao {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public TipoReserva getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoReserva tipo) {
+        this.tipo = tipo;
     }
 
     public Boolean getStatus() {
