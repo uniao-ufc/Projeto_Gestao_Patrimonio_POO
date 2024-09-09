@@ -5,6 +5,7 @@ import br.ufc.sistemapatrimonio.enums.TipoReserva;
 import br.ufc.sistemapatrimonio.exceptions.BemException;
 import br.ufc.sistemapatrimonio.exceptions.ManutencaoException;
 import br.ufc.sistemapatrimonio.exceptions.PatrimonioException;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class UsuarioModel {
     private final Model model = new Model();
 
-    public void adicionar(int id, String nome, String local, String descricao, TipoReserva tipo) throws BemException, PatrimonioException, IOException {
+    public void adicionarRequisicao(int id, String nome, String local, String descricao, TipoReserva tipo) throws BemException, PatrimonioException, IOException {
         if (tipo == TipoReserva.BEM) {
             // Obter a lista de bens do sistema
             List<Bem> bensSistema = Model.getBens();
@@ -51,7 +52,7 @@ public class UsuarioModel {
             // Atualizar o status de alocação do bem no sistema para true
             bemSelecionado.setAlocstatus(true);
 
-            RequisicaoDeReserva requisicaoDeReserva = new RequisicaoDeReserva(bemSelecionado.getId(), nome, novoLocal, descricao, TipoReserva.BEM);
+            RequisicaoDeReserva requisicaoDeReserva = new RequisicaoDeReserva(bemSelecionado.getId(), nome, novoLocal, descricao, TipoReserva.BEM, Model.getUsuarioAutenticado().getUsername());
             model.getrequisicaoDeReservas().add(requisicaoDeReserva);
             Model.getUsuarioAutenticado().getMinhasRequisicaoDeReservas().add(requisicaoDeReserva);
 
@@ -76,14 +77,14 @@ public class UsuarioModel {
 
             // Caso o patrimonio não seja encontrado no sistema
             if (patrimonioSelecionado == null) {
-                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "O bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "Patrimonio com o ID " + id + " não foi encontrado no sistema.");
             }
 
             // Verificar se o usuário já requisitou o patrimonio
             Usuario usuarioAutenticado = Model.getUsuarioAutenticado();
             for (Patrimonio patrimonio : usuarioAutenticado.getMeusPatrimonios()) {
                 if (patrimonio.getId() == id) {
-                    throw new PatrimonioException(PatrimonioException.EXISTENTE, "O bem com o ID " + id + " já foi requisitado por você.");
+                    throw new PatrimonioException(PatrimonioException.EXISTENTE, "Patrimonio com o ID " + id + " já foi requisitado por você.");
                 }
             }
 
@@ -93,7 +94,7 @@ public class UsuarioModel {
             // Atualizar o status de alocação do patrimonio no sistema para true
             patrimonioSelecionado.setAlocstatus(true);
 
-            RequisicaoDeReserva requisicaoDeReserva = new RequisicaoDeReserva(patrimonioSelecionado.getId(), nome, novoLocal, descricao, TipoReserva.PATRIMONIO);
+            RequisicaoDeReserva requisicaoDeReserva = new RequisicaoDeReserva(patrimonioSelecionado.getId(), nome, novoLocal, descricao, TipoReserva.PATRIMONIO, Model.getUsuarioAutenticado().getUsername());
             model.getrequisicaoDeReservas().add(requisicaoDeReserva);
             Model.getUsuarioAutenticado().getMinhasRequisicaoDeReservas().add(requisicaoDeReserva);
 
@@ -104,7 +105,7 @@ public class UsuarioModel {
         }
     }
 
-    public void remover(int id, TipoReserva tipo) throws IOException, PatrimonioException, BemException {
+    public void removerRequisicao(int id, TipoReserva tipo) throws IOException, PatrimonioException, BemException {
         Usuario usuarioAutenticado = Model.getUsuarioAutenticado();
         //System.out.println(id + tipo.toString());
         if (tipo == TipoReserva.BEM) {
@@ -134,6 +135,7 @@ public class UsuarioModel {
                 if (patrimonio.getId() == id) {
                     patrimonio.setAlocstatus(false); // Atualizar o status de alocação para falso
                     itemRemovido = true; // Marcar que um item foi removido
+
                     System.out.println("Chega sera?");
                     break; // Sai do loop após remover o patrimônio
                 }
@@ -150,7 +152,7 @@ public class UsuarioModel {
 
         List<RequisicaoDeReserva> removidas = new ArrayList<>();
         for (RequisicaoDeReserva requisicao : usuarioAutenticado.getMinhasRequisicaoDeReservas()) {
-            if (requisicao.getIdReserva() == id && requisicao.getTipoReserva() == tipo) {
+            if (requisicao.getId() == id && requisicao.getTipoReserva() == tipo) {
                 removidas.add(requisicao);
             }
         }
@@ -167,11 +169,11 @@ public class UsuarioModel {
         // }
     }
 
-    public String listarReservas() {
+    public String listarReservasUsuario() {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeReserva requisicaoDeReserva : Model.getUsuarioAutenticado().getMinhasRequisicaoDeReservas()) {
             // Adiciona todas as informações relevantes das reservas
-            lista.append("ID: ").append(requisicaoDeReserva.getIdReserva())
+            lista.append("ID: ").append(requisicaoDeReserva.getId())
                     .append(", Nome: ").append(requisicaoDeReserva.getNome())
                     .append(", Local: ").append(requisicaoDeReserva.getLocal().getEndereco())
                     .append(", Descrição: ").append(requisicaoDeReserva.getDescricao())
@@ -215,7 +217,7 @@ public class UsuarioModel {
 
             Usuario usuarioAutenticado = Model.getUsuarioAutenticado();
 
-            RequisicaoDeManutencao requisicaoDeManutencao = new RequisicaoDeManutencao(id, nome, descricao, tipo, true);
+            RequisicaoDeManutencao requisicaoDeManutencao = new RequisicaoDeManutencao(id, nome, descricao, tipo, true, Model.getUsuarioAutenticado().getUsername());
 
             model.getRequisicaoDeManutencao().add(requisicaoDeManutencao);
 
@@ -254,7 +256,7 @@ public class UsuarioModel {
 
             Usuario usuarioAutenticado = Model.getUsuarioAutenticado();
 
-            RequisicaoDeManutencao requisicaoDeManutencao = new RequisicaoDeManutencao(id, nome, descricao, tipo, true);
+            RequisicaoDeManutencao requisicaoDeManutencao = new RequisicaoDeManutencao(id, nome, descricao, tipo, true, Model.getUsuarioAutenticado().getUsername());
 
             model.getRequisicaoDeManutencao().add(requisicaoDeManutencao);
 
@@ -310,7 +312,7 @@ public class UsuarioModel {
         }
     }
 
-    public void removerManutencao(int id, TipoReserva tipo) throws IOException, ManutencaoException {
+    public void removerReqManutencao(int id, TipoReserva tipo) throws IOException, ManutencaoException {
         Usuario usuarioAutenticado = Model.getUsuarioAutenticado();
         //System.out.println(id + tipo.toString());
         if (tipo == TipoReserva.BEM) {
@@ -328,6 +330,7 @@ public class UsuarioModel {
             }
 
             if (!itemRemovido) {
+                model.mostrarPopup("Erro", "Manutenção de Patrimonio com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
                 throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "Manutenção de Bem com o ID " + id + " não encontrado.");
             }
 
@@ -345,6 +348,7 @@ public class UsuarioModel {
             }
 
             if (!itemRemovido) {
+                model.mostrarPopup("Erro", "Manutenção de Patrimonio com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
                 throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "Manutenção de Patrimonio com o ID " + id + " não encontrado.");
             }
         } else {
@@ -353,7 +357,7 @@ public class UsuarioModel {
 
         List<RequisicaoDeReserva> removidas = new ArrayList<>();
         for (RequisicaoDeReserva requisicao : usuarioAutenticado.getMinhasRequisicaoDeReservas()) {
-            if (requisicao.getIdReserva() == id && requisicao.getTipoReserva() == tipo) {
+            if (requisicao.getId() == id && requisicao.getTipoReserva() == tipo) {
                 removidas.add(requisicao);
             }
         }
@@ -370,7 +374,7 @@ public class UsuarioModel {
         }
     }
 
-    public String listarManutencoes() {
+    public String listarManutencoesUsuario() {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeManutencao requisicaoDeManutencao : Model.getUsuarioAutenticado().getMinhasManutencoes()) {
             // Adiciona todas as informações relevantes das reservas
@@ -382,4 +386,5 @@ public class UsuarioModel {
         }
         return lista.toString();
     }
+
 }

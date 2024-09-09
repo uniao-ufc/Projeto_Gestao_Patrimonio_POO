@@ -11,6 +11,7 @@ public class InitScenesController {
         // Login
         FXMLLoader telaLoginLoader = new FXMLLoader(HelloApplication.class.getResource("telaLoginCadastro.fxml"));
         ScreenController.addScreen("telaLogin", telaLoginLoader);
+
         // Tela do requisitante
         FXMLLoader telaRequisitanteRequisicoesLoader = new FXMLLoader(HelloApplication.class.getResource("telaRequisitanteRequisicoes.fxml"));
         ScreenController.addScreen("telaRequisitanteRequisicoes", telaRequisitanteRequisicoesLoader);

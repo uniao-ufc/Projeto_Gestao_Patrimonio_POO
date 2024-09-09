@@ -63,7 +63,7 @@ public class AdminRequisicoesViewController {
                 if (nome.trim().isEmpty() || local.trim().isEmpty() || descricao.trim().isEmpty()) {
                     model.mostrarPopup("Erro", "Informações não inseridas!", Alert.AlertType.WARNING);
                 } else {
-                    model.getAdminModel().adicionar(id, nome, local, descricao, tipo);
+                    model.getAdminModel().adicionarRequisicao(id, nome, local, descricao, tipo);
 
                     model.mostrarPopup("Sucesso", "Bem requisitado com sucesso!", Alert.AlertType.INFORMATION);
 
@@ -84,7 +84,7 @@ public class AdminRequisicoesViewController {
                 if (nome.trim().isEmpty() || local.trim().isEmpty() || descricao.trim().isEmpty()) {
                     model.mostrarPopup("Erro", "Informações não inseridas!", Alert.AlertType.WARNING);
                 } else {
-                    model.getAdminModel().adicionar(id, nome, local, descricao, tipo);
+                    model.getAdminModel().adicionarRequisicao(id, nome, local, descricao, tipo);
 
                     model.mostrarPopup("Sucesso", "Patrimonio requisitado com sucesso!", Alert.AlertType.INFORMATION);
 
@@ -107,19 +107,20 @@ public class AdminRequisicoesViewController {
     }
 
     public void atualizarListaRequisicoes() {
-        txtListaRequisicoes.setText(model.getAdminModel().listarReservas());
+        txtListaRequisicoes.setText(model.getAdminModel().listarReservasUsuario());
     }
 
     @FXML
     void removerRequisicao(ActionEvent event) {
+        // Quando apagar aqui apagar em tudo
         try {
             int id = Integer.parseInt(txtRemover.getText().trim());
             if (radioPatrimonioRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.PATRIMONIO;
-                model.getAdminModel().remover(id, tipoReserva);
+                model.getAdminModel().removerRequisicao(id, tipoReserva);
             } else if (radioBemRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.BEM;
-                model.getAdminModel().remover(id, tipoReserva);
+                model.getAdminModel().removerRequisicao(id, tipoReserva);
             } else {
                 model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             }

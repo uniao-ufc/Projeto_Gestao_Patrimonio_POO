@@ -8,20 +8,15 @@ public class RequisicaoDeManutencao {
     private String nome;
     private String descricao;
     private Boolean status = false;
+    private String usuarioCriador;
 
-    public RequisicaoDeManutencao(int id, String nome, String descricao, TipoReserva tipo, boolean status) {
+    public RequisicaoDeManutencao(int id, String nome, String descricao, TipoReserva tipo, boolean status, String usuarioCriador) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.status = status;
         this.tipo = tipo;
-    }
-
-    public RequisicaoDeManutencao(int id, String nome, String descricao, TipoReserva tipo) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.tipo = tipo;
+        this.usuarioCriador = usuarioCriador;
     }
 
     public int getId() {
@@ -62,5 +57,13 @@ public class RequisicaoDeManutencao {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getUsuarioCriador() {
+        return usuarioCriador;
+    }
+
+    public void setUsuarioCriador(String usuarioCriador) {
+        this.usuarioCriador = usuarioCriador;
     }
 }

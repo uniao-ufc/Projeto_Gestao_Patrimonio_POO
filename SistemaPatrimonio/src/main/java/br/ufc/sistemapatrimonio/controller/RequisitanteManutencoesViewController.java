@@ -14,6 +14,11 @@ import java.io.IOException;
 public class RequisitanteManutencoesViewController {
 
     Model model = new Model();
+
+    @FXML
+    private RadioButton radioBemRemover;
+    @FXML
+    private RadioButton radioPatrimonioRemover;
     @FXML
     private Button btnAdicionar;
     @FXML
@@ -43,7 +48,7 @@ public class RequisitanteManutencoesViewController {
     @FXML
     private TextField txtIDEditar;
     @FXML
-    private TextArea txtListaPatrimonios;
+    private TextArea txtListaManutencoes;
     @FXML
     private TextField txtNomeAdd;
     @FXML
@@ -54,9 +59,8 @@ public class RequisitanteManutencoesViewController {
     private TextField txtTipoEditar;
 
     public void atualizarListaManutencoes() {
-        txtListaPatrimonios.setText(model.getRequisitanteModel().listarManutencoes());
+        txtListaManutencoes.setText(model.getRequisitanteModel().listarManutencoesUsuario());
     }
-
 
     @FXML
     void adicionarManutencao(ActionEvent event) {
@@ -168,14 +172,14 @@ public class RequisitanteManutencoesViewController {
 
     @FXML
     void removerManutencao(ActionEvent event) {
-       /* try {
+        try {
             int id = Integer.parseInt(txtRemover.getText().trim());
             if (radioPatrimonioRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.PATRIMONIO;
-                model.getRequisitanteModel().remover(id, tipoReserva);
+                model.getRequisitanteModel().removerReqManutencao(id, tipoReserva);
             } else if (radioBemRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.BEM;
-                model.getRequisitanteModel().remover(id, tipoReserva);
+                model.getRequisitanteModel().removerReqManutencao(id, tipoReserva);
             } else {
                 model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             }
@@ -186,10 +190,10 @@ public class RequisitanteManutencoesViewController {
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             throw new RuntimeException(e);
-        } catch (IOException | PatrimonioException | BemException e) {
+        } catch (IOException | ManutencaoException e) {
             model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
             throw new RuntimeException(e);
-        }*/
+        }
     }
 
     @FXML

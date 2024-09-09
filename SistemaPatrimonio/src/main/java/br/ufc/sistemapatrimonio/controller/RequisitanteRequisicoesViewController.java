@@ -61,12 +61,12 @@ public class RequisitanteRequisicoesViewController {
     }
 
     public void atualizarReservas() {
-        String reservasListadas = model.getRequisitanteModel().listarReservas(); // Chama a função que lista as reservas
+        String reservasListadas = model.getRequisitanteModel().listarReservasUsuario(); // Chama a função que lista as reservas
         txtListaRequisicoes.setText(reservasListadas); // Atualiza o conteúdo da TextArea
     }
 
     public void atualizarListaRequisicoes() {
-        txtListaRequisicoes.setText(model.getRequisitanteModel().listarReservas());
+        txtListaRequisicoes.setText(model.getRequisitanteModel().listarReservasUsuario());
     }
 
     public void adicionarRequisicao(ActionEvent actionEvent) {
@@ -82,7 +82,7 @@ public class RequisitanteRequisicoesViewController {
                 if (nome.trim().isEmpty() || local.trim().isEmpty() || descricao.trim().isEmpty()) {
                     model.mostrarPopup("Erro", "Informações não inseridas!", Alert.AlertType.WARNING);
                 } else {
-                    model.getRequisitanteModel().adicionar(id, nome, local, descricao, tipo);
+                    model.getRequisitanteModel().adicionarRequisicao(id, nome, local, descricao, tipo);
 
                     model.mostrarPopup("Sucesso", "Bem requisitado com sucesso!", Alert.AlertType.INFORMATION);
 
@@ -104,7 +104,7 @@ public class RequisitanteRequisicoesViewController {
                 if (nome.trim().isEmpty() || local.trim().isEmpty() || descricao.trim().isEmpty()) {
                     model.mostrarPopup("Erro", "Informações não inseridas!", Alert.AlertType.WARNING);
                 } else {
-                    model.getRequisitanteModel().adicionar(id, nome, local, descricao, tipo);
+                    model.getRequisitanteModel().adicionarRequisicao(id, nome, local, descricao, tipo);
 
                     model.mostrarPopup("Sucesso", "Patrimonio requisitado com sucesso!", Alert.AlertType.INFORMATION);
 
@@ -131,10 +131,10 @@ public class RequisitanteRequisicoesViewController {
             int id = Integer.parseInt(txtRemover.getText().trim());
             if (radioPatrimonioRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.PATRIMONIO;
-                model.getRequisitanteModel().remover(id, tipoReserva);
+                model.getRequisitanteModel().removerRequisicao(id, tipoReserva);
             } else if (radioBemRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.BEM;
-                model.getRequisitanteModel().remover(id, tipoReserva);
+                model.getRequisitanteModel().removerRequisicao(id, tipoReserva);
             } else {
                 model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             }

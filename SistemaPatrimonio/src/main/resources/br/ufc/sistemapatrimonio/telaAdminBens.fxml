@@ -40,7 +40,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDepressiacaoAdd" layoutX="310.0" layoutY="224.0" prefHeight="27.0" prefWidth="204.0" promptText="Drepressiação" style="-fx-border-color: white;" />
+      <TextField fx:id="txtDepressiacaoAdd" layoutX="310.0" layoutY="224.0" prefHeight="27.0" prefWidth="204.0" promptText="Depreciação" style="-fx-border-color: white;" />
       <Line endX="105.0" layoutX="409.0" layoutY="251.0" startX="-99.0" />
       <Button fx:id="btnSair" layoutX="776.0" layoutY="12.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
       <Text layoutX="568.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar um bem" wrappingWidth="222.13671875">
@@ -57,7 +57,7 @@
       <Button fx:id="btnEditar" layoutX="564.0" layoutY="270.0" mnemonicParsing="false" onAction="#editarBem" prefHeight="27.0" prefWidth="207.0" text="Editar" />
       <TextField fx:id="txtDescricaoEditar" layoutX="565.0" layoutY="187.0" prefHeight="27.0" prefWidth="204.0" promptText="Descrição do bem" style="-fx-border-color: white;" />
       <Line endX="105.0" layoutX="664.0" layoutY="214.0" startX="-99.0" />
-      <TextField fx:id="txtDepressiacaoEditar" layoutX="565.0" layoutY="224.0" prefHeight="27.0" prefWidth="204.0" promptText="Depressiação" style="-fx-border-color: white;" />
+      <TextField fx:id="txtDepressiacaoEditar" layoutX="565.0" layoutY="224.0" prefHeight="27.0" prefWidth="204.0" promptText="Depreciação" style="-fx-border-color: white;" />
       <Line endX="105.0" layoutX="664.0" layoutY="251.0" startX="-99.0" />
       <Text fill="#00000057" layoutX="572.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(você será direcionado para outra tela)" textAlignment="CENTER" wrappingWidth="203.9999999999999" />
       <TextField fx:id="txtIDAdd" layoutX="313.0" layoutY="67.0" prefHeight="27.0" prefWidth="204.0" promptText="ID do bem a ser adicionado" style="-fx-border-color: white;" />

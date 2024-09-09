@@ -3,9 +3,9 @@ package br.ufc.sistemapatrimonio.entities;
 public class TipoPatrimonio {
     private String nome;
     private String descricao;
-    private int depreciacaoAnual;
+    private double depreciacaoAnual;
 
-    public TipoPatrimonio(String nome, String descricao, int depreciacaoAnual) {
+    public TipoPatrimonio(String nome, String descricao, double depreciacaoAnual) {
         this.nome = nome;
         this.descricao = descricao;
         this.depreciacaoAnual = depreciacaoAnual;
@@ -27,11 +27,11 @@ public class TipoPatrimonio {
         this.descricao = descricao;
     }
 
-    public int getDepreciacaoAnual() {
+    public double getDepreciacaoAnual() {
         return depreciacaoAnual;
     }
 
-    public void setDepreciacaoAnual(int depreciacaoAnual) {
+    public void setDepreciacaoAnual(double depreciacaoAnual) {
         this.depreciacaoAnual = depreciacaoAnual;
     }
 }

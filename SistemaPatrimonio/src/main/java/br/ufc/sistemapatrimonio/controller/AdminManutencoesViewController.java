@@ -15,6 +15,10 @@ public class AdminManutencoesViewController {
 
     Model model = new Model();
     @FXML
+    private RadioButton radioBemRemover;
+    @FXML
+    private RadioButton radioPatrimonioRemover;
+    @FXML
     private Button btnAdicionar;
     @FXML
     private Button btnEditar;
@@ -56,7 +60,7 @@ public class AdminManutencoesViewController {
     private TextField txtTipoEditar;
 
     public void atualizarListaManutencoes() {
-        txtListaManutencao.setText(model.getAdminModel().listarManutencoes());
+        txtListaManutencao.setText(model.getAdminModel().listarManutencoesUsuario());
     }
 
     @FXML
@@ -169,14 +173,14 @@ public class AdminManutencoesViewController {
 
     @FXML
     void removerManutencao(ActionEvent event) {
-        /*try {
+        try {
             int id = Integer.parseInt(txtRemover.getText().trim());
             if (radioPatrimonioRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.PATRIMONIO;
-                model.getAdminModel().remover(id, tipoReserva);
+                model.getAdminModel().removerReqManutencao(id, tipoReserva);
             } else if (radioBemRemover.isSelected()) {
                 TipoReserva tipoReserva = TipoReserva.BEM;
-                model.getAdminModel().remover(id, tipoReserva);
+                model.getAdminModel().removerReqManutencao(id, tipoReserva);
             } else {
                 model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             }
@@ -187,10 +191,12 @@ public class AdminManutencoesViewController {
         } catch (NumberFormatException e) {
             model.mostrarPopup("Erro", "Por favor, insira valores válidos.", Alert.AlertType.ERROR);
             throw new RuntimeException(e);
-        } catch (IOException | PatrimonioException | BemException e) {
+        } catch (IOException e) {
             model.mostrarPopup("Erro", "Ocorreu um erro inesperado: " + e.getMessage(), Alert.AlertType.ERROR);
             throw new RuntimeException(e);
-        }*/
+        } catch (ManutencaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

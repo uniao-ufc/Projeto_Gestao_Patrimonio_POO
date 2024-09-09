@@ -5,7 +5,9 @@ import br.ufc.sistemapatrimonio.enums.TipoUsuario;
 import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Model {
     private static final List<Usuario> users = new ArrayList<>();
@@ -18,8 +20,6 @@ public class Model {
     private static final UsuarioModel usuarioModel = new UsuarioModel();
     private static final AdminModel adminModel = new AdminModel();
     private static final TelaLoginCadastroModel telaLoginCadastroModel = new TelaLoginCadastroModel();
-    private static final RequisitanteManutencoesModel requisitanteManutencoesModel = new RequisitanteManutencoesModel();
-    private static final AdminManutencoesModel adminManutencoesModel = new AdminManutencoesModel();
     private static Usuario usuarioAutenticado = new Usuario("", "", TipoUsuario.START);
 
     public TelaLoginCadastroModel getTelaLoginCadastroModel() {
@@ -86,14 +86,6 @@ public class Model {
         return usuarioModel;
     }
 
-    public RequisitanteManutencoesModel getRequisitanteManutencoesModel() {
-        return requisitanteManutencoesModel;
-    }
-
-    public AdminManutencoesModel getAdminManutencoesModel() {
-        return adminManutencoesModel;
-    }
-
     public void mostrarPopup(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -105,5 +97,84 @@ public class Model {
     // Métodos para RequisitanteModel.java
     public RequisitanteModel getRequisitanteModel() {
         return requisitanteModel;
+    }
+
+    public void removerDosUsuarios(String metodo, int id, String criador){
+        List<Usuario> usuarios = Model.getUsers();
+        if(Objects.equals(metodo, "Manutencao")){
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsername().equals(criador)) {
+                    // Obtém o iterator para a lista de manutenções
+                    Iterator<RequisicaoDeManutencao> iterator = usuario.getMinhasManutencoes().iterator();
+
+                    // Itera sobre a lista de manutenções e remove a que tiver o ID correspondente
+                    while (iterator.hasNext()) {
+                        RequisicaoDeManutencao manutencao = iterator.next();
+                        if (manutencao.getId() == id) {
+                            iterator.remove(); // Remove a requisição de manutenção da lista
+                            break; // Sai do loop após a remoção
+                        }
+                    }
+
+                    break; // Sai do loop após encontrar o usuário
+                }
+            }
+        } else if (Objects.equals(metodo, "Requisição")) {
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsername().equals(criador)) {
+                    // Obtém o iterator para a lista de manutenções
+                    Iterator<RequisicaoDeReserva> iterator = usuario.getMinhasRequisicaoDeReservas().iterator();
+
+                    // Itera sobre a lista de manutenções e remove a que tiver o ID correspondente
+                    while (iterator.hasNext()) {
+                        RequisicaoDeReserva reserva = iterator.next();
+                        if (reserva.getId() == id) {
+                            iterator.remove(); // Remove a requisição de manutenção da lista
+                            break; // Sai do loop após a remoção
+                        }
+                    }
+
+                    break; // Sai do loop após encontrar o usuário
+                }
+            }
+
+        } else if (Objects.equals(metodo, "ambos")) {
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsername().equals(criador)) {
+                    // Obtém o iterator para a lista de manutenções
+                    Iterator<RequisicaoDeManutencao> iterator = usuario.getMinhasManutencoes().iterator();
+
+                    // Itera sobre a lista de manutenções e remove a que tiver o ID correspondente
+                    while (iterator.hasNext()) {
+                        RequisicaoDeManutencao manutencao = iterator.next();
+                        if (manutencao.getId() == id) {
+                            iterator.remove(); // Remove a requisição de manutenção da lista
+                            break; // Sai do loop após a remoção
+                        }
+                    }
+
+                    break; // Sai do loop após encontrar o usuário
+                }
+            }
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsername().equals(criador)) {
+                    // Obtém o iterator para a lista de manutenções
+                    Iterator<RequisicaoDeReserva> iterator = usuario.getMinhasRequisicaoDeReservas().iterator();
+
+                    // Itera sobre a lista de manutenções e remove a que tiver o ID correspondente
+                    while (iterator.hasNext()) {
+                        RequisicaoDeReserva reserva = iterator.next();
+                        if (reserva.getId() == id) {
+                            iterator.remove(); // Remove a requisição de manutenção da lista
+                            break; // Sai do loop após a remoção
+                        }
+                    }
+
+                    break; // Sai do loop após encontrar o usuário
+                }
+            }
+        } else{
+            throw new RuntimeException();
+        }
     }
 }

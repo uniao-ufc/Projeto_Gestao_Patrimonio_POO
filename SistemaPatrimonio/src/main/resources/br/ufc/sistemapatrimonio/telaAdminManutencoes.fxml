@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="br.ufc.sistemapatrimonio.controller.AdminManutencoesViewController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity"  fx:controller="br.ufc.sistemapatrimonio.controller.AdminManutencoesViewController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea fx:id="txtListaManutencao" scaleShape="false" cacheShape="false" snapToPixel="false" editable="false" layoutX="11.0" layoutY="42.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostradas os manutenções." wrapText="true" />
+      <TextArea fx:id="txtListaManutencao" editable="false" layoutX="11.0" layoutY="42.0" prefHeight="405.0" prefWidth="270.0" promptText="Aqui serão mostradas os manutenções." wrapText="true" />
       <Text layoutX="11.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manutenções" wrappingWidth="154.13671875" />
-      <TextField fx:id="txtRemover" layoutX="295.0" layoutY="353.0" prefHeight="27.0" prefWidth="208.0" promptText="ID do Patrimonio/Bem a ser excluída" style="-fx-border-color: white;" />
+      <TextField fx:id="txtRemover" layoutX="295.0" layoutY="353.0" prefHeight="27.0" prefWidth="208.0" promptText="ID da manutenção a ser excluída" style="-fx-border-color: white;" />
       <Button fx:id="btnRemover" layoutX="294.0" layoutY="388.0" mnemonicParsing="false" onAction="#removerManutencao" prefHeight="27.0" prefWidth="209.0" text="Remover" />
       <Line endX="108.0" layoutX="395.0" layoutY="380.0" startX="-100.0" />
-      <Text layoutX="275.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover manutenção" textAlignment="CENTER" wrappingWidth="248.9999999999999">
+      <Text layoutX="276.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remover manutenção de:" textAlignment="CENTER" wrappingWidth="248.9999999999999">
          <font>
             <Font size="20.0" />
          </font>
@@ -41,7 +41,7 @@
       </Text>
       <Button fx:id="btnSair" layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#sair" style="-fx-background-color: transparent; -fx-text-fill: #8a4848;" text="Sair" />
       <Text fill="#00000057" layoutX="555.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(você será direcionado para outra tela)" textAlignment="CENTER" wrappingWidth="203.9999999999999" />
-      <TextField fx:id="txtIDAdd" layoutX="295.0" layoutY="138.0" prefHeight="27.0" prefWidth="204.0" promptText="ID do Patrimonio/Bem" style="-fx-border-color: white;" />
+      <TextField fx:id="txtIDAdd" layoutX="295.0" layoutY="138.0" prefHeight="27.0" prefWidth="204.0" promptText="ID da manutenção" style="-fx-border-color: white;" />
       <Line endX="105.0" layoutX="394.0" layoutY="165.0" startX="-99.0" />
       <RadioButton fx:id="radioBemAdd" layoutX="315.0" layoutY="104.0" mnemonicParsing="false" text="Bem">
          <toggleGroup>
@@ -59,13 +59,19 @@
       <TextField fx:id="txtTipoEditar" layoutX="564.0" layoutY="213.0" prefHeight="27.0" prefWidth="204.0" promptText="Defeito apresentado" style="-fx-border-color: white;" />
       <Line endX="106.0" layoutX="662.0" layoutY="240.0" startX="-100.0" />
       <Button fx:id="btnEditar" layoutX="561.0" layoutY="254.0" mnemonicParsing="false" onAction="#editarManutencao" prefHeight="27.0" prefWidth="207.0" text="Adicionar" />
-      <TextField fx:id="txtIDEditar" layoutX="562.0" layoutY="138.0" prefHeight="27.0" prefWidth="204.0" promptText="ID do Patrimonio/Bem" style="-fx-border-color: white;" />
+      <TextField fx:id="txtIDEditar" layoutX="562.0" layoutY="138.0" prefHeight="27.0" prefWidth="204.0" promptText="ID da manutenção" style="-fx-border-color: white;" />
       <Line endX="105.0" layoutX="661.0" layoutY="165.0" startX="-99.0" />
-      <RadioButton fx:id="radioBemEditar" layoutX="582.0" layoutY="104.0" toggleGroup="$radioOpcoesEditar" mnemonicParsing="false" text="Bem">
+      <RadioButton fx:id="radioBemEditar" layoutX="582.0" layoutY="104.0" mnemonicParsing="false" text="Bem">
          <toggleGroup>
             <ToggleGroup fx:id="radioOpcoesEditar" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="radioPatrimonioEditar" layoutX="655.0" layoutY="104.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$radioOpcoesEditar" />
+      <RadioButton fx:id="radioBemRemover" layoutX="315.0" layoutY="334.0" mnemonicParsing="false" text="Bem">
+         <toggleGroup>
+            <ToggleGroup fx:id="radioOpcoesRemover" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioPatrimonioRemover" layoutX="388.0" layoutY="334.0" mnemonicParsing="false" text="Patrimônio" toggleGroup="$radioOpcoesRemover" />
    </children>
 </Pane>

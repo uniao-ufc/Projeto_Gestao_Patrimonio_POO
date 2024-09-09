@@ -90,7 +90,7 @@ public class AdminPatrimoniosViewController {
             int id = Integer.parseInt(txtIDAdd.getText());
             String nome = txtNomeAdd.getText();
             String descricao = txtDescricaoAdd.getText();
-            int depreciacao = Integer.parseInt(txtDepressiacaoAdd.getText());
+            double depreciacao = Double.parseDouble(txtDepressiacaoAdd.getText());
             String tipo = txtTipoAdd.getText();
             int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoAdd.getText());
 
@@ -119,7 +119,7 @@ public class AdminPatrimoniosViewController {
             int id = Integer.parseInt(txtIDEditar.getText());
             String nome = txtNomeEditar.getText();
             String descricao = txtDescricaoEditar.getText();
-            int depreciacao = Integer.parseInt(txtDepressiacaoEditar.getText());
+            Double depreciacao = Double.parseDouble(txtDepressiacaoEditar.getText());
             String tipo = txtTipoEditar.getText();
             int numeroTombamento = Integer.parseInt(txtNumeroDeTombamentoEditar.getText());
 

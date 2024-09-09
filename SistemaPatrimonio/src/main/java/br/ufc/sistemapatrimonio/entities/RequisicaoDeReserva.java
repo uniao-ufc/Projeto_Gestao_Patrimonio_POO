@@ -10,22 +10,24 @@ public class RequisicaoDeReserva {
     String nome;
     Local local;
     String descricao;
+    private String usuarioCriador;
 
-    public RequisicaoDeReserva(int idReserva, String nome, Local local, String descricao, TipoReserva tipoReserva) {
+    public RequisicaoDeReserva(int idReserva, String nome, Local local, String descricao, TipoReserva tipoReserva, String usuarioCriador) {
         this.idReserva = idReserva;
         this.nome = nome;
         this.local = local;
         this.descricao = descricao;
         this.tipoReserva = tipoReserva;
         this.idReqReserva = id;
+        this.usuarioCriador = usuarioCriador;
         id++;
     }
 
-    public static int getId() {
+    public static int getIdR() {
         return id;
     }
 
-    public int getIdReserva() {
+    public int getId() {
         return idReserva;
     }
 
@@ -63,5 +65,13 @@ public class RequisicaoDeReserva {
 
     public void setTipoReserva(TipoReserva tipoReserva) {
         this.tipoReserva = tipoReserva;
+    }
+
+    public String getUsuarioCriador() {
+        return usuarioCriador;
+    }
+
+    public void setUsuarioCriador(String usuarioCriador) {
+        this.usuarioCriador = usuarioCriador;
     }
 }

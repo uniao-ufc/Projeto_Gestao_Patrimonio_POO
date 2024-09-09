@@ -1,5 +1,6 @@
 package br.ufc.sistemapatrimonio.controller;
 
+import br.ufc.sistemapatrimonio.model.Model;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -27,6 +28,7 @@ public class ScreenController {
             Scene scene = new Scene(root);
             sceneMap.put(name, scene);
             loaderMap.put(name, fxmlLoader); // Armazena o FXMLLoader
+
         }
     }
 
@@ -39,10 +41,15 @@ public class ScreenController {
 
         // Atualiza a cena com a nova Scene
         stage.setScene(scene);
-        stage.setTitle("Sistema de Patrimonio");
+        String nome = Model.getUsuarioAutenticado().getUsername();
+        String tipo = Model.getUsuarioAutenticado().getTipoUsuario().toString();
+        stage.setTitle("Sistema de Patrimonio " + tipo + " " + nome);
         stage.show();
 
         switch (name) {
+            case "telaLogin" -> {
+                stage.setTitle("Sistema de Patrimonio");
+            }
             case "telaRequisitanteRequisicoes" -> {
                 RequisitanteRequisicoesViewController controller = ScreenController.getController(name);
                 if (controller != null) {
@@ -82,7 +89,8 @@ public class ScreenController {
             case "telaAdminHistorico" -> {
                 AdminHistoricoViewController controller = ScreenController.getController(name);
                 if (controller != null) {
-
+                    controller.atualizarListaReservas();
+                    controller.atualizarListaManutencoes();
                 }
             }
         }
