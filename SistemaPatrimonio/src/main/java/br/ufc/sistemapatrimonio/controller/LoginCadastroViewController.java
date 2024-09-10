@@ -127,6 +127,6 @@ public class LoginCadastroViewController {
             model.mostrarPopup("Erro", "Algum erro ocorreu", AlertType.ERROR);  // mostra um popup se ocorrer algum erro de entrada/saída
             throw new RuntimeException(e);  // lança uma exceção em tempo de execução
         }
-        System.out.println(Model.getUsers());  // imprime os usuários para depuração
+        //System.out.println(Model.getUsers());  // imprime os usuários para depuração
     }
 }

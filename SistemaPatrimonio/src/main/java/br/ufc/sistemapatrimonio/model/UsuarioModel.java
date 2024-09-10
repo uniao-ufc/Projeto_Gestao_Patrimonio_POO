@@ -127,16 +127,13 @@ public class UsuarioModel {
 
         } else if (tipo == TipoReserva.PATRIMONIO) {
             boolean itemRemovido = false;
-            System.out.println("Chega aq\n");
             // Remover patrimônio, caso o bem não tenha sido removido
             for (Patrimonio patrimonio : Model.getPatrimonios()) {
-                System.out.println("Chega NO ID");
                 System.out.println(patrimonio.getId());
                 if (patrimonio.getId() == id) {
                     patrimonio.setAlocstatus(false); // Atualizar o status de alocação para falso
                     itemRemovido = true; // Marcar que um item foi removido
 
-                    System.out.println("Chega sera?");
                     break; // Sai do loop após remover o patrimônio
                 }
             }
@@ -158,15 +155,6 @@ public class UsuarioModel {
         }
         usuarioAutenticado.getMinhasRequisicaoDeReservas().removeAll(removidas);
 
-        // Remover a requisição de reserva associada
-        //Iterator<RequisicaoDeReserva> requisicaoIterator = usuarioAutenticado.getMinhasRequisicaoDeReservas().iterator();
-        // while (requisicaoIterator.hasNext()) {
-        //    RequisicaoDeReserva requisicao = requisicaoIterator.next();
-        //     if (requisicao.getIdReserva() == id && requisicao.getTipoReserva() == tipo) {
-        //    requisicaoIterator.remove(); // Remover a requisição de reserva associada
-        //        break; // Sai do loop após remover a requisição
-        //   }
-        // }
     }
 
     public String listarReservasUsuario() {
