@@ -20,7 +20,7 @@ public class AdminModel extends UsuarioModel {
     public void adicionarPatrimonio(int id, String nome, String descricao, double depreciacao, String tipo, int numeroTombamento) throws PatrimonioException {
         // Verifica se já existe um patrimônio com o mesmo id
         if (Model.getPatrimonios().stream().anyMatch(p -> p.getId() == id)) {
-            throw new PatrimonioException(PatrimonioException.EXISTENTE, "o patrimônio com o id " + id + " já existe.");
+            throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimônio com o ID " + id + " já existe.");
         }
 
         // Cria um novo tipo de patrimônio
@@ -46,7 +46,7 @@ public class AdminModel extends UsuarioModel {
             patrimonio.getTipo().setDepreciacaoAnual(depreciacao);
             patrimonio.setNumeroTombamento(numeroTombamento);
         } else {
-            throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "patrimônio com o id " + id + " não encontrado.");
+            throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "Patrimônio com o ID " + id + " não encontrado.");
         }
     }
 
@@ -90,7 +90,7 @@ public class AdminModel extends UsuarioModel {
         }
 
         if (!encontrado) {
-            throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "patrimônio com o id " + id + " não encontrado.");
+            throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "Patrimônio com o ID " + id + " não encontrado.");
         }
     }
 
@@ -99,14 +99,14 @@ public class AdminModel extends UsuarioModel {
         StringBuilder lista = new StringBuilder();
         for (Patrimonio patrimonio : Model.getPatrimonios()) {
             // Adiciona as informações do patrimônio na lista
-            lista.append("id: ").append(patrimonio.getId())
-                    .append(", nome: ").append(patrimonio.getNome())
-                    .append(", tipo: ").append(patrimonio.getTipo().getNome())
-                    .append(", descrição do tipo: ").append(patrimonio.getTipo().getDescricao())
-                    .append(", depreciação anual: ").append(String.format("%.2f", patrimonio.getTipo().getDepreciacaoAnual()))
+            lista.append("ID: ").append(patrimonio.getId())
+                    .append(", Nome: ").append(patrimonio.getNome())
+                    .append(", Tipo: ").append(patrimonio.getTipo().getNome())
+                    .append(", Descrição do Tipo: ").append(patrimonio.getTipo().getDescricao())
+                    .append(", Depreciação Anual: ").append(String.format("%.2f", patrimonio.getTipo().getDepreciacaoAnual()))
                     .append("%") // Adiciona o símbolo de porcentagem
-                    .append(", número de tombamento: ").append(patrimonio.getNumeroTombamento())
-                    .append(", status: ").append(patrimonio.isAlocstatus() ? "alocado" : "não alocado")
+                    .append(", Número de Tombamento: ").append(patrimonio.getNumeroTombamento())
+                    .append(", Status: ").append(patrimonio.isAlocstatus() ? "Alocado" : "Não alocado")
                     .append("\n");
         }
         return lista.toString();
@@ -116,7 +116,7 @@ public class AdminModel extends UsuarioModel {
     public void adicionarBem(int id, String nome, String descricao, double depreciacao, String tipo) throws BemException {
         // Verifica se já existe um bem com o mesmo id
         if (Model.getBens().stream().anyMatch(b -> b.getId() == id)) {
-            throw new BemException(BemException.EXISTENTE, "o bem com o id " + id + " já existe.");
+            throw new BemException(BemException.EXISTENTE, "O bem com o ID " + id + " já existe.");
         }
 
         // Cria um novo tipo de bem
@@ -147,7 +147,7 @@ public class AdminModel extends UsuarioModel {
         }
 
         if (!encontrado) {
-            throw new BemException(BemException.NAO_ENCONTRADO, "bem com o id " + id + " não encontrado.");
+            throw new BemException(BemException.NAO_ENCONTRADO, "Bem com o ID " + id + " não encontrado.");
         }
     }
 
@@ -191,7 +191,7 @@ public class AdminModel extends UsuarioModel {
         }
 
         if (!encontrado) {
-            throw new BemException(BemException.NAO_ENCONTRADO, "bem com o id " + id + " não encontrado.");
+            throw new BemException(BemException.NAO_ENCONTRADO, "Bem com o ID " + id + " não encontrado.");
         }
     }
 
@@ -200,13 +200,13 @@ public class AdminModel extends UsuarioModel {
         StringBuilder lista = new StringBuilder();
         for (Bem bem : Model.getBens()) {
             // Adiciona as informações do bem na lista
-            lista.append("id: ").append(bem.getId())
-                    .append(", nome: ").append(bem.getNome())
-                    .append(", tipo: ").append(bem.getTipo().getNome())
-                    .append(", descrição do tipo: ").append(bem.getTipo().getDescricao())
-                    .append(", depreciação anual: ").append(String.format("%.2f", bem.getTipo().getDepreciacaoAnual()))
+            lista.append("ID: ").append(bem.getId())
+                    .append(", Nome: ").append(bem.getNome())
+                    .append(", Tipo: ").append(bem.getTipo().getNome())
+                    .append(", Descrição do Tipo: ").append(bem.getTipo().getDescricao())
+                    .append(", Depreciação Anual: ").append(String.format("%.2f", bem.getTipo().getDepreciacaoAnual()))
                     .append("%") // Adiciona o símbolo de porcentagem
-                    .append(", status: ").append(bem.isAlocstatus() ? "alocado" : "não alocado")
+                    .append(", Status: ").append(bem.isAlocstatus() ? "Alocado" : "Não alocado")
                     .append("\n");
         }
         return lista.toString();
@@ -217,11 +217,11 @@ public class AdminModel extends UsuarioModel {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeReserva requisicaoDeReserva : model.getrequisicaoDeReservas()) {
             // Adiciona as informações das reservas na lista
-            lista.append("id: ").append(requisicaoDeReserva.getId())
-                    .append(", nome: ").append(requisicaoDeReserva.getNome())
-                    .append(", local: ").append(requisicaoDeReserva.getLocal().getEndereco())
-                    .append(", descrição: ").append(requisicaoDeReserva.getDescricao())
-                    .append(", tipo: ").append(requisicaoDeReserva.getTipoReserva().toString())
+            lista.append("ID: ").append(requisicaoDeReserva.getId())
+                    .append(", Nome: ").append(requisicaoDeReserva.getNome())
+                    .append(", Local: ").append(requisicaoDeReserva.getLocal().getEndereco())
+                    .append(", Descrição: ").append(requisicaoDeReserva.getDescricao())
+                    .append(", Tipo: ").append(requisicaoDeReserva.getTipoReserva().toString())
                     .append("\n");
         }
         return lista.toString();
@@ -232,10 +232,10 @@ public class AdminModel extends UsuarioModel {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeManutencao requisicaoDeManutencao : model.getRequisicaoDeManutencao()) {
             // Adiciona as informações das manutenções na lista
-            lista.append("id: ").append(requisicaoDeManutencao.getId())
-                    .append(", nome: ").append(requisicaoDeManutencao.getNome())
-                    .append(", descrição: ").append(requisicaoDeManutencao.getDescricao())
-                    .append(", tipo: ").append(requisicaoDeManutencao.getTipo().toString())
+            lista.append("ID: ").append(requisicaoDeManutencao.getId())
+                    .append(", Nome: ").append(requisicaoDeManutencao.getNome())
+                    .append(", Descrição: ").append(requisicaoDeManutencao.getDescricao())
+                    .append(", Tipo: ").append(requisicaoDeManutencao.getTipo().toString())
                     .append("\n");
         }
         return lista.toString();
@@ -257,7 +257,7 @@ public class AdminModel extends UsuarioModel {
                     }
                 }
                 if (!encontrado) {
-                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o id " + id + " não encontrado.");
+                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
                 }
             } else if (tipoBP == TipoReserva.BEM) {
                 // Remove reservas de bem
@@ -270,10 +270,10 @@ public class AdminModel extends UsuarioModel {
                     }
                 }
                 if (!encontrado) {
-                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o id " + id + " não encontrado.");
+                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
                 }
             } else {
-                throw new IOException("algum erro ocorreu");
+                throw new IOException("Algum erro ocorreu");
             }
         } else if (Objects.equals(tipoRM, "manutencao")) {
             if (tipoBP == TipoReserva.PATRIMONIO) {
@@ -300,13 +300,13 @@ public class AdminModel extends UsuarioModel {
                     }
                 }
                 if (!encontrado) {
-                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o id " + id + " não encontrado.");
+                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
                 }
             } else {
-                throw new IOException("algum erro ocorreu");
+                throw new IOException("Algum erro ocorreu");
             }
         } else {
-            throw new IOException("algum erro ocorreu");
+            throw new IOException("Algum erro ocorreu");
         }
     }
 }
