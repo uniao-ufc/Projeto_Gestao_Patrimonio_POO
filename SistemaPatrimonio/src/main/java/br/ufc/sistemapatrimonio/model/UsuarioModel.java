@@ -229,14 +229,14 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!patrimonioSelecionado) {
-                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "O bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "O patrimonio com o ID " + id + " não foi encontrado no sistema.");
             }
 
             // Verificar se o bem existe no sistema e se já está alocado
             for (RequisicaoDeManutencao manutencao : requisicaoDeManutencaos) {
                 if (manutencao.getId() == id && manutencao.getTipo() == tipo) {
                     if (manutencao.getStatus()) {
-                        throw new PatrimonioException(PatrimonioException.EXISTENTE, "O bem com o ID " + id + " já foi cadastrado para manutenção no sistema.");
+                        throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimonio com o ID " + id + " já foi cadastrado para manutenção no sistema.");
                     }
                     break;
                 }
@@ -273,7 +273,7 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!manutencaoSelecionada) {
-                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de Bem com o ID " + id + " não foi encontrado no sistema.");
             }
 
         } else if (tipo == TipoReserva.PATRIMONIO) {
@@ -293,7 +293,7 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!manutencaoSelecionada) {
-                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de Patrimonio com o ID " + id + " não foi encontrado no sistema.");
             }
         }else {
             throw new IOException("Algum erro ocorreu");
@@ -318,7 +318,7 @@ public class UsuarioModel {
             }
 
             if (!itemRemovido) {
-                model.mostrarPopup("Erro", "Manutenção de Patrimonio com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
+                model.mostrarPopup("Erro", "Manutenção de Bem com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
                 throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "Manutenção de Bem com o ID " + id + " não encontrado.");
             }
 
