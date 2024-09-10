@@ -1,20 +1,19 @@
 package br.ufc.sistemapatrimonio.exceptions;
 
 public class UsuarioException extends Exception {
-    public static final int EXISTENTE = 1;
-    public static final int ERRO = 2;
+    public static final int EXISTENTE = 1; // código de erro para usuário existente
+    public static final int ERRO = 2; // código de erro genérico
+    public static final int DESCONHECIDO = 3; // código de erro para erro desconhecido
 
-    public static final int DESCONHECIDO = 3;
+    private final int erroCode; // código de erro associado à exceção
 
-    private final int erroCode;
-
-    // Construtor que aceita o código de erro e a mensagem
+    // construtor que aceita o código de erro e a mensagem
     public UsuarioException(int erroCode, String message) {
         super(message);
         this.erroCode = erroCode;
     }
 
-    // Método para obter o código de erro
+    // método para obter o código de erro
     public int getErroCode() {
         return erroCode;
     }

@@ -7,33 +7,39 @@ import br.ufc.sistemapatrimonio.exceptions.PatrimonioException;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class AdminModel extends UsuarioModel {
-    Model model = new Model();
 
+    // Instância do modelo que gerencia o sistema
+    private final Model model = new Model();
+
+    // Método para adicionar um novo patrimônio
     public void adicionarPatrimonio(int id, String nome, String descricao, double depreciacao, String tipo, int numeroTombamento) throws PatrimonioException {
-        // Verificar se já existe um patrimônio com o mesmo id
-        for (Patrimonio patrimonio : Model.getPatrimonios()) {
-            if (patrimonio.getId() == id) {
-                throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimônio com o ID " + id + " já existe.");
-            }
+        // Verifica se já existe um patrimônio com o mesmo id
+        if (Model.getPatrimonios().stream().anyMatch(p -> p.getId() == id)) {
+            throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimônio com o ID " + id + " já existe.");
         }
-        // Criar um novo TipoPatrimonio
+
+        // Cria um novo tipo de patrimônio
         TipoPatrimonio tipoPatrimonio = new TipoPatrimonio(tipo, descricao, depreciacao);
 
-        // Criar um novo Patrimonio
+        // Cria um novo patrimônio com os dados fornecidos
         Patrimonio novoPatrimonio = new Patrimonio(id, nome, tipoPatrimonio, numeroTombamento, false);
 
-        // Adicionar o novo patrimônio à lista
+        // Adiciona o novo patrimônio à lista de patrimônios
         Model.getPatrimonios().add(novoPatrimonio);
     }
 
+    // Método para editar um patrimônio existente
     public void editarPatrimonio(int id, String nome, String descricao, double depreciacao, String tipo, int numeroTombamento) throws PatrimonioException {
-        Optional<Patrimonio> patrimonioExistente = Model.getPatrimonios().stream().filter(patrimonio -> patrimonio.getId() == id).findFirst();
+        // Procura o patrimônio existente na lista
+        Optional<Patrimonio> patrimonioExistente = Model.getPatrimonios().stream().filter(p -> p.getId() == id).findFirst();
         if (patrimonioExistente.isPresent()) {
             Patrimonio patrimonio = patrimonioExistente.get();
+            // Atualiza os dados do patrimônio encontrado
             patrimonio.setNome(nome);
             patrimonio.getTipo().setNome(tipo);
             patrimonio.getTipo().setDescricao(descricao);
@@ -44,39 +50,39 @@ public class AdminModel extends UsuarioModel {
         }
     }
 
+    // Método para remover um patrimônio
     public void removerPatrimonio(int id) throws PatrimonioException {
         boolean encontrado = false;
 
-        // Usando um iterator para garantir que a remoção seja segura e eficiente
+        // Usando um iterator para remoção segura
         Iterator<Patrimonio> iteratorPatrimonios = Model.getPatrimonios().iterator();
         while (iteratorPatrimonios.hasNext()) {
             Patrimonio patrimonio = iteratorPatrimonios.next();
             if (patrimonio.getId() == id) {
-
-                // 1. Remover o patrimônio da lista do sistema
-                iteratorPatrimonios.remove(); // Remove o patrimônio da lista do sistema
+                // Remove o patrimônio da lista
+                iteratorPatrimonios.remove();
                 encontrado = true;
 
-                // 2. Remover as requisições de manutenção e reserva associadas ao patrimônio do usuário correto
+                // Remove as requisições de manutenção e reserva associadas ao patrimônio
                 for (Usuario usuario : Model.getUsers()) {
-                    // Remover requisições de manutenção associadas ao patrimônio deste usuário
+                    // Remove requisições de manutenção associadas ao patrimônio
                     Iterator<RequisicaoDeManutencao> iteratorManutencoesUsuario = usuario.getMinhasManutencoes().iterator();
                     while (iteratorManutencoesUsuario.hasNext()) {
                         RequisicaoDeManutencao manutencao = iteratorManutencoesUsuario.next();
                         if (manutencao.getId() == id && manutencao.getTipo() == TipoReserva.PATRIMONIO) {
-                            iteratorManutencoesUsuario.remove(); // Remove a manutenção associada ao patrimônio do usuário
-                            break; // Remove e sai do loop
+                            iteratorManutencoesUsuario.remove();
+                            break;
                         }
                     }
                 }
+                // Remove requisições de reserva associadas ao patrimônio
                 for (Usuario usuario : Model.getUsers()) {
-                    // Remover requisições de reserva associadas ao patrimônio deste usuário
                     Iterator<RequisicaoDeReserva> iteratorReservasUsuario = usuario.getMinhasRequisicaoDeReservas().iterator();
                     while (iteratorReservasUsuario.hasNext()) {
                         RequisicaoDeReserva reserva = iteratorReservasUsuario.next();
                         if (reserva.getId() == id && reserva.getTipoReserva() == TipoReserva.PATRIMONIO) {
-                            iteratorReservasUsuario.remove(); // Remove a reserva associada ao patrimônio do usuário
-                            break; // Remove e sai do loop
+                            iteratorReservasUsuario.remove();
+                            break;
                         }
                     }
                 }
@@ -88,10 +94,11 @@ public class AdminModel extends UsuarioModel {
         }
     }
 
+    // Método para listar todos os patrimônios
     public String listarPatrimonios() {
         StringBuilder lista = new StringBuilder();
         for (Patrimonio patrimonio : Model.getPatrimonios()) {
-            // Adiciona todas as informações relevantes do patrimônio
+            // Adiciona as informações do patrimônio na lista
             lista.append("ID: ").append(patrimonio.getId())
                     .append(", Nome: ").append(patrimonio.getNome())
                     .append(", Tipo: ").append(patrimonio.getTipo().getNome())
@@ -105,29 +112,32 @@ public class AdminModel extends UsuarioModel {
         return lista.toString();
     }
 
+    // Método para adicionar um novo bem
     public void adicionarBem(int id, String nome, String descricao, double depreciacao, String tipo) throws BemException {
-        // Verificar se já existe um bem com o mesmo id
-        for (Bem bem : Model.getBens()) {
-            if (bem.getId() == id) {
-                throw new BemException(BemException.EXISTENTE, "O bem com o ID " + id + " já existe.");
-            }
+        // Verifica se já existe um bem com o mesmo id
+        if (Model.getBens().stream().anyMatch(b -> b.getId() == id)) {
+            throw new BemException(BemException.EXISTENTE, "O bem com o ID " + id + " já existe.");
         }
-        // Criar um novo TipoBem
+
+        // Cria um novo tipo de bem
         TipoBem tipoBem = new TipoBem(tipo, descricao, depreciacao);
 
-        // Criar um novo Bem
+        // Cria um novo bem com os dados fornecidos
         Bem novoBem = new Bem(id, nome, tipoBem, false);
 
-        // Adicionar o novo bem à lista
+        // Adiciona o novo bem à lista de bens
         Model.getBens().add(novoBem);
     }
 
+    // Método para editar um bem existente
     public void editarBem(int id, String nome, String descricao, double depreciacao, String tipo) throws BemException {
         boolean encontrado = false;
 
+        // Procura o bem existente na lista
         for (Bem bem : Model.getBens()) {
             if (bem.getId() == id) {
                 encontrado = true;
+                // Atualiza os dados do bem encontrado
                 bem.setNome(nome);
                 bem.getTipo().setNome(tipo);
                 bem.getTipo().setDescricao(descricao);
@@ -141,41 +151,39 @@ public class AdminModel extends UsuarioModel {
         }
     }
 
+    // Método para remover um bem
     public void removerBem(int id) throws BemException {
         boolean encontrado = false;
 
-        // Usando um iterator para garantir que a remoção seja segura e eficiente
+        // Usando um iterator para remoção segura
         Iterator<Bem> iteratorBens = Model.getBens().iterator();
         while (iteratorBens.hasNext()) {
             Bem bem = iteratorBens.next();
             if (bem.getId() == id) {
-
-                // 1. Remover o patrimônio da lista do sistema
-                iteratorBens.remove(); // Remove o patrimônio da lista do sistema
+                // Remove o bem da lista
+                iteratorBens.remove();
                 encontrado = true;
 
-                // 2. Remover as requisições de manutenção e reserva associadas ao patrimônio do usuário correto
+                // Remove as requisições de manutenção e reserva associadas ao bem
                 for (Usuario usuario : Model.getUsers()) {
-
-                    // Remover requisições de manutenção associadas ao patrimônio deste usuário
+                    // Remove requisições de manutenção associadas ao bem
                     Iterator<RequisicaoDeManutencao> iteratorManutencoesUsuario = usuario.getMinhasManutencoes().iterator();
                     while (iteratorManutencoesUsuario.hasNext()) {
                         RequisicaoDeManutencao manutencao = iteratorManutencoesUsuario.next();
                         if (manutencao.getId() == id && manutencao.getTipo() == TipoReserva.BEM) {
-                            iteratorManutencoesUsuario.remove(); // Remove a manutenção associada ao patrimônio do usuário
-                            break; // Remove e sai do loop
+                            iteratorManutencoesUsuario.remove();
+                            break;
                         }
                     }
                 }
+                // Remove requisições de reserva associadas ao bem
                 for (Usuario usuario : Model.getUsers()) {
-
-                    // Remover requisições de reserva associadas ao patrimônio deste usuário
                     Iterator<RequisicaoDeReserva> iteratorReservasUsuario = usuario.getMinhasRequisicaoDeReservas().iterator();
                     while (iteratorReservasUsuario.hasNext()) {
                         RequisicaoDeReserva reserva = iteratorReservasUsuario.next();
                         if (reserva.getId() == id && reserva.getTipoReserva() == TipoReserva.BEM) {
-                            iteratorReservasUsuario.remove(); // Remove a reserva associada ao patrimônio do usuário
-                            break; // Remove e sai do loop
+                            iteratorReservasUsuario.remove();
+                            break;
                         }
                     }
                 }
@@ -187,10 +195,11 @@ public class AdminModel extends UsuarioModel {
         }
     }
 
+    // Método para listar todos os bens
     public String listarBens() {
         StringBuilder lista = new StringBuilder();
         for (Bem bem : Model.getBens()) {
-            // Adiciona todas as informações relevantes do bem
+            // Adiciona as informações do bem na lista
             lista.append("ID: ").append(bem.getId())
                     .append(", Nome: ").append(bem.getNome())
                     .append(", Tipo: ").append(bem.getTipo().getNome())
@@ -203,10 +212,11 @@ public class AdminModel extends UsuarioModel {
         return lista.toString();
     }
 
+    // Método para listar todas as reservas
     public String listarReservas() {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeReserva requisicaoDeReserva : model.getrequisicaoDeReservas()) {
-            // Adiciona todas as informações relevantes das reservas
+            // Adiciona as informações das reservas na lista
             lista.append("ID: ").append(requisicaoDeReserva.getId())
                     .append(", Nome: ").append(requisicaoDeReserva.getNome())
                     .append(", Local: ").append(requisicaoDeReserva.getLocal().getEndereco())
@@ -217,10 +227,11 @@ public class AdminModel extends UsuarioModel {
         return lista.toString();
     }
 
+    // Método para listar todas as manutenções
     public String listarManutencoes() {
         StringBuilder lista = new StringBuilder();
         for (RequisicaoDeManutencao requisicaoDeManutencao : model.getRequisicaoDeManutencao()) {
-            // Adiciona todas as informações relevantes das reservas
+            // Adiciona as informações das manutenções na lista
             lista.append("ID: ").append(requisicaoDeManutencao.getId())
                     .append(", Nome: ").append(requisicaoDeManutencao.getNome())
                     .append(", Descrição: ").append(requisicaoDeManutencao.getDescricao())
@@ -230,10 +241,13 @@ public class AdminModel extends UsuarioModel {
         return lista.toString();
     }
 
+    // Método para remover histórico de reservas ou manutenções
     public void removerHistorico(int id, String tipoRM, TipoReserva tipoBP) throws BemException, IOException {
         boolean encontrado = false;
+
         if (Objects.equals(tipoRM, "reserva")) {
             if (tipoBP == TipoReserva.PATRIMONIO) {
+                // Remove reservas de patrimônio
                 Iterator<RequisicaoDeReserva> iteratorReservas = model.getrequisicaoDeReservas().iterator();
                 while (iteratorReservas.hasNext()) {
                     RequisicaoDeReserva reserva = iteratorReservas.next();
@@ -246,6 +260,7 @@ public class AdminModel extends UsuarioModel {
                     throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
                 }
             } else if (tipoBP == TipoReserva.BEM) {
+                // Remove reservas de bem
                 Iterator<RequisicaoDeReserva> iteratorReservas = model.getrequisicaoDeReservas().iterator();
                 while (iteratorReservas.hasNext()) {
                     RequisicaoDeReserva reserva = iteratorReservas.next();
@@ -262,6 +277,7 @@ public class AdminModel extends UsuarioModel {
             }
         } else if (Objects.equals(tipoRM, "manutencao")) {
             if (tipoBP == TipoReserva.PATRIMONIO) {
+                // Remove manutenções de patrimônio
                 Iterator<RequisicaoDeManutencao> iteratorManutencao = model.getRequisicaoDeManutencao().iterator();
                 while (iteratorManutencao.hasNext()) {
                     RequisicaoDeManutencao manutencao = iteratorManutencao.next();
@@ -269,11 +285,12 @@ public class AdminModel extends UsuarioModel {
                         iteratorManutencao.remove();
                         encontrado = true;
                     }
-                    if (!encontrado) {
-                        throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
-                    }
+                }
+                if (!encontrado) {
+                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o id " + id + " não encontrado.");
                 }
             } else if (tipoBP == TipoReserva.BEM) {
+                // Remove manutenções de bem
                 Iterator<RequisicaoDeManutencao> iteratorManutencao = model.getRequisicaoDeManutencao().iterator();
                 while (iteratorManutencao.hasNext()) {
                     RequisicaoDeManutencao manutencao = iteratorManutencao.next();
@@ -281,9 +298,9 @@ public class AdminModel extends UsuarioModel {
                         iteratorManutencao.remove();
                         encontrado = true;
                     }
-                    if (!encontrado) {
-                        throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
-                    }
+                }
+                if (!encontrado) {
+                    throw new BemException(BemException.NAO_ENCONTRADO, tipoBP + " com o ID " + id + " não encontrado.");
                 }
             } else {
                 throw new IOException("Algum erro ocorreu");

@@ -22,7 +22,7 @@ public class UsuarioModel {
 
             Bem bemSelecionado = null;
 
-            // Verificar se o bem existe no sistema e se já está alocado
+            // Verificar se o bem existe no sistema e se já está alocado.
             for (Bem bem : bensSistema) {
                 if (bem.getId() == id) {
                     if (bem.isAlocstatus()) {
