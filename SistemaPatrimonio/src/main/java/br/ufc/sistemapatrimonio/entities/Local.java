@@ -2,7 +2,7 @@ package br.ufc.sistemapatrimonio.entities;
 
 public class Local {
     private String endereco;
-
+    // Construtor para inicializar todos os atributos do Local
     public Local(String endereco) {
         this.endereco = endereco;
     }

@@ -22,7 +22,7 @@ public class UsuarioModel {
 
             Bem bemSelecionado = null;
 
-            // Verificar se o bem existe no sistema e se já está alocado
+            // Verificar se o bem existe no sistema e se já está alocado.
             for (Bem bem : bensSistema) {
                 if (bem.getId() == id) {
                     if (bem.isAlocstatus()) {
@@ -127,16 +127,13 @@ public class UsuarioModel {
 
         } else if (tipo == TipoReserva.PATRIMONIO) {
             boolean itemRemovido = false;
-            System.out.println("Chega aq\n");
             // Remover patrimônio, caso o bem não tenha sido removido
             for (Patrimonio patrimonio : Model.getPatrimonios()) {
-                System.out.println("Chega NO ID");
                 System.out.println(patrimonio.getId());
                 if (patrimonio.getId() == id) {
                     patrimonio.setAlocstatus(false); // Atualizar o status de alocação para falso
                     itemRemovido = true; // Marcar que um item foi removido
 
-                    System.out.println("Chega sera?");
                     break; // Sai do loop após remover o patrimônio
                 }
             }
@@ -158,15 +155,6 @@ public class UsuarioModel {
         }
         usuarioAutenticado.getMinhasRequisicaoDeReservas().removeAll(removidas);
 
-        // Remover a requisição de reserva associada
-        //Iterator<RequisicaoDeReserva> requisicaoIterator = usuarioAutenticado.getMinhasRequisicaoDeReservas().iterator();
-        // while (requisicaoIterator.hasNext()) {
-        //    RequisicaoDeReserva requisicao = requisicaoIterator.next();
-        //     if (requisicao.getIdReserva() == id && requisicao.getTipoReserva() == tipo) {
-        //    requisicaoIterator.remove(); // Remover a requisição de reserva associada
-        //        break; // Sai do loop após remover a requisição
-        //   }
-        // }
     }
 
     public String listarReservasUsuario() {
@@ -241,14 +229,14 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!patrimonioSelecionado) {
-                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "O bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new PatrimonioException(PatrimonioException.NAO_ENCONTRADO, "O patrimonio com o ID " + id + " não foi encontrado no sistema.");
             }
 
             // Verificar se o bem existe no sistema e se já está alocado
             for (RequisicaoDeManutencao manutencao : requisicaoDeManutencaos) {
                 if (manutencao.getId() == id && manutencao.getTipo() == tipo) {
                     if (manutencao.getStatus()) {
-                        throw new PatrimonioException(PatrimonioException.EXISTENTE, "O bem com o ID " + id + " já foi cadastrado para manutenção no sistema.");
+                        throw new PatrimonioException(PatrimonioException.EXISTENTE, "O patrimonio com o ID " + id + " já foi cadastrado para manutenção no sistema.");
                     }
                     break;
                 }
@@ -285,7 +273,7 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!manutencaoSelecionada) {
-                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de Bem com o ID " + id + " não foi encontrado no sistema.");
             }
 
         } else if (tipo == TipoReserva.PATRIMONIO) {
@@ -305,7 +293,7 @@ public class UsuarioModel {
 
             // Caso o bem não seja encontrado no sistema
             if (!manutencaoSelecionada) {
-                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de bem com o ID " + id + " não foi encontrado no sistema.");
+                throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "O Manutenção de Patrimonio com o ID " + id + " não foi encontrado no sistema.");
             }
         }else {
             throw new IOException("Algum erro ocorreu");
@@ -330,7 +318,7 @@ public class UsuarioModel {
             }
 
             if (!itemRemovido) {
-                model.mostrarPopup("Erro", "Manutenção de Patrimonio com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
+                model.mostrarPopup("Erro", "Manutenção de Bem com o ID " + id + " não encontrado.", Alert.AlertType.ERROR);
                 throw new ManutencaoException(ManutencaoException.NAO_ENCONTRADO, "Manutenção de Bem com o ID " + id + " não encontrado.");
             }
 
