@@ -9,10 +9,8 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage stage) {
-        // Falta programar AdmHistorico, AdmManuten, AdminReq, RequisReq, RequisManuten
         try {
             InitScenesController.initScenes();
             // Ativando tela principal

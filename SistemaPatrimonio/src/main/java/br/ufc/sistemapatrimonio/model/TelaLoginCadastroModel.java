@@ -72,7 +72,6 @@ public class TelaLoginCadastroModel {
         // Verifica se já existe um usuário com o mesmo login
         for (Usuario usuariosSistema : usuarios) {
             if (Objects.equals(usuariosSistema.getUsername(), login)) {
-                System.out.println(usuariosSistema.getUsername() + login);
                 throw new UsuarioException(UsuarioException.EXISTENTE, "O usuario já existe"); // Lança uma exceção se o usuário já existir
             }
         }
